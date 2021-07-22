@@ -1,0 +1,18 @@
+#overview {
+  display: flex;
+  justify-content: center;
+  height: 60px;
+}
+
+#description {
+  display: flex;
+  justify-content: center;
+}
+
+#carousel {
+  flex: 2;
+}
+
+#info {
+  flex: 1;
+}
