@@ -1,4 +1,7 @@
 import React from 'react';
+import Carousel from './Carousel.jsx';
+import ProductInfo from './ProductInfo.jsx';
+import ProductDescription from './ProductDescription.jsx';
 
 class Overview extends React.Component {
   constructor (props) {
@@ -8,7 +11,15 @@ class Overview extends React.Component {
 
   render () {
     return (
-      <div>OVERVIEW</div>
+      <div>
+        <div id="overview">
+          <Carousel />
+          <ProductInfo />
+        </div>
+        <div>
+          <ProductDescription />
+        </div>
+      </div>
     );
   }
 }
