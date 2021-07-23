@@ -9,7 +9,7 @@
   justify-content: center;
 }
 
-#carousel {
+.carousel {
   flex: 2;
 }
 
