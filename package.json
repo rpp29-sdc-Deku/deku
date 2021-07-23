@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "Cheesin'",
   "main": "index.js",
+  "jest": {
+    "verbose": true,
+    "setupFilesAfterEnv": [
+      "<rootDir>/client/src/tests/setupTests.js"
+    ]
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "testquestions": "jest /client/src/tests/Questions.test.js --coverage",
     "start": "webpack --mode development --watch",
     "server": "nodemon server/index.js"
   },
@@ -23,14 +29,19 @@
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
+    "@types/jest": "^26.0.24",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.2",
     "eslint": "^7.30.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.24.0",
+    "jest": "^27.0.6",
     "style-loader": "^3.2.1",
     "webpack": "^5.44.0",
     "webpack-cli": "^4.7.2"
@@ -39,7 +50,7 @@
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
   }
 }

@@ -8,7 +8,7 @@ class Questions extends React.Component {
 
   render () {
     return (
-      <div>QUESTIONS</div>
+      <div className='QA' >QUESTIONS</div>
     );
   }
 }
