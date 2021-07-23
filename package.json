@@ -10,7 +10,7 @@
     ]
   },
   "scripts": {
-    "testquestions": "jest /client/src/tests/Questions.test.js --coverage",
+    "testqa": "jest /client/src/tests/QuestionsAnswers.test.js --coverage",
     "start": "webpack --mode development --watch",
     "server": "nodemon server/index.js"
   },

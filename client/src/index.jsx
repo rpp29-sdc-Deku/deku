@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Overview from './components/product_overview/Overview.jsx';
 import Reviews from './components/reviews/Reviews.jsx';
 import Related from './components/related_products/Related.jsx';
-import Questions from './components/questions_answers/Questions.jsx';
+import QuestionsAnswers from './components/questions_answers/QuestionsAnswers.jsx';
 import '../dist/styles/product_overview.css';
 
 class App extends React.Component {
@@ -19,7 +19,7 @@ class App extends React.Component {
 
       <Overview />
       <Related />
-      <Questions />
+      <QuestionsAnswers />
       <Reviews />
       </div>
     );
