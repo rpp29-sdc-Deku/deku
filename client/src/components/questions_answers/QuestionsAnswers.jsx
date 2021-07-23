@@ -1,4 +1,5 @@
 import React from 'react';
+import QuestionList from './QuestionList.jsx';
 
 class QuestionsAnswers extends React.Component {
   constructor (props) {
@@ -8,7 +9,11 @@ class QuestionsAnswers extends React.Component {
 
   render () {
     return (
-      <div className='QA' >QUESTIONS</div>
+      <div className='QA'>
+        <div id='Qtitle'>Questions and Answers</div>
+        <input id='Qsearch' type='text' placeholder='have a question? search for answers...'></input>
+        <QuestionList />
+        </div>
     );
   }
 }
