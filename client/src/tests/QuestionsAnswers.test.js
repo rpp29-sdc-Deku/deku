@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
-import Questions from '../components/questions_answers/Questions.jsx';
+import QuestionsAnswers from '../components/questions_answers/QuestionsAnswers.jsx';
 
 describe('Testing to confirm test infrastructure is working', () => {
   it('should add 1 and 1', () => {
@@ -11,7 +11,7 @@ describe('Testing to confirm test infrastructure is working', () => {
 
 describe('Questions and Answers', function () {
   it('should render the Questions widget without crashing', function () {
-    const wrapper = shallow(<Questions />);
+    const wrapper = shallow(<QuestionsAnswers />);
     expect(wrapper.hasClass('QA')).toBeTruthy();
   });
 });
