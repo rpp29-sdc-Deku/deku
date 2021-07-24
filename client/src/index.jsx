@@ -9,7 +9,9 @@ import '../dist/styles/product_overview.css';
 class App extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {
+      id: 28212
+    };
   }
 
   render () {
