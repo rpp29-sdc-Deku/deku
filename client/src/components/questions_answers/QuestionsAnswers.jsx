@@ -27,9 +27,11 @@ class QuestionsAnswers extends React.Component {
     return (
       <div className='QA'>
         <div id='Qtitle'>Questions and Answers</div>
-        <input id='Qsearch' type='text' placeholder='have a question? search for answers...'></input>
-        <QuestionList />
-        <button>QA</button>
+        <input id='Qsearch' type='text' placeholder='Have a Question? Search For Answers...'></input>
+        <QuestionList questions={this.state.initial} />
+        <button>More Answered Questions</button><br></br>
+        <button>Add A Question + </button>
+
         </div>
     );
   }
