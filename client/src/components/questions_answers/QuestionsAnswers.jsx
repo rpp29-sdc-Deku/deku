@@ -11,6 +11,7 @@ class QuestionsAnswers extends React.Component {
     return (
       <div className='QA'>
         <div id='Qtitle'>Questions and Answers</div>
+        <div>{this.props.id}</div>
         <input id='Qsearch' type='text' placeholder='have a question? search for answers...'></input>
         <QuestionList />
         </div>
