@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const axios = require('axios');
-const key = require('../config.js');
+const keys = require('../config.js');
 
 router.get('/initialQA', (req, res) => {
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions', {
+  axios.get(`${keys.API}qa/questions`, {
     method: 'GET',
     headers: {
-      Authorization: key.TOKEN
+      Authorization: keys.TOKEN
     },
     params: {
       product_id: req.query.product_id,
