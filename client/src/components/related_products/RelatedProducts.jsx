@@ -1,4 +1,7 @@
 import React from 'react';
+// import axios from 'axios';
+import RelatedProduct from './RelatedProduct.jsx';
+import YourOutfit from './YourOutfit.jsx';
 
 class RelatedProducts extends React.Component {
   constructor (props) {
@@ -8,7 +11,10 @@ class RelatedProducts extends React.Component {
 
   render () {
     return (
-      <div className='related-products'>RELATED PRODUCTS</div>
+      <section className='suggested-products'>
+        <RelatedProduct />
+        <YourOutfit />
+      </section>
     );
   }
 }
