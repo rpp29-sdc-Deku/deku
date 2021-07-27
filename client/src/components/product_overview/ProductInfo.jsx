@@ -11,7 +11,6 @@ class ProductInfo extends React.Component {
   }
 
   render () {
-    console.log('🦃', this.props.info[0]);
     return (
       <div id="info">
         <div>
@@ -27,8 +26,8 @@ class ProductInfo extends React.Component {
           {this.props.info.original_price}
         </div>
         <div className="product_style">
-          STYLE<br />
-          cirle images
+          STYLE{'>'}style name<br />
+          circle images
         </div>
         <ProductForm />
       </div>

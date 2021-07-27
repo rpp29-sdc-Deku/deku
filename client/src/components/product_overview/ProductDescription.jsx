@@ -10,7 +10,7 @@ class ProductDescription extends React.Component {
 
   render () {
     return (
-      <div id="description">PRODUCT DESCRIPTION</div>
+      <div>PRODUCT DESCRIPTION</div>
     );
   }
 }

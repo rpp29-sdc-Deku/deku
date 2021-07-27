@@ -7,13 +7,13 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/carouselImages', (req, res) => {
+  console.log('🐾', req.body);
   axios.get(`${keys.API}products/28212/styles`, {
     headers: {
       Authorization: keys.TOKEN
     }
   })
     .then((response) => {
-      // console.log('response', response.data);
       res.status(200).send(response.data);
     })
     .catch((error) => {
@@ -29,7 +29,6 @@ router.get('/productinfo', (req, res) => {
     }
   })
     .then((response) => {
-      console.log('🍄', response.data);
       res.status(200).send(response.data);
     })
     .catch((err) => {

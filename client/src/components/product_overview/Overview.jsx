@@ -16,8 +16,9 @@ class Overview extends React.Component {
 
   componentDidMount () {
     $.ajax({
-      url: '/atelier/carouselImages',
+      url: '/atelier/carouselImages/',
       type: 'GET',
+      data: this.props.id,
       success: (data) => {
         console.log('success back to client', data.results[0].photos);
         this.setState({ carouselImages: data.results[0].photos });
@@ -31,7 +32,7 @@ class Overview extends React.Component {
       type: 'GET',
       success: (data) => {
         console.log('success in getting back to client product info', data.results);
-        this.setState({ productInfo: data.results });
+        this.setState({ productInfo: data.results[0] });
       },
       error: (err) => {
         console.log('error in getting back to client product info', err);
@@ -47,7 +48,7 @@ class Overview extends React.Component {
           <ProductInfo info={this.state.productInfo} />
         </div>
         <div>
-          <ProductDescription />
+          <ProductDescription id="description" />
         </div>
       </div>
     );

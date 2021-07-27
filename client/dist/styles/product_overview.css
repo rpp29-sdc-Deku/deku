@@ -10,26 +10,29 @@
 }
 
 .carousel {
+  position: relative;
   flex: 2;
   /* height: 270px; */
   width: 80%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .carousel__expand{
   height: 15px;
   width: 15px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .carousel__image {
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   object-fit: cover;
 }
 
 .carousel__track-container {
   background: lightgreen;
-  /* padding: 10px; */
+  padding: 50px;
   height: 80%;
   position: relative;
 }
@@ -44,13 +47,13 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 40%;
+  width: 100%;
 }
 
 .carousel__button {
   position: absolute;
-  top: 45%;
-  transform: translateY(-100%);
+  top: 50%;
+  /* transform: translateY(-50%); */
   background: transparent;
   border: 0;
   cursor: pointer;
@@ -59,12 +62,12 @@
 .carousel__button--left {
   position: relative;
   z-index: 4;
-  left: 0;
+  left: 30px;
 }
 
 .carousel__button--right {
-  /* position: relative;
-  z-index: 4; */
+  position: relative;
+  z-index: 2;
   left: 600px;
 }
 
@@ -96,6 +99,12 @@
   width: 5%;
   height: 5%;
   object-fit: cover;
+}
+
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 #info {
