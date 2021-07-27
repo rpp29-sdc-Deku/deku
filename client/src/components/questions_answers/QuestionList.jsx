@@ -10,7 +10,9 @@ class QuestionList extends React.Component {
   render () {
     return (
       <div className='QL'>
-        <Question />
+        {this.props.questions
+          ? this.props.questions.map((q) => <Question key={q.question_id} question={q} />)
+          : 'No Data to Display' }
       </div>
     );
   }

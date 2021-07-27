@@ -1,13 +1,11 @@
 /* .QA {
   border: 1px solid black;
-  height: 200px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 50;
 }
 
 .QL {
   border: 1px solid black;
-  height: 100px;
 }
 
 .Q {
@@ -15,5 +13,9 @@
 }
 
 #Qsearch {
+  width: 75%;
+}
+
+input {
   width: 75%;
 } */
