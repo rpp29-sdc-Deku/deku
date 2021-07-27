@@ -19,7 +19,7 @@ class App extends React.Component {
       <div>
       <div>HELLO WORLD! It's fetalicious!!</div>
 
-      <Overview />
+      <Overview id={this.state.id} />
       <RelatedProducts />
       <QuestionsAnswers />
       <Reviews />

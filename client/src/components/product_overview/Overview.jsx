@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Carousel from './Carousel.jsx';
 import ProductInfo from './ProductInfo.jsx';
@@ -8,13 +9,14 @@ class Overview extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      carouselImages: []
+      carouselImages: [],
+      productInfo: {}
     };
   }
 
   componentDidMount () {
     $.ajax({
-      url: '/overview',
+      url: '/atelier/carouselImages',
       type: 'GET',
       success: (data) => {
         console.log('success back to client', data.results[0].photos);
@@ -24,14 +26,25 @@ class Overview extends React.Component {
         console.log('error in getting back to client', err);
       }
     });
+    $.ajax({
+      url: '/atelier/productinfo',
+      type: 'GET',
+      success: (data) => {
+        console.log('success in getting back to client product info', data.results);
+        this.setState({ productInfo: data.results });
+      },
+      error: (err) => {
+        console.log('error in getting back to client product info', err);
+      }
+    });
   }
 
   render () {
     return (
       <div>
         <div id="overview">
-          <Carousel bigImages={this.state.carouselImages} />
-          <ProductInfo />
+          <Carousel images={this.state.carouselImages} />
+          <ProductInfo info={this.state.productInfo} />
         </div>
         <div>
           <ProductDescription />
