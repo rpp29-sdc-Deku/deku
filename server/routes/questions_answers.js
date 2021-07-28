@@ -11,7 +11,7 @@ router.get('/initialQA', (req, res) => {
     params: {
       product_id: req.query.product_id,
       page: 1,
-      amount: 2
+      count: 2
     }
   })
     .then((response) => {
