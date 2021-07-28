@@ -1,21 +1,79 @@
-/* .QA {
-  border: 1px solid black;
+.QA {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 50;
+  width: 75%
+}
+
+.QA:hover {
+  cursor: default;
 }
 
 .QL {
-  border: 1px solid black;
+  margin: 5px;
 }
 
 .Q {
-  border: 1px dotted black;
+  margin: 5px;
+}
+
+.Qblock {
+  font-weight: bold;
+}
+
+.Qblock .Qb {
+  float: left;
+}
+
+.Qblock .sub {
+  float: right;
 }
 
 #Qsearch {
-  width: 75%;
+  width: 100%;
+  border: 1px solid black;
 }
 
 input {
-  width: 75%;
-} */
+  height: 40px;
+  outline: none;
+}
+
+#searchbar {
+  font-weight: bold;
+}
+
+input {
+  width: 95%;
+  border: none;
+}
+
+#searchbtn {
+  border: none;
+  background-color: white;
+}
+
+.btn {
+  background-color: white;
+  padding: 10px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.wordbtn {
+  border: none;
+  background-color: white;
+  margin: 3px;
+}
+
+.sub {
+  font-size: 12px;
+}
+
+.mid {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.wrdbtn:hover {
+  cursor: pointer;
+}
