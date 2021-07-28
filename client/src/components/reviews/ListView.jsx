@@ -1,5 +1,5 @@
 import React from 'react';
-
+import List from './List.jsx';
 class ListView extends React.Component {
   constructor (props) {
     super(props);
@@ -9,13 +9,7 @@ class ListView extends React.Component {
   render () {
     return (
       <div className='reviewList'>
-        <div className='reviewTile'>
-          <div className='reviewStarRaiting'></div>
-          <div className='reviewTitle'></div>
-          <div className='reviewSummary'></div>
-          <div className='reviewHelpful'></div>
-          <div className='reviewResponse'></div>
-        </div>
+        <List />
         <button>More Reviews</button>
       </div>
     );
