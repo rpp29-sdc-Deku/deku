@@ -22,10 +22,10 @@ class Carousel extends React.Component {
             })
             : null }
         </div> */}
-        <button className="carousel__button carousel__button--left">
+        <button className="carousel_button left_arrow">
           <img src="https://img.icons8.com/windows/32/000000/long-arrow-left.png"/>
         </button>
-        <button className="carousel__button carousel__button--right">
+        <button className="carousel_button right_arrow">
           <img src="https://img.icons8.com/windows/32/000000/long-arrow-right.png"/>
         </button>
         <div className="carousel_container" style={{ backgroundImage: `url(${this.props.currentImage})` }} >
