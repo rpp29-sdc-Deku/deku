@@ -10,7 +10,6 @@
     ]
   },
   "scripts": {
-    "testrelatedproducts": "jest /client/src/tests/RelatedProducts.test.js --coverage",
     "testqa": "jest /client/src/tests/QuestionsAnswers.test.js --coverage",
     "testoverview": "jest /client/src/tests/Overview.test.js --coverage",
     "start": "webpack --mode development --watch",
