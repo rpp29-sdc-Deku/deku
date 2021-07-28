@@ -5,7 +5,7 @@ import Reviews from './components/reviews/Reviews.jsx';
 import RelatedProducts from './components/related_products/RelatedProducts.jsx';
 import QuestionsAnswers from './components/questions_answers/QuestionsAnswers.jsx';
 import '../dist/styles/product_overview.css';
-
+import getReviews from './helpers/serverReview.js';
 class App extends React.Component {
   constructor (props) {
     super(props);
@@ -33,7 +33,7 @@ class App extends React.Component {
         <Overview productId={this.state.id} />
         <RelatedProducts />
         <QuestionsAnswers id={this.state.id} />
-        <Reviews />
+        <Reviews getReviews={getReviews}/>
       </div>
     );
   }
