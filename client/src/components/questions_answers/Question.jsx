@@ -10,7 +10,6 @@ class Question extends React.Component {
   render () {
     return (
       <div className='Q'>
-
         <div className='Qblock'>
           <span className="Qb">Q: {this.props.question
             ? this.props.question.question_body

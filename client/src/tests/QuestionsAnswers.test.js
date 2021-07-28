@@ -37,9 +37,9 @@ describe('Question', function () {
   });
 });
 
-describe('Answer', function () {
-  it('should render the Answer component without crashing', function () {
-    const wrapper = shallow(<Answer />);
-    expect(wrapper.hasClass('A')).toBeTruthy();
-  });
-});
+// describe('Answer', function () {
+//   it('should render the Answer component without crashing', function () {
+//     const wrapper = shallow(<Answer />);
+//     expect(wrapper.hasClass('A')).toBeTruthy();
+//   });
+// });
