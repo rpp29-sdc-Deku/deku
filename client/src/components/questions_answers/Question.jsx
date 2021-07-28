@@ -25,9 +25,9 @@ class Question extends React.Component {
           </span>
         </div><br></br><br></br>
 
-        {this.props.question && this.props.question.answers
+        {Object.keys(this.props.question).length > 0 && Object.keys(this.props.question.answers).length > 0
           ? Object.keys(this.props.question.answers).slice(0, 2).map((el) => <Answer key={this.props.question.answers[el].id} answer={this.props.question.answers[el]} />)
-          : 'Be the first to provide an answer!' }
+          : <div>Be the first to provide an answer!<br></br></div> }
       </div>
     );
   }
