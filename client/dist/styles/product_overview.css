@@ -1,86 +1,111 @@
+#logo {
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: gray;
+  padding: 10px;
+  color: white;
+  size: 15px;
+}
+
+.website_announcement {
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+}
+
 #overview {
+  height: 800px;
+}
+
+#carouselProductInfo {
   display: flex;
   justify-content: center;
-  height: 600px;
+  height: 550px;
 }
 
 #description {
   display: flex;
+  align-items: center;
   justify-content: center;
+  height: 250px;
 }
 
 .carousel {
   position: relative;
   flex: 2;
-  /* height: 270px; */
-  width: 80%;
-  /* margin: 0 auto; */
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.carousel__expand{
+.carousel_expand{
   height: 15px;
   width: 15px;
   display: flex;
   justify-content: flex-end;
+  cursor: pointer
 }
 
-.carousel__image {
-  /* width: 100%; */
-  height: 100%;
-  object-fit: cover;
+.carousel_image {
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
 }
 
-.carousel__track-container {
+.carousel_container {
   background: lightgreen;
-  padding: 50px;
-  height: 80%;
+  /* padding: 50px; */
+  height: 100%;
   position: relative;
-}
 
-.carousel__track {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.carousel__slide {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
+  background-position: center;
+  background-size: cover;
 }
 
 .carousel__button {
-  position: absolute;
-  top: 50%;
+  /* position: absolute;
+  top: 50%; */
   /* transform: translateY(-50%); */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* align-items: flex-end; */
   background: transparent;
   border: 0;
   cursor: pointer;
 }
 
 .carousel__button--left {
-  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* position: relative;
   z-index: 4;
-  left: 30px;
+  left: 30px; */
 }
 
 .carousel__button--right {
-  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* position: relative;
   z-index: 2;
-  left: 600px;
+  left: 600px; */
 }
 
 .carousel__button img {
   width: 15px;
 }
 
-.carousel__nav {
+/* .carousel__nav {
   background: pink;
   display: flex;
   justify-content: center;
-  padding: 10px 0;
-}
+  padding: 10px 0; */
+/* }
 
 .carousel__indicator {
   border: 0;
@@ -93,15 +118,15 @@
 
 .carousel__indicator.current-slide {
   background: rgba(0, 0, 0, .75);
-}
+} */
 
-.thumbnail {
+.carousel_thumbnail {
   width: 5%;
   height: 5%;
   object-fit: cover;
 }
 
-.thumbnails {
+.carousel_thumbnails {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -109,5 +134,6 @@
 
 #info {
   flex: 1;
+  padding: 30px
 }
 

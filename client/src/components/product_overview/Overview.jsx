@@ -9,24 +9,15 @@ class Overview extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      carouselImages: [],
+      images: [],
+      currentImage: '',
+      styles: [],
+      currentStyle: '',
       productInfo: {}
     };
   }
 
   componentDidMount () {
-    $.ajax({
-      url: '/atelier/carouselImages/',
-      type: 'GET',
-      data: this.props.id,
-      success: (data) => {
-        console.log('success back to client', data.results[0].photos);
-        this.setState({ carouselImages: data.results[0].photos });
-      },
-      error: (err) => {
-        console.log('error in getting back to client', err);
-      }
-    });
     $.ajax({
       url: '/atelier/productinfo',
       type: 'GET',
@@ -38,17 +29,39 @@ class Overview extends React.Component {
         console.log('error in getting back to client product info', err);
       }
     });
+
+    $.ajax({
+      url: '/atelier/productStyles/',
+      type: 'GET',
+      success: (data) => {
+        console.log('success back to client', data.results);
+        this.setState({ styles: data.results });
+        const imagesArray = this.state.styles.map((style) => {
+          return style.photos;
+        });
+        this.setState({ images: imagesArray });
+        this.setState({ currentImage: imagesArray[0][0].url });
+      },
+      error: (err) => {
+        console.log('error in getting back to client', err);
+      }
+    });
   }
 
   render () {
     return (
       <div>
-        <div id="overview">
-          <Carousel images={this.state.carouselImages} />
-          <ProductInfo info={this.state.productInfo} />
+        <div className="website_announcement">
+          <i>SITE-WIDE ANNOUCEMENT MESSAGE! </i> SALE / DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u>
         </div>
-        <div>
-          <ProductDescription id="description" />
+        <div id="overview">
+          <div id="carouselProductInfo">
+            <Carousel productId={this.props.productId} images={this.state.images} currentImage={this.state.currentImage} styles={this.state.styles} currentStyle={this.state.currentStyle} />
+            <ProductInfo info={this.state.productInfo} />
+          </div>
+          <div id="description">
+            <ProductDescription />
+          </div>
         </div>
       </div>
     );
