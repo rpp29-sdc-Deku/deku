@@ -10,19 +10,30 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      id: 28212
+      id: 28212,
+      value: ''
     };
+  }
+
+  onChange (e) {
+    this.setState({ value: e.target.value });
   }
 
   render () {
     return (
       <div>
-      <div>HELLO WORLD! It's fetalicious!!</div>
-
-      <Overview />
-      <RelatedProducts />
-      <QuestionsAnswers id={this.state.id} />
-      <Reviews />
+        <div id="logo">
+          <div>
+            <b><u>LOGO</u></b>
+          </div>
+          <div id="search">
+            <input type="text" onChange={this.onChange.bind(this)}></input>
+          </div>
+        </div>
+        <Overview productId={this.state.id} />
+        <RelatedProducts />
+        <QuestionsAnswers id={this.state.id} />
+        <Reviews />
       </div>
     );
   }
