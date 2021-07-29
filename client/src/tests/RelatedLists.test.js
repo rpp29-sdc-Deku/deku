@@ -1,6 +1,8 @@
+/* eslint-disable no-undef */
+
 import React from 'react';
 import { shallow } from 'enzyme';
-import RelatedProducts from '../components/related_products/RelatedProducts.jsx';
+import RelatedLists from '../components/related_products/RelatedLists.jsx';
 
 describe('Testing to confirm test infrastructure is working', () => {
   it('should add 1 and 1', () => {
@@ -10,7 +12,7 @@ describe('Testing to confirm test infrastructure is working', () => {
 
 describe('Related Products', function () {
   it('should render the Related Products widget without crashing', function () {
-    const main = shallow(<RelatedProducts />);
+    const main = shallow(<RelatedLists />);
     expect(main.hasClass('related-products')).toBeTruthy();
   });
 });

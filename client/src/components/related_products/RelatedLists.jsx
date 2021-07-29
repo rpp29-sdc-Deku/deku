@@ -3,7 +3,7 @@ import React from 'react';
 import RelatedProduct from './RelatedProduct.jsx';
 import YourOutfit from './YourOutfit.jsx';
 
-class RelatedProducts extends React.Component {
+class RelatedLists extends React.Component {
   constructor (props) {
     super(props);
     this.state = {};
@@ -19,4 +19,4 @@ class RelatedProducts extends React.Component {
   }
 }
 
-export default RelatedProducts;
+export default RelatedLists;

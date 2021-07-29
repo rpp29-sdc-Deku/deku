@@ -1,5 +1,5 @@
 import React from 'react';
-import RelatedProductCard from './ProductCard.jsx';
+import RelatedProductCard from './RelatedProductCard.jsx';
 
 class RelatedProduct extends React.Component {
   constructor (props) {

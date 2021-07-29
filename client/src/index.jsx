@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Overview from './components/product_overview/Overview.jsx';
 import Reviews from './components/reviews/Reviews.jsx';
-import RelatedProducts from './components/related_products/RelatedProducts.jsx';
+import RelatedLists from './components/related_products/RelatedLists.jsx';
 import QuestionsAnswers from './components/questions_answers/QuestionsAnswers.jsx';
 import '../dist/styles/product_overview.css';
 import getReviews from './helpers/serverReview.js';
@@ -31,7 +31,7 @@ class App extends React.Component {
           </div>
         </div>
         <Overview productId={this.state.id} />
-        <RelatedProducts />
+        <RelatedLists productId={this.state.id} />
         <QuestionsAnswers id={this.state.id} />
         <Reviews getReviews={getReviews}/>
       </div>
