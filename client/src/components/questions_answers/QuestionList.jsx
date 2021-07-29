@@ -4,15 +4,17 @@ import Question from './Question.jsx';
 class QuestionList extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
   }
 
   render () {
     return (
       <div className='QL'>
-        {this.props.questions
-          ? this.props.questions.map((q) => <Question key={q.question_id} question={q} />)
-          : 'No Data to Display' }
+        {Object.keys(this.props.questions).length > 0
+          ? this.props.questions.slice(0, this.props.length).map((q, index) =>
+            <Question key={index} question={q} displayMoreAnswers={this.props.displayMoreAnswers} />)
+          : <span key={1}>'No Data to Display'</span> }
       </div>
     );
   }

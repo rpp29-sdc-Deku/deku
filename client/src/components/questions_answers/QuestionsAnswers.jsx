@@ -6,7 +6,10 @@ class QuestionsAnswers extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      intial: []
+      questions: [],
+      orgLength: 0,
+      Qlength: 2,
+      Alength: false
     };
   }
 
@@ -19,8 +22,44 @@ class QuestionsAnswers extends React.Component {
       }
     })
       .then((response) => {
-        this.setState({ initial: response.data });
+        const ordered = this.sortQuestions(response.data);
+        const orderedAnswers = this.sortAnswers(ordered);
+        const receivedLength = response.data.length;
+        this.setState({ questions: orderedAnswers, orgLength: receivedLength });
       });
+  }
+
+  sortQuestions (questions) {
+    const newOrder = [];
+    for (const key of questions) {
+      newOrder.push([key.question_id, key.question_helpfulness]);
+    }
+    const finalOrder = questions.sort((a, b) => {
+      return b.question_helpfulness - a.question_helpfulness;
+    });
+    return finalOrder;
+  }
+
+  sortAnswers (questions) {
+    for (const q of questions) {
+      let array = [];
+      for (const a in q.answers) {
+        array.push(q.answers[a]);
+      }
+      const finalOrder = array.sort((a, b) => {
+        return b.helpfulness - a.helpfulness;
+      });
+      q.answers = finalOrder;
+    }
+    return questions;
+  }
+
+  displayMoreQuestions () {
+    this.setState({ Qlength: this.state.Qlength + 2 });
+  }
+
+  displayMoreAnswers () {
+    this.setState({ Alength: !this.state.Alength });
   }
 
   render () {
@@ -31,10 +70,11 @@ class QuestionsAnswers extends React.Component {
         <input id='searchbar' type='text' placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
         <button type='submit' id='searchbtn' >Search</button>
         </form><br></br>
-        <QuestionList questions={this.state.initial} />
-        <button className='btn' >More Answered Questions</button>
-        <button className='btn' >Add A Question + </button>
-
+        <QuestionList questions={this.state.questions} length={this.state.Qlength} displayMoreAnswers={this.displayMoreAnswers.bind(this)} />
+        { this.state.questions.length > 2 && this.state.orgLength > this.state.Qlength
+          ? <div><button className='btn' onClick={this.displayMoreQuestions.bind(this)} >More Answered Questions</button><button className='btn' >Add A Question + </button></div>
+          : <button className='btn' >Add A Question + </button>
+        }
         </div>
     );
   }
