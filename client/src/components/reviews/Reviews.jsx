@@ -9,7 +9,9 @@ class Reviews extends React.Component {
     };
     // function goes here for api call
     this.props.getReviews(28212, (results) => {
-      console.log(results);
+      this.setState({
+        reviewList: results
+      }, () => console.log(this.state.reviewList));
     });
   }
 
@@ -17,7 +19,7 @@ class Reviews extends React.Component {
     return (
       <div>
         REVIEWS
-        <ListView/>
+        <ListView reviewList={this.state.reviewList}/>
       </div>
     );
   }
