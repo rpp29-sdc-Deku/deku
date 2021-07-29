@@ -149,3 +149,44 @@
   padding: 30px
 }
 
+.description_slogan {
+  font-size: 12px;
+  /* justify-content: flex-start; */
+  padding-left: 20px;
+  flex: 2;
+  justify-content: center;
+}
+
+.description_fakeData {
+  /* justify-content: flex-end; */
+  font-size: 12px;
+  flex: 1;
+  /* justify-content: center; */
+}
+
+.description_lines {
+  display: flex;
+  justify-content: center;
+}
+
+.product_styles.thumbnail {
+  display: flex;
+  /* justify-content: flex-end; */
+  /* background-position: center;
+  background-size: cover;
+  border-radius: 50px; */
+  /* flex-wrap: wrap; */
+  height: 10px;
+  width: 10px;
+}
+
+.product_styles_thumbnails {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  gap: 10px;
+  /* height: 100%; */
+  /* height: 100px;
+  width: 100px; */
+}

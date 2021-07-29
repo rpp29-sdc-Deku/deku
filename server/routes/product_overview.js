@@ -22,8 +22,8 @@ router.get('/productStyles', (req, res) => {
     });
 });
 
-router.get('/productinfo', (req, res) => {
-  axios.get(`${keys.API}products/28212/styles`, {
+router.get('/product', (req, res) => {
+  axios.get(`${keys.API}products/28212`, {
     headers: {
       Authorization: keys.TOKEN
     }
@@ -32,7 +32,7 @@ router.get('/productinfo', (req, res) => {
       res.status(200).send(response.data);
     })
     .catch((err) => {
-      console.log('error in axios product info', err);
+      console.log('error in axios product', err);
       res.status(400).send('error in app.get product info', err);
     });
 });
