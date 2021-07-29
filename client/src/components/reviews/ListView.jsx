@@ -1,5 +1,7 @@
 import React from 'react';
 import List from './List.jsx';
+/* eslint-disable react/prop-types */
+
 class ListView extends React.Component {
   constructor (props) {
     super(props);
@@ -9,7 +11,10 @@ class ListView extends React.Component {
   render () {
     return (
       <div className='reviewList'>
-        <List />
+        {this.props.reviewList.map(review => {
+          console.log('reviewwwww', review);
+          return <List key={review.review_id} review={review}/>;
+        })}
         <button>More Reviews</button>
       </div>
     );
