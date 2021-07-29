@@ -22,22 +22,22 @@ class ProductInfo extends React.Component {
     }
     return (
       <div id="info">
-        <div>
+        <div className="info">
           Stars Component
         </div>
-        <div className="product_category">
+        <div className="product_category info">
           {this.props.product.category}
         </div>
-        <div className="product_name">
+        <div className="product_name info">
           {this.props.product.name}
         </div>
-        <div className="product_price">
+        <div className="product_price info">
           {this.props.currentStyle.original_price}
         </div>
-        <div className="product_style">
-          STYLE{' > '}{this.props.currentStyle.name}
+        <div className="product_style info">
+          <b>STYLE{' > '}</b>{this.props.currentStyle.name}
         </div>
-        <div className="product_styles_thumbnails">
+        <div className="product_styles_thumbnails info">
           {this.props.images[0] ? array.map((url, key) => (<div key={key} className="product_styles_thumbnail" style={{ backgroundImage: `url(${url})` }}></div>)) : null }
         </div>
         <ProductForm />
