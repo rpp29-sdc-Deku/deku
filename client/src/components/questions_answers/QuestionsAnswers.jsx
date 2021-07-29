@@ -8,7 +8,8 @@ class QuestionsAnswers extends React.Component {
     this.state = {
       questions: [],
       orgLength: 0,
-      length: 2
+      Qlength: 2,
+      Alength: false
     };
   }
 
@@ -54,7 +55,11 @@ class QuestionsAnswers extends React.Component {
   }
 
   displayMoreQuestions () {
-    this.setState({ length: this.state.length + 2 });
+    this.setState({ Qlength: this.state.Qlength + 2 });
+  }
+
+  displayMoreAnswers () {
+    this.setState({ Alength: !this.state.Alength });
   }
 
   render () {
@@ -65,8 +70,8 @@ class QuestionsAnswers extends React.Component {
         <input id='searchbar' type='text' placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
         <button type='submit' id='searchbtn' >Search</button>
         </form><br></br>
-        <QuestionList questions={this.state.questions} length={this.state.length} />
-        { this.state.questions.length > 2 && this.state.orgLength > this.state.length
+        <QuestionList questions={this.state.questions} length={this.state.Qlength} displayMoreAnswers={this.displayMoreAnswers.bind(this)} />
+        { this.state.questions.length > 2 && this.state.orgLength > this.state.Qlength
           ? <div><button className='btn' onClick={this.displayMoreQuestions.bind(this)} >More Answered Questions</button><button className='btn' >Add A Question + </button></div>
           : <button className='btn' >Add A Question + </button>
         }

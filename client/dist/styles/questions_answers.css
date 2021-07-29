@@ -63,6 +63,7 @@ input {
   border: none;
   background-color: white;
   margin: 3px;
+  text-decoration: underline;
 }
 
 .sub {

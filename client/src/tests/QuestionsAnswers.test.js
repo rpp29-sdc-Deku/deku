@@ -27,7 +27,7 @@ describe('Questions and Answers', function () {
 
 describe('Questions List', function () {
   it('should render the Questions component without crashing', function () {
-    const wrapper = shallow(<QuestionList />);
+    const wrapper = shallow(<QuestionList questions={[{ body: 'test' }, {body: 'test2' }]} />);
     expect(wrapper.hasClass('QL')).toBeTruthy();
   });
 });
