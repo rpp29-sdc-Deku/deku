@@ -9,7 +9,7 @@ class Reviews extends React.Component {
     };
     // function goes here for api call
     this.props.getReviews(28212, (results) => {
-      console.log(results);
+      console.log('👻', results);
     });
   }
 
