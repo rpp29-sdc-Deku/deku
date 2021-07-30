@@ -11,15 +11,18 @@ class ProductInfo extends React.Component {
   }
 
   render () {
-    // console.log('🥑', this.props.images);
-    const array = [];
+    let urlIdArray = [];
     if (this.props.images[0] !== undefined) {
-      this.props.images.forEach((image) => {
-        // console.log('🥩', image[0].thumbnail_url);
-        array.push(image[0].thumbnail_url);
+      urlIdArray = this.props.styles.map((style) => {
+        return { id: style.style_id, url: style.photos[0].thumbnail_url };
       });
-      console.log('🥩', array);
     }
+    const findMatchingStyleId = (id) => {
+      const selectedStyle = this.props.styles.filter((style) => {
+        return style.style_id === id;
+      });
+      return selectedStyle[0];
+    };
     return (
       <div id="info">
         <div className="info">
@@ -38,7 +41,7 @@ class ProductInfo extends React.Component {
           <b>STYLE{' > '}</b>{this.props.currentStyle.name}
         </div>
         <div className="product_styles_thumbnails info">
-          {this.props.images[0] ? array.map((url, key) => (<div key={key} className="product_styles_thumbnail" style={{ backgroundImage: `url(${url})` }}></div>)) : null }
+          {this.props.images[0] ? urlIdArray.map((element, key) => (<div key={key} onClick={() => { this.props.changeStyle(findMatchingStyleId(element.id), findMatchingStyleId(element.id).photos[0].url); }} className="product_styles_thumbnail" style={{ backgroundImage: `url(${element.url})` }}></div>)) : null }
         </div>
         <ProductForm />
       </div>
@@ -46,4 +49,11 @@ class ProductInfo extends React.Component {
   }
 }
 
+// let array = [];
+//     if (this.props.currentStyle.photos !== undefined) {
+//       array = this.props.currentStyle.photos.map((image) => {
+//         return image.thumbnail_url;
+//       });
+//       console.log('🍋', array);
+//     }
 export default ProductInfo;

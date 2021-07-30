@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { FormControl, Select, MenuItem } from '@material-ui/core';
+// import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 class ProductForm extends React.Component {
   constructor (props) {
@@ -34,12 +35,12 @@ class ProductForm extends React.Component {
             <MenuItem value="M">M</MenuItem>
             <MenuItem value="L">L</MenuItem>
           </Select>
-          <Select className="select select_amount" onChange={this.handleAmountChange.bind(this)} value={this.state.amount}>
+          {/* <Select className="select select_amount" onChange={this.handleAmountChange.bind(this)} value={this.state.amount}>
             <MenuItem value="1">1</MenuItem>
             <MenuItem value="2">2</MenuItem>
             <MenuItem value="3">3</MenuItem>
             <MenuItem value="4">4</MenuItem>
-          </Select>
+          </Select> */}
           <div className="add_to_bag">
             ADD TO BAG
           </div>

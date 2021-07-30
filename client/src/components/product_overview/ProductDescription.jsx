@@ -10,7 +10,6 @@ class ProductDescription extends React.Component {
   }
 
   render () {
-    console.log('🌚', this.props);
     return (
       <div id="description">
         <div className="description_slogan">
