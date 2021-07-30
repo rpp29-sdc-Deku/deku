@@ -7,7 +7,7 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       reviewList: [],
-      characteristics: {},
+      characteristics: [],
       ratings: {},
       recommended: {}
     };
@@ -19,8 +19,15 @@ class Reviews extends React.Component {
     });
 
     this.props.getMeta(28212, (results) => {
+      const characteristics = [];
+      for (const keys in results.characteristics) {
+        const obj = {};
+        obj[keys] = results.characteristics[keys];
+        characteristics.push(obj);
+      }
+      console.log('this is the characteristics', characteristics);
       this.setState({
-        characteristics: results.characteristics,
+        characteristics: characteristics,
         ratings: results.ratings,
         recommended: results.recommended
       }, () => console.log('thissss stateee', this.state));
@@ -32,7 +39,7 @@ class Reviews extends React.Component {
       <div>
         REVIEWS
         <div className='Reviews'>
-        <Ratings />
+        <Ratings characteristics={this.state.characteristics}/>
         <ListView reviewList={this.state.reviewList}/>
         </div>
       </div>
