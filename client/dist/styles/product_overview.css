@@ -47,7 +47,7 @@
   cursor: pointer
 }
 
-.carousel_image {
+.carousel_thumbnail_image {
   display: flex;
   align-content: space-between;
   width: 50px;

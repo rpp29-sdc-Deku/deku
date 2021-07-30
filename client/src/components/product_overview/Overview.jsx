@@ -27,7 +27,6 @@ class Overview extends React.Component {
         const imagesArray = this.state.styles.map((style) => {
           return style.photos;
         });
-        console.log('🍉', imagesArray);
         this.setState({ images: imagesArray });
         this.setState({ currentImage: imagesArray[0][0].url });
         this.setState({ currentStyle: data.results[0] });
@@ -50,6 +49,15 @@ class Overview extends React.Component {
     });
   }
 
+  handleThumbnailClick (image) {
+    this.setState({ currentImage: image });
+  }
+
+  handleChangeStyle (style, image) {
+    this.setState({ currentStyle: style });
+    this.setState({ currentImage: image });
+  }
+
   render () {
     return (
       <div>
@@ -58,8 +66,8 @@ class Overview extends React.Component {
         </div>
         <div id="overview">
           <div id="carouselProductInfo">
-            <Carousel productId={this.props.productId} images={this.state.images} currentImage={this.state.currentImage} styles={this.state.styles} currentStyle={this.state.currentStyle} />
-            <ProductInfo product={this.state.product} styles={this.state.styles} currentStyle={this.state.currentStyle} images={this.state.images} />
+            <Carousel productId={this.props.productId} images={this.state.images} currentImage={this.state.currentImage} styles={this.state.styles} currentStyle={this.state.currentStyle} thumbnailClick={this.handleThumbnailClick.bind(this)} />
+            <ProductInfo product={this.state.product} styles={this.state.styles} currentStyle={this.state.currentStyle} images={this.state.images} changeStyle={this.handleChangeStyle.bind(this)} />
           </div>
           <div >
             <ProductDescription product={this.state.product} />
