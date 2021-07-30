@@ -1,5 +1,6 @@
 import React from 'react';
 import ListView from './ListView.jsx';
+import Ratings from './Ratings.jsx';
 /* eslint-disable react/prop-types */
 class Reviews extends React.Component {
   constructor (props) {
@@ -19,7 +20,10 @@ class Reviews extends React.Component {
     return (
       <div>
         REVIEWS
+        <div className='Reviews'>
+        <Ratings />
         <ListView reviewList={this.state.reviewList}/>
+        </div>
       </div>
     );
   }

@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+.reviewResponse {
+  background-color: gray;
+  margin-bottom: 5px;
+}
+
+.reviewTile {
+  display: flex;
+  flex-direction: column;
+}
+.reviewTitle h1{
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.3em;
+  font-weight: 500;
+  color: rgb(7, 6, 6);
+  margin-bottom: 5px;
+}
+.reviewHelpful span {
+  text-decoration: underline;
+}
+.reviewHelpful {
+  margin-bottom: 5px;
+}
+.reviewList {
+  max-width: 85vh;
+}
+.reviewList button {
+  margin: 10px
+}
+.reviewStarRating {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reviewBody {
+  font-size: 80%;
+  margin-bottom: 5px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: rgb(59, 56, 56);
+}
+
+.reviewTile hr {
+  margin-bottom: 5px;
+}
+
+.Reviews {
+  display: flex;
+  max-width: 90%;
+  justify-content: space-evenly;
+}
