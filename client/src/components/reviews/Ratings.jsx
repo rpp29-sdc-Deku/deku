@@ -10,8 +10,17 @@ class Ratings extends React.Component {
     return (
     <div className='reviewRatings'>
       <div className='reviewRating'></div>
-      <div className='reviewBars'></div>
-      <div className='reviewSpecifics'></div>
+      <div className='reviewBars'>
+        <div>5 stars ------</div>
+        <div>4 stars ------</div>
+        <div>3 stars ------</div>
+        <div>2 stars ------</div>
+        <div>1 stars ------</div>
+      </div>
+      <div className='reviewSpecifics'>
+        <div>size</div>
+        <div>comfort</div>
+      </div>
     </div>);
   }
 };
