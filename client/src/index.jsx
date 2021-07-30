@@ -31,7 +31,7 @@ class App extends React.Component {
           </div>
         </div>
         <Overview productId={this.state.id} />
-        <RelatedLists productId={this.state.id} />
+        <RelatedLists masterId={this.state.id} />
         <QuestionsAnswers id={this.state.id} />
         <Reviews getReviews={getReviews}/>
       </div>
