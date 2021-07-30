@@ -6,13 +6,24 @@ class Reviews extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      reviewList: []
+      reviewList: [],
+      characteristics: {},
+      ratings: {},
+      recommended: {}
     };
     // function goes here for api call
     this.props.getReviews(28212, (results) => {
       this.setState({
         reviewList: results
       }, () => console.log(this.state.reviewList));
+    });
+
+    this.props.getMeta(28212, (results) => {
+      this.setState({
+        characteristics: results.characteristics,
+        ratings: results.ratings,
+        recommended: results.recommended
+      }, () => console.log('thissss stateee', this.state));
     });
   }
 
