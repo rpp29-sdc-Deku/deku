@@ -12,7 +12,7 @@ class Carousel extends React.Component {
     return (
       <div className="carousel">
         <img src="https://img.icons8.com/material-outlined/24/000000/expand--v1.png" className="carousel_expand"/>
-        <div className="carousel_thumbnails">
+        {/* <div className="carousel_thumbnails">
           {console.log('🌥', this.props.images[0])}
           {this.props.images[0]
             ? this.props.images[0].map((image, key) => {
@@ -21,21 +21,23 @@ class Carousel extends React.Component {
               return (<div style={{ backgroundImage: `url(${image.thumbnail_url})` }} className= "carousel_thumbnail" key={key}></div>);
             })
             : null }
-        </div>
-        <button className="carousel__button carousel__button--left">
+        </div> */}
+        <button className="carousel_button left_arrow">
           <img src="https://img.icons8.com/windows/32/000000/long-arrow-left.png"/>
         </button>
-        <button className="carousel__button carousel__button--right">
+        <button className="carousel_button right_arrow">
           <img src="https://img.icons8.com/windows/32/000000/long-arrow-right.png"/>
         </button>
         <div className="carousel_container" style={{ backgroundImage: `url(${this.props.currentImage})` }} >
           {console.log('🐿', this.props.images)}
-          {this.props.images[0]
-            ? this.props.images[0].map((image, key) => {
-              console.log('🥀', image.url);
-              return (<div style={{ backgroundImage: `url(${image.url})` }} className= "carousel_image" key={key}></div>);
-            })
-            : null }
+          <div className="tumbnails_container">
+            {this.props.images[0]
+              ? this.props.images[0].map((image, key) => {
+                console.log('🥀', image.url);
+                return (<div style={{ backgroundImage: `url(${image.url})` }} className= "carousel_image" key={key}></div>);
+              })
+              : null }
+          </div>
         </div>
         {/* <div className="carousel__nav">
           <button className="carousel__indicator current-slide"></button>
