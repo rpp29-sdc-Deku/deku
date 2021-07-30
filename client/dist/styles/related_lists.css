@@ -4,12 +4,14 @@
   padding: 4px 0 10px;
 }
 
-.suggested-products {
+.related-lists {
   margin: 70px 0;
 }
 
 .related-products-wrapper, .your-outfits-wrapper {
   margin: 20px 0;
+  overflow-x: scroll;
+  white-space: nowrap;
 }
 
 .related-product-card {
