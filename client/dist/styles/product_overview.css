@@ -219,3 +219,38 @@
   /* height: 100px;
   width: 100px; */
 }
+
+.select {
+  border: solid .2px;
+}
+
+.select_size {
+  border: solid .3px;
+  font-size: 5px;
+  color: gray;
+}
+
+.select_amount {
+  display: flex;
+  /* justify-content: flex-end; */
+  flex-direction: row;
+
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  gap: 10px;
+  justify-content: stretch;
+}
+
+.add_to_bag {
+  border: solid .3px;
+  padding: 10px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
