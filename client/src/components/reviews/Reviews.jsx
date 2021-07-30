@@ -22,7 +22,7 @@ class Reviews extends React.Component {
       const characteristics = [];
       for (const keys in results.characteristics) {
         const obj = {};
-        obj[keys] = results.characteristics[keys];
+        obj[keys] = results.characteristics[keys].value;
         characteristics.push(obj);
       }
       console.log('this is the characteristics', characteristics);
