@@ -80,16 +80,62 @@ router.put('/likeAnswer', (req, res) => {
     });
 });
 
-router.post('reportQuestion', (req, res) => {
-  // receive from client - question id
-  // send POST request to /qa/questions/:question_id/report endpoint
-  // send get request to get questions, same as intial
+router.put('/reportQuestion', (req, res) => {
+  axios.put(`${keys.API}qa/questions/${req.body.id}/report`, {
+    question_id: req.body.id
+  }, {
+    headers: {
+      Authorization: keys.TOKEN
+    }
+  })
+    .then((response) => {
+      return axios.get(`${keys.API}qa/questions`, {
+        method: 'GET',
+        headers: {
+          Authorization: keys.TOKEN
+        },
+        params: {
+          product_id: req.body.product,
+          count: 50
+        }
+      });
+    })
+    .then((response) => {
+      res.json(response.data.results);
+      res.end();
+    })
+    .catch((err) => {
+      console.log('ERROR REPORTING QUESTION', err);
+    });
 });
 
-router.post('reportAnswer', (req, res) => {
-  // receive from client - answer id
-  // send POST request to /qa/answers/:question_id/report endpoint
-  // send get request to get answers, same as intial
+router.put('/reportAnswer', (req, res) => {
+  axios.put(`${keys.API}qa/answers/${req.body.id}/report`, {
+    question_id: req.body.id
+  }, {
+    headers: {
+      Authorization: keys.TOKEN
+    }
+  })
+    .then((response) => {
+      return axios.get(`${keys.API}qa/questions`, {
+        method: 'GET',
+        headers: {
+          Authorization: keys.TOKEN
+        },
+        params: {
+          product_id: req.body.product,
+          count: 50
+        }
+      });
+    })
+    .then((response) => {
+      res.json(response.data.results);
+      res.end();
+    })
+    .catch((err) => {
+      console.log('ERROR REPORTING QUESTION', err);
+    });
 });
 
 module.exports = router;
