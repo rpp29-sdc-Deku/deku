@@ -13,7 +13,7 @@ class QuestionList extends React.Component {
       <div className='QL'>
         {Object.keys(this.props.questions).length > 0
           ? this.props.questions.slice(0, this.props.length).map((q, index) =>
-            <Question key={index} question={q} displayMoreAnswers={this.props.displayMoreAnswers} />)
+            <Question key={q.question_id} id={q.question_id} question={q} displayMoreAnswers={this.props.displayMoreAnswers} likeAnswer={this.props.likeAnswer} likeQuestion={this.props.likeQuestion} />)
           : <span key={1}>'No Data to Display'</span> }
       </div>
     );

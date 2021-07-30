@@ -27,14 +27,14 @@ describe('Questions and Answers', function () {
 
 describe('Questions List', function () {
   it('should render the Questions component without crashing', function () {
-    const wrapper = shallow(<QuestionList questions={[{ body: 'test' }, {body: 'test2' }]} />);
+    const wrapper = shallow(<QuestionList questions={[{ body: 'test', question_id: 8768 }, { body: 'test2', question_id: 3453 }]} key={34534} />);
     expect(wrapper.hasClass('QL')).toBeTruthy();
   });
 });
 
 describe('Question', function () {
   it('should render the Questions component without crashing', function () {
-    const wrapper = shallow(<Question question={{ body: 'testing', answers: { body: 'testing2' } }} key={345345} />);
+    const wrapper = shallow(<Question question={{ body: 'testing', answers: { body: 'testing2' }, question_id: 4564 }} key={345345} />);
     expect(wrapper.hasClass('Q')).toBeTruthy();
   });
 });
