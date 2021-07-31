@@ -138,4 +138,36 @@ router.put('/reportAnswer', (req, res) => {
     });
 });
 
+router.post('/submitQuestion', (req, res) => {
+  console.log(req.body);
+  axios({
+    method: 'POST',
+    url: `${keys.API}qa/questions`,
+    headers: {
+      Authorization: keys.TOKEN
+    },
+    data: req.body
+  })
+    .then((response) => {
+      return axios.get(`${keys.API}qa/questions`, {
+        method: 'GET',
+        headers: {
+          Authorization: keys.TOKEN
+        },
+        params: {
+          product_id: req.body.product_id,
+          count: 50
+        }
+      });
+    })
+    .then((response) => {
+      console.log('sent to client');
+      res.json(response.data.results);
+      res.end();
+    })
+    .catch((err) => {
+      console.log('ERROR REPORTING QUESTION', err);
+    });
+});
+
 module.exports = router;
