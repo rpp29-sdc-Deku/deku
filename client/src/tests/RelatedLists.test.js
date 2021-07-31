@@ -13,6 +13,6 @@ describe('Testing to confirm test infrastructure is working', () => {
 describe('Related Products', function () {
   it('should render the Related Products widget without crashing', function () {
     const main = shallow(<RelatedLists />);
-    expect(main.hasClass('related-products')).toBeTruthy();
+    expect(main.hasClass('suggested-products')).toBeTruthy();
   });
 });

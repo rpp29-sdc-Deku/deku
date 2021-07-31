@@ -12,7 +12,7 @@
   "scripts": {
     "testqa": "jest /client/src/tests/QuestionsAnswers.test.js --coverage",
     "testoverview": "jest /client/src/tests/Overview.test.js --coverage",
-    "testrelated": "jest /client/src/tests/",
+    "testrelated": "jest /client/src/tests/RelatedLists.test.js --coverage",
     "start": "webpack --mode development --watch",
     "server": "nodemon server/index.js",
     "testreview": "jest /client/src/tests/Review.test.js --coverage"
