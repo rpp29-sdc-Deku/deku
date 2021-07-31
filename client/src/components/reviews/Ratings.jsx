@@ -1,5 +1,5 @@
 import React from 'react';
-
+/* eslint-disable react/prop-types */
 class Ratings extends React.Component {
   constructor (props) {
     super(props);
@@ -18,8 +18,17 @@ class Ratings extends React.Component {
         <div>1 stars ------</div>
       </div>
       <div className='reviewSpecifics'>
-        <div>size</div>
-        <div>comfort</div>
+        {this.props.characteristics.map((item, index) => {
+          return <div key={index}>
+            {Object.keys(item)}
+            <input type='range' min='1' max='5' value={Object.values(item)} disabled></input>
+            <div className='reviewDetail'>
+              <span>too big</span>
+              <span> perfect</span>
+              <span> too small</span>
+            </div>
+          </div>;
+        })}
       </div>
     </div>);
   }
