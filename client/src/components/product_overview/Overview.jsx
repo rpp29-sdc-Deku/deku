@@ -60,7 +60,7 @@ class Overview extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="overview">
         <div className="website_announcement">
           <i>SITE-WIDE ANNOUCEMENT MESSAGE! </i> SALE / DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u>
         </div>
