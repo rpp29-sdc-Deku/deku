@@ -19,7 +19,15 @@ class Ratings extends React.Component {
       </div>
       <div className='reviewSpecifics'>
         {this.props.characteristics.map((item, index) => {
-          return <div key={index}>{Object.keys(item) + ' ' + Object.values(item)}</div>;
+          return <div key={index}>
+            {Object.keys(item)}
+            <input type='range' min='1' max='5' value={Object.values(item)} disabled></input>
+            <div className='reviewDetail'>
+              <span>too big</span>
+              <span> perfect</span>
+              <span> too small</span>
+            </div>
+          </div>;
         })}
       </div>
     </div>);
