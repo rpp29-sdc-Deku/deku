@@ -9,9 +9,15 @@ describe('Mock test', () => {
   });
 });
 
-describe('Reviews', function () {
+describe('Ratings', function () {
   it('should render Ratings component without crashing', function () {
     const wrapper = shallow(<Ratings characteristics={[]}/>);
     expect(wrapper.hasClass('reviewRatings')).toBeTruthy();
+  });
+
+  it('should render characterstics lists', function () {
+    const characteristics = [{ fit: 4 }];
+    const wrapper = shallow(<Ratings characteristics={characteristics}/>);
+    expect(wrapper.find('input')).toHaveLength(characteristics.length);
   });
 });
