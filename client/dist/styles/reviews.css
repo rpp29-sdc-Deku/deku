@@ -48,3 +48,12 @@
   max-width: 90%;
   justify-content: space-evenly;
 }
+
+.reviewRatings {
+  width: 25%;
+}
+
+.reviewDetail {
+  display: flex;
+  justify-content: space-between;
+}
