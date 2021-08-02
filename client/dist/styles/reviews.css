@@ -23,6 +23,7 @@
 }
 .reviewList {
   max-width: 85vh;
+  min-width: 70vh;
 }
 .reviewList button {
   margin: 10px
