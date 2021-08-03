@@ -1,7 +1,7 @@
 const axios = require('axios');
 const key = require('../config.js');
 const getReviews = () => {
-  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=28212', {
+  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=28215', {
     headers: {
       Authorization: key.TOKEN
     }

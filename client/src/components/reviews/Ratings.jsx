@@ -6,6 +6,46 @@ class Ratings extends React.Component {
     this.state = {};
   }
 
+  setDescription (description) {
+    if (description === 'Fit' || description === 'Size') {
+      return (<div className='reviewDetail'>
+        <span>Too Small</span>
+        <span className='two'>Perfect</span>
+        <span>Too big</span>
+       </div>);
+    }
+    if (description === 'Comfort') {
+      return (<div className='reviewDetail'>
+        <span>Poor</span>
+        <span>Perfect</span>
+       </div>);
+    }
+    if (description === 'Length') {
+      return (<div className='reviewDetail'>
+        <span>Too Short</span>
+        <span className='two'>Perfect</span>
+        <span>Too Long</span>
+       </div>);
+    }
+    if (description === 'Fit' || description === 'Width') {
+      return (<div className='reviewDetail'>
+        <span>Too Loose</span>
+        <span className='two'>Perfect</span>
+        <span>Too Tight</span>
+       </div>);
+    }
+    if (description === 'Quality') {
+      return (<div className='reviewDetail'>
+        <span>Poor</span>
+        <span>Excelent</span>
+       </div>);
+    }
+    return (<div className='reviewDetail'>
+      <span >Poor</span>
+      <span>Excelent</span>
+     </div>);
+  }
+
   render () {
     return (
     <div className='reviewRatings'>
@@ -22,11 +62,7 @@ class Ratings extends React.Component {
           return <div key={index}>
             {Object.keys(item)}
             <input type='range' min='1' max='5' value={Object.values(item)} disabled></input>
-            <div className='reviewDetail'>
-              <span>too big</span>
-              <span> perfect</span>
-              <span> too small</span>
-            </div>
+            {this.setDescription(Object.keys(item)[0])}
           </div>;
         })}
       </div>

@@ -9,6 +9,7 @@ import QuestionsAnswers from '../components/questions_answers/QuestionsAnswers.j
 import QuestionList from '../components/questions_answers/QuestionList.jsx';
 import Question from '../components/questions_answers/Question.jsx';
 import Answer from '../components/questions_answers/Answer.jsx';
+import QModal from '../components/questions_answers/QModal.jsx';
 
 
 
@@ -43,5 +44,12 @@ describe('Answer', function () {
   it('should render the Answer component without crashing', function () {
     const wrapper = shallow(<Answer answer={{body: 'test', date: '234252323234345'}}/>);
     expect(wrapper.hasClass('A')).toBeTruthy();
+  });
+});
+
+describe('Question Modal', function () {
+  it('should render the Question Modal without crashing', function () {
+    const wrapper = shallow(<QModal />);
+    expect(wrapper.hasClass('modalContainer')).toBeTruthy();
   });
 });

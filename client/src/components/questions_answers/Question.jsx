@@ -22,6 +22,11 @@ class Question extends React.Component {
     this.props.reportQuestion(this.props.id);
   }
 
+  addAnswer (e) {
+    e.preventDefault();
+    this.props.aModalDisplay(this.props.id);
+  }
+
   render () {
     return (
       <div className='Q'>
@@ -34,7 +39,7 @@ class Question extends React.Component {
           <span className='Qsub sub' >
             Helpful?<button className='wordbtn' onClick={this.helpfulQuestion.bind(this)}>Yes</button>
               ({this.props.question.question_helpfulness})
-              |  <button className='wordbtn' >Add Answer</button>
+              |  <button className='wordbtn' qid={this.props.id} onClick={this.addAnswer.bind(this)}>Add Answer</button>
               |   <button className='wordbtn' onClick={this.reportQuestion.bind(this)} >Report</button>
           </span>
         </div><br></br>

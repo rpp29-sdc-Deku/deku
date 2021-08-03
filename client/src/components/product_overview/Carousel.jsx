@@ -15,14 +15,14 @@ class Carousel extends React.Component {
         <div className="carousel_container" style={{ backgroundImage: `url(${this.props.currentImage})` }} >
           <div className="arrows">
             <div className="arrows_container">
-              <MdArrowBack className="back_arrow" />
-              <MdArrowForward className="forward_arrow" />
+              <MdArrowBack onClick={() => { this.props.backArrowClick(); }} className="back_arrow" />
+              <MdArrowForward onClick={() => { this.props.forwardArrowClick(); }} className="forward_arrow" />
             </div>
-          </div>
           <div className="buttons">
             <MdArrowDropDown />
             <MdFullscreenExit />
             <MdFullscreen />
+          </div>
           </div>
           <div className="tumbnails_container">
             {this.props.currentStyle.photos
