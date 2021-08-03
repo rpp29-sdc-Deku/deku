@@ -1,7 +1,11 @@
 /* eslint-disable no-undef */
+/**
+ * @jest-environment jsdom
+ */
+
 import React from 'react';
 import { shallow } from 'enzyme';
-import Overview from '../components/product_overview/Overview.jsx';
+import Carousel from '../components/product_overview/Carousel.jsx';
 
 describe('Testing to confirm test infrastructure is working', () => {
   it('should add 2 and 2', () => {
@@ -9,9 +13,9 @@ describe('Testing to confirm test infrastructure is working', () => {
   });
 });
 
-describe('Product Overview', () => {
-  it('Overview should render without crashing', () => {
-    const wrapper = shallow(<Overview />);
-    expect(wrapper.find(Overview)).toBeTruthy();
+describe('Product Overview', function () {
+  it('should render the carousel widget without crashing', function () {
+    const wrapper = shallow(<Carousel productId='test' images={[test, test]} currentImage='test' styles={[test, test]} currentStyle={{}} thumbnailClick={test} />);
+    expect(wrapper.hasClass('carousel')).toBeTruthy();
   });
 });
