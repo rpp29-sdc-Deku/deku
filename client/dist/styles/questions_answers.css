@@ -121,10 +121,25 @@
   cursor:default;
 }
 
+#aModalClose {
+  float: right;
+}
+
 #qModalClose {
   float: right;
 }
 
 label {
-  width:100em
+  width:100em;
+  font-weight: bold;
+}
+
+input {
+  width: 40vw;
+  height: 5vh;
+}
+
+textarea {
+  height: 25vh;
+  width: 40vw;
 }
