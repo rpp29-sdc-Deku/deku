@@ -23,7 +23,15 @@
 }
 .reviewList {
   max-width: 85vh;
+  min-width: 70vh;
+  max-height: 50vh;
+  overflow-y: scroll;
 }
+
+.reviewList::-webkit-scrollbar {
+  display: none;
+}
+
 .reviewList button {
   margin: 10px
 }
@@ -47,4 +55,33 @@
   display: flex;
   max-width: 90%;
   justify-content: space-evenly;
+}
+
+.reviewRatings {
+  width: 25%;
+}
+
+.reviewDetail {
+  display: flex;
+  justify-content: space-between;
+
+}
+.reviewDetail span{
+  max-width: 25%;
+  min-width: 25%;
+}
+.reviewDetail span:last-child {
+  text-align: right;
+}
+.reviewDetail span:first-child {
+  text-align: left;
+}
+.reviewDetail .two {
+  text-align: center;
+}
+.reviewSpecifics input {
+  -webkit-appearance: none;
+  background-color: rgb(189, 181, 181);
+  height: 5px;
+  width: 100%;
 }

@@ -5,17 +5,27 @@ import List from './List.jsx';
 class ListView extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {
+      list: 2
+    };
+  }
+
+  increaseList () {
+    this.setState({
+      list: this.state.list + 2
+    });
   }
 
   render () {
     return (
       <div className='reviewList'>
-        {this.props.reviewList.map(review => {
-          console.log('reviewwwww', review);
+        {this.props.reviewList.map((review, index) => {
+          if (this.state.list <= index) {
+            return '';
+          }
           return <List key={review.review_id} review={review}/>;
         })}
-        <button>More Reviews</button>
+        <button onClick={this.increaseList.bind(this)} disabled={this.props.reviewList.length < 2 || this.state.list >= this.props.reviewList.length}>More Reviews</button>
         <button>Add A Review +</button>
       </div>
     );

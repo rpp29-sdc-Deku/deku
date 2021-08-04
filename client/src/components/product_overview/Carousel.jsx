@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { MdArrowForward, MdArrowBack, MdFullscreen, MdArrowDropDown, MdFullscreenExit } from 'react-icons/md';
 
 class Carousel extends React.Component {
   constructor (props) {
@@ -11,14 +12,18 @@ class Carousel extends React.Component {
   render () {
     return (
       <div className="carousel">
-        <img src="https://img.icons8.com/material-outlined/24/000000/expand--v1.png" className="carousel_expand"/>
-        <button className="carousel_button left_arrow">
-          <img src="https://img.icons8.com/windows/32/000000/long-arrow-left.png"/>
-        </button>
-        <button className="carousel_button right_arrow">
-          <img src="https://img.icons8.com/windows/32/000000/long-arrow-right.png"/>
-        </button>
         <div className="carousel_container" style={{ backgroundImage: `url(${this.props.currentImage})` }} >
+          <div className="arrows">
+            <div className="arrows_container">
+              <MdArrowBack onClick={() => { this.props.backArrowClick(); }} className="back_arrow" />
+              <MdArrowForward onClick={() => { this.props.forwardArrowClick(); }} className="forward_arrow" />
+            </div>
+          <div className="buttons">
+            <MdArrowDropDown />
+            <MdFullscreenExit />
+            <MdFullscreen />
+          </div>
+          </div>
           <div className="tumbnails_container">
             {this.props.currentStyle.photos
               ? this.props.currentStyle.photos.map((photo, key) => {

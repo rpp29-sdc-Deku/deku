@@ -1,0 +1,47 @@
+import React from 'react';
+// import QuestionForm from './QuestionForm.jsx';
+
+class QModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      body: '',
+      name: '',
+      email: ''
+    };
+  }
+
+  submitQuestion (e) {
+    e.preventDefault();
+    this.props.submitQuestion(this.state);
+  }
+
+  formInput (e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  render () {
+    return (
+      <div className='modalContainer'>
+      <div className='modalContent'>
+        <button id='qModalClose' className='wordbtn' onClick={this.props.qModalDisplay}>Close</button>
+        <div className='modalTitle'>Ask Your Question</div>
+        <div className='modalSubTitle'>About the {}</div><br/>
+        <form>
+          <label htmlFor='body' >Your Question (mandatory)</label><br/>
+          <textarea type='text' name='body' onChange={this.formInput.bind(this)} ></textarea><br/><br/>
+          <label htmlFor='name' >What is your nickname (mandatory)</label><br/>
+          <div>For privacy reasons, do not use your full name or email address” will appear.</div>
+          <input type='text' name='name' placeholder='Example: jackson11!' onChange={this.formInput.bind(this)}></input><br/><br/>
+          <label htmlFor='email' >Your Email (mandatory)</label>
+          <div>For authentication reasons, you will not be emailed</div>
+          <input type='text' name='email' placeholder='Example: jack@email.com' onChange={this.formInput.bind(this)}></input><br/><br/>
+          <input type='submit' className='wordbtn' onClick={this.submitQuestion.bind(this)} />
+        </form>
+      </div>
+    </div>
+    );
+  };
+};
+
+export default QModal;
