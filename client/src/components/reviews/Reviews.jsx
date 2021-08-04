@@ -34,13 +34,39 @@ class Reviews extends React.Component {
     });
   }
 
+  sortList (e) {
+    let sorted;
+    if (e.target.value === 'Helpful') {
+      sorted = this.state.reviewList.sort((a, b) => {
+        return b.helpfulness - a.helpfulness;
+      });
+    }
+    if (e.target.value === 'Newest') {
+      sorted = this.state.reviewList.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
+    }
+    if (e.target.value === 'Relevance') {
+      sorted = this.state.reviewList.sort((a, b) => {
+        if (a.helpfulness === b.helpfulness) {
+          return new Date(b.date) - new Date(a.date);
+        }
+        return b.helpfulness - a.helpfulness;
+      });
+    }
+    console.log('sort,', sorted);
+    this.setState({
+      reviewList: sorted
+    });
+  }
+
   render () {
     return (
       <div>
         REVIEWS
         <div className='Reviews'>
         <Ratings characteristics={this.state.characteristics}/>
-        <ListView reviewList={this.state.reviewList}/>
+        <ListView reviewList={this.state.reviewList} sortList={this.sortList.bind(this)}/>
         </div>
       </div>
     );

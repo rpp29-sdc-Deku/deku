@@ -35,6 +35,13 @@
 .reviewList button {
   margin: 10px
 }
+.reviewList select {
+  border: 0px;
+  text-decoration: underline;
+}
+.reviewList option {
+  text-decoration: underline;
+}
 .reviewStarRating {
   display: flex;
   justify-content: space-between;
