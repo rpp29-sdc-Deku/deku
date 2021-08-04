@@ -25,7 +25,7 @@ class App extends React.Component {
       <div>
         <div id="logo">
           <div>
-            <b><u>LOGO</u></b>
+            <b><u>Logo</u></b>
           </div>
           <div id="search">
             <input type="text" onChange={this.onChange.bind(this)}></input>

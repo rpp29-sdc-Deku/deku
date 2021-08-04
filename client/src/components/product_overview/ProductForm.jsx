@@ -29,7 +29,6 @@ class ProductForm extends React.Component {
 
   render () {
     let arrayOfSkus = [];
-    console.log('🍺', this.props.currentStyle.skus);
     if (this.props.currentStyle.skus) {
       arrayOfSkus = Object.values(this.props.currentStyle.skus);
     }
@@ -56,25 +55,37 @@ class ProductForm extends React.Component {
         }
       }
     };
-    console.log('🏉', findRangeAccordingToSelectedSize(this.state.size));
+
     return (
       <div>
-        <FormControl className="form">
-          <Select className="select select_size" onChange={this.handleSizeChange.bind(this)} displayEmpty value={this.state.size}>
-            <MenuItem value="" disabled>SELECT SIZE</MenuItem>
-            {arrayOfSkus.map((element, key) => (<MenuItem key={key} value={`"${element.size}"`}>{element.size}</MenuItem>))}
-          </Select>
-        </FormControl>
+        {
+          this.props.currentStyle.skus
+            ? (Object.keys(this.props.currentStyle.skus)[0] !== 'null'
+                ? <FormControl className="form">
+                <Select className="select select_size" onChange={this.handleSizeChange.bind(this)} displayEmpty value={this.state.size}>
+                  <MenuItem value="" disabled>SELECT SIZE</MenuItem>
+                  {arrayOfSkus.map((element, key) => (<MenuItem key={key} value={`"${element.size}"`}>{element.size}</MenuItem>))}
+                </Select>
+              </FormControl>
+                : <FormControl className="form">
+                <Select className="select select_size" onChange={this.handleSizeChange.bind(this)} displayEmpty value={this.state.size}>
+                  <MenuItem value="" disabled>OUT OF STOCK</MenuItem>
+                </Select>
+              </FormControl>
+              )
+            : null
+        }
+
         <FormControl className="form">
           <Select className="select select_amount" onChange={this.handleAmountChange.bind(this)} value={this.state.amount}>
-            {findRangeAccordingToSelectedSize(this.state.size) ? findRangeAccordingToSelectedSize(this.state.size).map((quantity, key) => (<MenuItem key={key} value={`"${quantity}"`}>{quantity}</MenuItem>)) : null }
+            {findRangeAccordingToSelectedSize(this.state.size) ? findRangeAccordingToSelectedSize(this.state.size).map((quantity, key) => (<MenuItem key={key} value={`"${quantity}"`}>{quantity}</MenuItem>)) : null}
           </Select>
         </FormControl>
-        <div className="add_to_bag">
+        <div className="add_to_bag" onClick={() => this.props.addToBag()}>
           ADD TO BAG +
         </div>
         <div className="star" onClick={this.handleStarClick.bind(this)}>
-          {this.state.starClicked ? <MdStar /> : <MdStarBorder /> }
+          {this.state.starClicked ? <MdStar /> : <MdStarBorder />}
         </div>
       </div>
     );

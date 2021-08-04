@@ -256,6 +256,7 @@
 }
 
 .add_to_bag {
+  cursor: pointer;
   border: solid .3px;
   padding: .5em;
   height: 30px;

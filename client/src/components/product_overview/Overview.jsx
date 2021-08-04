@@ -91,6 +91,10 @@ class Overview extends React.Component {
     this.setState({ currentImage: this.state.currentStyle.photos[index].url });
   }
 
+  addToBag () {
+    alert('item added to bag');
+  }
+
   render () {
     return (
       <div className="overview">
@@ -100,7 +104,7 @@ class Overview extends React.Component {
         <div id="overview">
           <div id="carouselProductInfo">
             <Carousel productId={this.props.productId} images={this.state.images} currentImage={this.state.currentImage} styles={this.state.styles} currentStyle={this.state.currentStyle} thumbnailClick={this.handleThumbnailClick.bind(this)} forwardArrowClick={this.handleForwardArrowClick.bind(this)} backArrowClick={this.handleBackArrowClick.bind(this)} />
-            <ProductInfo product={this.state.product} styles={this.state.styles} currentStyle={this.state.currentStyle} images={this.state.images} changeStyle={this.handleChangeStyle.bind(this)} skus={this.state.skus} />
+            <ProductInfo product={this.state.product} styles={this.state.styles} currentStyle={this.state.currentStyle} images={this.state.images} changeStyle={this.handleChangeStyle.bind(this)} addToBag={this.addToBag.bind(this)} />
           </div>
           <div >
             <ProductDescription product={this.state.product} />
