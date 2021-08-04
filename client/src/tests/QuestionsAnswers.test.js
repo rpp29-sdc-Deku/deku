@@ -10,8 +10,8 @@ import QuestionList from '../components/questions_answers/QuestionList.jsx';
 import Question from '../components/questions_answers/Question.jsx';
 import Answer from '../components/questions_answers/Answer.jsx';
 import QModal from '../components/questions_answers/QModal.jsx';
-
-
+import AModal from '../components/questions_answers/AModal.jsx';
+import Search from '../components/questions_answers/Search.jsx';
 
 describe('Testing to confirm test infrastructure is working', () => {
   it('should add 1 and 1', () => {
@@ -51,5 +51,19 @@ describe('Question Modal', function () {
   it('should render the Question Modal without crashing', function () {
     const wrapper = shallow(<QModal />);
     expect(wrapper.hasClass('modalContainer')).toBeTruthy();
+  });
+});
+
+describe('Answer Modal', function () {
+  it('should render the Answer Modal without crashing', function () {
+    const wrapper = shallow(<AModal />);
+    expect(wrapper.hasClass('modalContainer')).toBeTruthy();
+  });
+});
+
+describe('Search', function () {
+  it('should render the Search component without crashing', function () {
+    const wrapper = shallow(<Search />);
+    expect(wrapper.hasClass('Qsearch')).toBeTruthy();
   });
 });
