@@ -13,8 +13,8 @@ class Overview extends React.Component {
       styles: [], // main thing that comes from API
       images: [],
       currentImage: '',
-      currentStyle: {},
-      skus: {}
+      currentStyle: {}
+      // skus: {}
     };
   }
 
@@ -32,8 +32,7 @@ class Overview extends React.Component {
         this.setState({ images: imagesArray });
         this.setState({ currentImage: imagesArray[0][0].url });
         this.setState({ currentStyle: data.results[0] });
-        this.setState({ skus: this.state.currentStyle.skus });
-        console.log('🍰', this.state.skus);
+        // this.setState({ skus: this.state.currentStyle.skus });
       },
       error: (err) => {
         console.log('error in getting back to client', err);
@@ -74,8 +73,6 @@ class Overview extends React.Component {
         }
       }
     });
-    console.log('🍾', index);
-    console.log('🍯', this.state.currentStyle.photos[index]);
     this.setState({ currentImage: this.state.currentStyle.photos[index].url });
   }
 
@@ -91,8 +88,6 @@ class Overview extends React.Component {
         }
       }
     });
-    console.log('🍾', index);
-    console.log('🍯', this.state.currentStyle.photos[index]);
     this.setState({ currentImage: this.state.currentStyle.photos[index].url });
   }
 

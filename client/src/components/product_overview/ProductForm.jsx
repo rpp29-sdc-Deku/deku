@@ -29,11 +29,9 @@ class ProductForm extends React.Component {
 
   render () {
     let arrayOfSkus = [];
-
-    if (this.props.skus) {
-      console.log('🥗', Object.entries(this.props.skus));
-      arrayOfSkus = Object.values(this.props.skus);
-      console.log('🍷', arrayOfSkus);
+    console.log('🍺', this.props.currentStyle.skus);
+    if (this.props.currentStyle.skus) {
+      arrayOfSkus = Object.values(this.props.currentStyle.skus);
     }
 
     const range = (number) => {
@@ -45,24 +43,20 @@ class ProductForm extends React.Component {
     };
     const findRangeAccordingToSelectedSize = (size) => {
       // return an array of the range
-      if (this.props.skus) {
-        arrayOfSkus.forEach((sku) => {
-          console.log('🥂', size, sku.size, size === sku.size, typeof (size), typeof (sku.size));
+      if (this.props.currentStyle.skus) {
+        for (let i = 0; i < arrayOfSkus.length; i++) {
+          const sku = arrayOfSkus[i];
           if (size === `"${sku.size}"`) {
-            console.log('........');
             if (sku.quantity > 15) {
               return range(15);
             } else {
-              console.log('🍼', range(sku.quantity));
               return range(sku.quantity);
             }
           }
-        });
+        }
       }
     };
-
-    console.log('🍪', findRangeAccordingToSelectedSize('XS'));
-
+    console.log('🏉', findRangeAccordingToSelectedSize(this.state.size));
     return (
       <div>
         <FormControl className="form">
