@@ -19,6 +19,13 @@ class ListView extends React.Component {
   render () {
     return (
       <div className='reviewList'>
+        <h2>{this.props.reviewList.length + ' reviews sorted by '}
+        <select onChange={this.props.sortList}>
+        <option value='Relevance'>Relevance</option>
+        <option value='Helpful'>Helpful</option>
+        <option value='Newest'>Newest</option>
+        </select>
+        </h2>
         {this.props.reviewList.map((review, index) => {
           if (this.state.list <= index) {
             return '';
