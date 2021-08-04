@@ -43,7 +43,7 @@ class ProductInfo extends React.Component {
         <div className="product_styles_thumbnails info">
           {this.props.images[0] ? urlIdArray.map((element, key) => (<div key={key} onClick={() => { this.props.changeStyle(findMatchingStyleId(element.id), findMatchingStyleId(element.id).photos[0].url); }} className="product_styles_thumbnail" style={{ backgroundImage: `url(${element.url})` }}></div>)) : null }
         </div>
-        <ProductForm skus={this.props.skus} />
+        <ProductForm skus={this.props.skus} currentStyle={this.props.currentStyle} />
       </div>
     );
   }
