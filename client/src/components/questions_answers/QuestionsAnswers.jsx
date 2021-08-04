@@ -3,12 +3,15 @@ import axios from 'axios';
 import QuestionList from './QuestionList.jsx';
 import QModal from './QModal.jsx';
 import AModal from './AModal.jsx';
+import Search from './Search.jsx';
 
 class QuestionsAnswers extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       questions: [],
+      filteredQuestions: [],
+      activeSearch: false,
       orgLength: 0,
       Qlength: 2,
       Alength: false,
@@ -32,6 +35,17 @@ class QuestionsAnswers extends React.Component {
         const receivedLength = response.data.length;
         this.setState({ questions: orderedAnswers, orgLength: receivedLength });
       });
+  }
+
+  submitSearch (searchPhrase) {
+    const filterResults = [];
+    this.state.questions.forEach((el) => {
+      const lowerEl = el.question_body.toLowerCase();
+      if (lowerEl.indexOf(searchPhrase) !== -1) {
+        filterResults.push(el);
+      }
+    });
+    this.setState({ filteredQuestions: filterResults, activeSearch: true });
   }
 
   sortQuestions (questions) {
@@ -167,17 +181,16 @@ class QuestionsAnswers extends React.Component {
       <div className='QA'>
         <div id='Qtitle'>QUESTIONS AND ANSWERS</div><br></br>
 
-        <form id='Qsearch'>
-          <input id='searchbar' type='text' placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
-          <button type='submit' id='searchbtn' >Search</button>
-        </form><br></br>
+        <Search submitSearch={this.submitSearch.bind(this)} /><br></br>
 
-        <QuestionList questions={this.state.questions} length={this.state.Qlength} displayMoreAnswers={this.displayMoreAnswers.bind(this)} likeAnswer={this.likeAnswer.bind(this)} likeQuestion={this.likeQuestion.bind(this)} reportQuestion={this.reportQuestion.bind(this)} reportAnswer={this.reportAnswer.bind(this)} aModalDisplay={this.aModalDisplay.bind(this)} />
+        <QuestionList questions={this.state.activeSearch ? this.state.filteredQuestions : this.state.questions} length={this.state.Qlength} displayMoreAnswers={this.displayMoreAnswers.bind(this)} likeAnswer={this.likeAnswer.bind(this)} likeQuestion={this.likeQuestion.bind(this)} reportQuestion={this.reportQuestion.bind(this)} reportAnswer={this.reportAnswer.bind(this)} aModalDisplay={this.aModalDisplay.bind(this)} />
 
-        { this.state.questions.length > 2 && this.state.orgLength > this.state.Qlength
-          ? <div><button className='btn' onClick={this.displayMoreQuestions.bind(this)} >More Answered Questions</button><button className='btn' onClick={this.qModalDisplay.bind(this)} >Add A Question + </button></div>
-          : <button className='btn' onClick={this.qModalDisplay.bind(this)} >Add A Question + </button>
+        { this.state.questions.length > 2 && this.state.orgLength > this.state.Qlength && !this.state.activeSearch && <button className='btn' onClick={this.displayMoreQuestions.bind(this)} >More Answered Questions</button>
         }
+
+        { this.state.filteredQuestions.length > 2 && this.state.filteredQuestions.length > this.state.Qlength && this.state.activeSearch && <button className='btn' onClick={this.displayMoreQuestions.bind(this)} >More Answered Questions</button>
+        }
+        <button className='btn' onClick={this.qModalDisplay.bind(this)} >Add A Question + </button>
 
         {this.state.qModalStatus === true && <QModal submitQuestion={this.submitQuestion.bind(this)} qModalDisplay={this.qModalDisplay.bind(this)} />}
 
