@@ -268,3 +268,10 @@
   border: solid .2px;
   padding: .5em;
 }
+
+.selected_style_check {
+  height: .7em;
+  width: .7em;
+  border-radius: 50%;
+  border: solid .02em;
+}

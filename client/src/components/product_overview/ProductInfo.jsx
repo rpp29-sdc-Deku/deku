@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import ProductForm from './ProductForm.jsx';
+import { MdCheck } from 'react-icons/md';
 
 class ProductInfo extends React.Component {
   constructor (props) {
@@ -42,6 +43,7 @@ class ProductInfo extends React.Component {
         </div>
         <div className="product_styles_thumbnails info">
           {this.props.images[0] ? urlIdArray.map((element, key) => (<div key={key} onClick={() => { this.props.changeStyle(findMatchingStyleId(element.id), findMatchingStyleId(element.id).photos[0].url); }} className="product_styles_thumbnail" style={{ backgroundImage: `url(${element.url})` }}></div>)) : null }
+          <MdCheck className="selected_style_check" />
         </div>
         <ProductForm addToBag={this.props.addToBag} currentStyle={this.props.currentStyle} />
       </div>
@@ -49,11 +51,4 @@ class ProductInfo extends React.Component {
   }
 }
 
-// let array = [];
-//     if (this.props.currentStyle.photos !== undefined) {
-//       array = this.props.currentStyle.photos.map((image) => {
-//         return image.thumbnail_url;
-//       });
-//       console.log('🍋', array);
-//     }
 export default ProductInfo;

@@ -76,11 +76,21 @@ class ProductForm extends React.Component {
             : null
         }
 
-        <FormControl className="form">
-          <Select className="select select_amount" onChange={this.handleAmountChange.bind(this)} value={this.state.amount}>
-            {findRangeAccordingToSelectedSize(this.state.size) ? findRangeAccordingToSelectedSize(this.state.size).map((quantity, key) => (<MenuItem key={key} value={`"${quantity}"`}>{quantity}</MenuItem>)) : null}
-          </Select>
-        </FormControl>
+        {
+          this.state.size === ''
+            ? <FormControl className="form" disabled>
+            <Select className="select select_amount" onChange={this.handleAmountChange.bind(this)} value={this.state.amount}>
+              <MenuItem value="" disabled>-</MenuItem>
+            </Select>
+          </FormControl>
+            : <FormControl className="form">
+            <Select className="select select_amount" onChange={this.handleAmountChange.bind(this)} value={this.state.amount}>
+              <MenuItem value={this.state.amount}>{this.state.amount}
+              </MenuItem>
+              {findRangeAccordingToSelectedSize(this.state.size) ? findRangeAccordingToSelectedSize(this.state.size).map((quantity, key) => (<MenuItem key={key} value={`"${quantity}"`}>{quantity}</MenuItem>)) : null}
+            </Select>
+          </FormControl>
+        }
         <div className="add_to_bag" onClick={() => this.props.addToBag()}>
           ADD TO BAG +
         </div>
