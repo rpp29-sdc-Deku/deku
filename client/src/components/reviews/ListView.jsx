@@ -21,9 +21,9 @@ class ListView extends React.Component {
       <div className='reviewList'>
         <h2>{this.props.reviewList.length + ' reviews sorted by '}
         <select onChange={this.props.sortList}>
-        <option value='Relevance'>Relevance</option>
-        <option value='Helpful'>Helpful</option>
-        <option value='Newest'>Newest</option>
+        <option value='Relevance' selected={this.props.sortBy === 'relevant'}>Relevance</option>
+        <option value='Helpful' selected={this.props.sortBy === 'helpful'}>Helpful</option>
+        <option value='Newest' selected={this.props.sortBy === 'newest'}>Newest</option>
         </select>
         </h2>
         {this.props.reviewList.map((review, index) => {

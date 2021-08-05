@@ -72,7 +72,7 @@ class Reviews extends React.Component {
         REVIEWS
         <div className='Reviews'>
         <Ratings characteristics={this.state.characteristics}/>
-        <ListView reviewList={this.state.reviewList} sortList={this.sortList.bind(this)}/>
+        <ListView reviewList={this.state.reviewList} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)}/>
         </div>
       </div>
     );
