@@ -22,9 +22,8 @@ class RelatedLists extends React.Component {
     })
       .then((relatedProducts) => {
         this.setState({ relatedProducts: relatedProducts.data });
-        // console.log('🛍️   this state in relatedlists component ', this.state.relatedProducts);
-      })
-    ;
+        console.log('🛍️   THIS STATE RELATED LISTS =================  ', this.state);
+      });
   }
 
   render () {

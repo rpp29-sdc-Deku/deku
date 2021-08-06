@@ -25,6 +25,11 @@
   background: lightgrey;;
   width: 100%;
   height: 323px;
+  overflow: hidden;
+}
+
+.related-product-card .featured-image img {
+  width: 100%;
 }
 
 .card-description-container {
