@@ -7,7 +7,7 @@ class ProductInfo extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-
+      thumbnailClicked: false
     };
   }
 
@@ -42,8 +42,15 @@ class ProductInfo extends React.Component {
           <b>STYLE{' > '}</b>{this.props.currentStyle.name}
         </div>
         <div className="product_styles_thumbnails info">
-          {this.props.images[0] ? urlIdArray.map((element, key) => (<div key={key} onClick={() => { this.props.changeStyle(findMatchingStyleId(element.id), findMatchingStyleId(element.id).photos[0].url); }} className="product_styles_thumbnail" style={{ backgroundImage: `url(${element.url})` }}></div>)) : null }
-          <MdCheck className="selected_style_check" />
+          {this.props.images[0]
+            ? urlIdArray.map((element, key) => (<div key={key} onClick={() => {
+              this.props.changeStyle(findMatchingStyleId(element.id), findMatchingStyleId(element.id).photos[0].url);
+              this.setState({ thumbnailClicked: true });
+            }} className="product_styles_thumbnail" style={{ backgroundImage: `url(${element.url})` }}>
+
+            {this.state.thumbnailClicked ? <MdCheck className="selected_style_check" /> : null}
+          </div>))
+            : null }
         </div>
         <ProductForm addToBag={this.props.addToBag} currentStyle={this.props.currentStyle} />
       </div>
