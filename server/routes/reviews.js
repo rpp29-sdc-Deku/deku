@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { getReviews, getMeta } = require('../helpers/reviews_helpers.js');
+
 router.get('/reviews', (req, res) => {
-  getReviews().then((results) => {
+  getReviews(req.query.sort).then((results) => {
     res.send(results);
   }).catch((err) => {
     res.send(err);
