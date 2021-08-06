@@ -9,10 +9,11 @@ class Reviews extends React.Component {
       reviewList: [],
       characteristics: [],
       ratings: {},
-      recommended: {}
+      recommended: {},
+      sortBy: 'relevant'
     };
     // function goes here for api call
-    this.props.getReviews(28212, (results) => {
+    this.props.getReviews(28212, this.state.sortBy, (results) => {
       this.setState({
         reviewList: results
       }, () => console.log(this.state.reviewList));
@@ -36,17 +37,21 @@ class Reviews extends React.Component {
 
   sortList (e) {
     let sorted;
+    let sortBy = '';
     if (e.target.value === 'Helpful') {
+      sortBy = 'helpful';
       sorted = this.state.reviewList.sort((a, b) => {
         return b.helpfulness - a.helpfulness;
       });
     }
     if (e.target.value === 'Newest') {
+      sortBy = 'newest';
       sorted = this.state.reviewList.sort((a, b) => {
         return new Date(b.date) - new Date(a.date);
       });
     }
     if (e.target.value === 'Relevance') {
+      sortBy = 'relevant';
       sorted = this.state.reviewList.sort((a, b) => {
         if (a.helpfulness === b.helpfulness) {
           return new Date(b.date) - new Date(a.date);
@@ -56,7 +61,8 @@ class Reviews extends React.Component {
     }
     console.log('sort,', sorted);
     this.setState({
-      reviewList: sorted
+      reviewList: sorted,
+      sortBy: sortBy
     });
   }
 
@@ -66,7 +72,7 @@ class Reviews extends React.Component {
         REVIEWS
         <div className='Reviews'>
         <Ratings characteristics={this.state.characteristics}/>
-        <ListView reviewList={this.state.reviewList} sortList={this.sortList.bind(this)}/>
+        <ListView reviewList={this.state.reviewList} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)}/>
         </div>
       </div>
     );
