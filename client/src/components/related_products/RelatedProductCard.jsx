@@ -8,11 +8,11 @@ class RelatedProductCard extends React.Component {
   }
 
   render () {
-    const { name, category, defaultPrice } = this.props;
+    const { name, category, defaultPrice, photo } = this.props;
 
     return (
       <div className='related-product-card'>
-        <div className='featured-image'></div>
+        <div className='featured-image'><img src={photo} /></div>
         <div className='card-description-container'>
           <div className='category-name'>{category}</div>
           <div className='product-card-title'>{name}</div>

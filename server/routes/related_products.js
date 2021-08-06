@@ -1,22 +1,16 @@
 // const axios = require('axios');
 // const keys = require('../config.js');
 const router = require('express').Router();
-const { getRelatedProducts, getProductDetails } = require('../helpers/related_products_helpers.js');
+const { getRelatedProducts, combineDetailsAndImages } = require('../helpers/related_products_helpers.js');
 
 router.get('/related-products', (req, res) => {
   const masterProductId = req.query.product_id;
   getRelatedProducts(masterProductId)
-    .then((relatedProductIds) => {
-      return getProductDetails(relatedProductIds.data);
-    })
-    .then((productDetails) => {
-      return Promise.all(productDetails);
+    .then(([productDetails, productImages]) => {
+      return combineDetailsAndImages(productDetails, productImages);
     })
     .then((results) => {
-      const relatedProductDetails = results.map((product) => {
-        return product.data;
-      });
-      res.status(200).send(relatedProductDetails);
+      res.send(results);
       res.end();
     })
     .catch((error) => {
