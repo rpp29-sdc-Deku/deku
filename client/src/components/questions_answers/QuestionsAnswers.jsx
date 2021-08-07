@@ -42,6 +42,14 @@ class QuestionsAnswers extends React.Component {
 
   submitSearch (searchPhrase) {
     const filterResults = [];
+    if (searchPhrase === '') {
+      this.setState({ filteredQuestions: this.state.questions });
+    }
+
+    if (searchPhrase.length < 3) {
+      return;
+    }
+
     this.state.questions.forEach((el) => {
       const lowerEl = el.question_body.toLowerCase();
       if (lowerEl.indexOf(searchPhrase) !== -1) {
