@@ -8,7 +8,6 @@ class ListView extends React.Component {
     this.state = {
       list: 2
     };
-    console.log('this.props', this.props);
   }
 
   increaseList () {

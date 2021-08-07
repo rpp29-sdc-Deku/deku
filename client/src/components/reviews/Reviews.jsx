@@ -16,7 +16,7 @@ class Reviews extends React.Component {
     this.props.getReviews(28212, this.state.sortBy, (results) => {
       this.setState({
         reviewList: results
-      }, () => console.log(this.state.reviewList));
+      });
     });
 
     this.props.getMeta(28212, (results) => {
@@ -25,13 +25,12 @@ class Reviews extends React.Component {
         const obj = {};
         obj[keys] = results.characteristics[keys].value;
         characteristics.push(obj);
-      }
-      console.log('this is the characteristics', characteristics);
+      };
       this.setState({
         characteristics: characteristics,
         ratings: results.ratings,
         recommended: results.recommended
-      }, () => console.log('thissss stateee', this.state));
+      });
     });
   }
 
