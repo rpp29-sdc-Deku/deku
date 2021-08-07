@@ -20,6 +20,8 @@ class QuestionsAnswers extends React.Component {
       question_id: '',
       qlDisplay: false
     };
+
+    this.submitSearch = this.submitSearch.bind(this);
   }
 
   componentDidMount () {
@@ -63,13 +65,21 @@ class QuestionsAnswers extends React.Component {
   sortAnswers (questions) {
     for (const q of questions) {
       let array = [];
+      let sellerArray = [];
       for (const a in q.answers) {
-        array.push(q.answers[a]);
+        if (q.answers[a].answerer_name.toLowerCase() === 'seller') {
+          sellerArray.push(q.answers[a]);
+        } else {
+          array.push(q.answers[a]);
+        }
       }
       const finalOrder = array.sort((a, b) => {
         return b.helpfulness - a.helpfulness;
       });
-      q.answers = finalOrder;
+      const finalSellerOrder = sellerArray.sort((a, b) => {
+        return b.helpfulness - a.helpfulness;
+      });
+      q.answers = sellerArray.concat(finalOrder);
     }
     return questions;
   }
@@ -182,9 +192,19 @@ class QuestionsAnswers extends React.Component {
       <div className='QA'>
         <div id='Qtitle'>QUESTIONS AND ANSWERS</div><br></br>
 
-        <div className='searchContainer'><Search submitSearch={this.submitSearch.bind(this)} /></div><br></br>
+        <div className='searchContainer'><Search submitSearch={this.submitSearch} /></div><br></br>
 
-        <QuestionList questions={this.state.activeSearch ? this.state.filteredQuestions : this.state.questions} length={this.state.Qlength} displayMoreAnswers={this.displayMoreAnswers.bind(this)} likeAnswer={this.likeAnswer.bind(this)} likeQuestion={this.likeQuestion.bind(this)} reportQuestion={this.reportQuestion.bind(this)} reportAnswer={this.reportAnswer.bind(this)} aModalDisplay={this.aModalDisplay.bind(this)} qlDisplay={this.state.qlDisplay} />
+        <QuestionList
+        questions={this.state.activeSearch ? this.state.filteredQuestions : this.state.questions}
+        length={this.state.Qlength}
+        displayMoreAnswers={this.displayMoreAnswers.bind(this)}
+        likeAnswer={this.likeAnswer.bind(this)}
+        likeQuestion={this.likeQuestion.bind(this)}
+        reportQuestion={this.reportQuestion.bind(this)}
+        reportAnswer={this.reportAnswer.bind(this)}
+        aModalDisplay={this.aModalDisplay.bind(this)}
+        qlDisplay={this.state.qlDisplay}
+        />
 
         { this.state.questions.length > 2 && this.state.orgLength > this.state.Qlength && !this.state.activeSearch && <button className='btn' onClick={this.displayMoreQuestions.bind(this)} >More Answered Questions</button>
         }

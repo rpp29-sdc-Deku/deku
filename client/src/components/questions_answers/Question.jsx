@@ -50,9 +50,21 @@ class Question extends React.Component {
         </div><br></br>
 
         {(Object.keys(this.props.question.answers).length > 0 && this.props.question.answers.length > 0 && this.state.displayAll === false)
-          ? this.props.question.answers.slice(0, 2).map((el) => <Answer id={el.id} key={el.id} answer={el} likeAnswer={this.props.likeAnswer} reportAnswer={this.props.reportAnswer} />)
+          ? this.props.question.answers.slice(0, 2).map((el) =>
+          <Answer
+          id={el.id}
+          key={el.id}
+          answer={el}
+          likeAnswer={this.props.likeAnswer}
+          reportAnswer={this.props.reportAnswer} />)
           : this.state.displayAll
-            ? this.props.question.answers.map((el) => <Answer id={el.id} className='allAnswers' key={el.id} answer={el} likeAnswer={this.props.likeAnswer} reportAnswer={this.props.reportAnswer} />)
+            ? this.props.question.answers.map((el) =>
+            <Answer
+            id={el.id}
+            className='allAnswers'
+            key={el.id} answer={el}
+            likeAnswer={this.props.likeAnswer}
+            reportAnswer={this.props.reportAnswer} />)
             : <div>Be the first to provide an answer!<br></br></div> }
 
         {this.state.displayAll === true && <div><button className='wordbtn' onClick={this.displayAnswers.bind(this)}>Hide Answers</button><br></br><br></br></div>}
