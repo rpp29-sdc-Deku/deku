@@ -16,7 +16,7 @@ class Reviews extends React.Component {
     this.props.getReviews(28212, this.state.sortBy, (results) => {
       this.setState({
         reviewList: results
-      }, () => console.log(this.state.reviewList));
+      });
     });
 
     this.props.getMeta(28212, (results) => {
@@ -25,32 +25,42 @@ class Reviews extends React.Component {
         const obj = {};
         obj[keys] = results.characteristics[keys].value;
         characteristics.push(obj);
-      }
-      console.log('this is the characteristics', characteristics);
+      };
       this.setState({
         characteristics: characteristics,
         ratings: results.ratings,
         recommended: results.recommended
-      }, () => console.log('thissss stateee', this.state));
+      });
     });
   }
 
   sortList (e) {
     let sorted;
     let sortBy = '';
-    if (e.target.value === 'Helpful') {
+    const sort = e || e.target.value;
+    if (sort === 'helpful' || sort === 'Helpful') {
       sortBy = 'helpful';
       sorted = this.state.reviewList.sort((a, b) => {
         return b.helpfulness - a.helpfulness;
       });
+      this.setState({
+        reviewList: sorted,
+        sortBy: sortBy
+      });
+      return;
     }
-    if (e.target.value === 'Newest') {
+    if (sort === 'newest' || sort === 'Newest') {
       sortBy = 'newest';
       sorted = this.state.reviewList.sort((a, b) => {
         return new Date(b.date) - new Date(a.date);
       });
+      this.setState({
+        reviewList: sorted,
+        sortBy: sortBy
+      });
+      return;
     }
-    if (e.target.value === 'Relevance') {
+    if (sort === 'relevant' || sort === 'Relevance') {
       sortBy = 'relevant';
       sorted = this.state.reviewList.sort((a, b) => {
         if (a.helpfulness === b.helpfulness) {
@@ -58,12 +68,11 @@ class Reviews extends React.Component {
         }
         return b.helpfulness - a.helpfulness;
       });
+      this.setState({
+        reviewList: sorted,
+        sortBy: sortBy
+      });
     }
-    console.log('sort,', sorted);
-    this.setState({
-      reviewList: sorted,
-      sortBy: sortBy
-    });
   }
 
   render () {

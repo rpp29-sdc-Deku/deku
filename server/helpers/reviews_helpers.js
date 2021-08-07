@@ -23,6 +23,14 @@ const getMeta = () => {
     return results.data;
   });
 };
+const putHelp = (reviewID) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewID}/helpful`, null, {
+    headers: {
+      Authorization: key.TOKEN
+    }
+  });
+};
 
 module.exports.getReviews = getReviews;
 module.exports.getMeta = getMeta;
+module.exports.putHelp = putHelp;
