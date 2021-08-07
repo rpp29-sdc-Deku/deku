@@ -57,11 +57,14 @@ class Answer extends React.Component {
     return `${month} ${day}, ${year}`;
   }
 
-  sellerCheck(name) {
+  sellerCheck (name) {
+    if (!name) {
+      return;
+    }
     if (name.toLowerCase() === 'seller') {
       return <span className='seller'>Seller</span>;
     } else {
-      return <span>name</span>;
+      return <span>{name}</span>;
     }
   }
 
