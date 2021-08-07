@@ -32,7 +32,7 @@
   display: none;
 }
 
-.reviewList button {
+.moreReviews, .addReviews {
   margin: 10px
 }
 .reviewList select {
@@ -91,4 +91,11 @@
   background-color: rgb(189, 181, 181);
   height: 5px;
   width: 100%;
+}
+
+.reviewYes {
+  margin-top: 0px;
+  border: none;
+  text-decoration: underline;
+  background-color: white;
 }
