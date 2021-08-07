@@ -5,7 +5,8 @@ class Question extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      displayAll: false
+      displayAll: false,
+      liked: false
     };
   }
 
@@ -15,7 +16,11 @@ class Question extends React.Component {
   }
 
   helpfulQuestion (e) {
-    this.props.likeQuestion(this.props.id);
+    if (!this.state.liked) {
+      this.setState({ liked: true }, () => {
+        this.props.likeQuestion(this.props.id);
+      });
+    }
   }
 
   reportQuestion (e) {
