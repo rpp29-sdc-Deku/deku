@@ -13,17 +13,20 @@ class ProductInfo extends React.Component {
 
   render () {
     let urlIdArray = [];
+
     if (this.props.images[0] !== undefined) {
       urlIdArray = this.props.styles.map((style) => {
         return { id: style.style_id, url: style.photos[0].thumbnail_url };
       });
     }
+
     const findMatchingStyleId = (id) => {
       const selectedStyle = this.props.styles.filter((style) => {
         return style.style_id === id;
       });
       return selectedStyle[0];
     };
+
     return (
       <div id="info">
         <div className="info">

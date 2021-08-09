@@ -36,4 +36,20 @@ router.get('/product', (req, res) => {
     });
 });
 
+router.post('/cart', (req, res) => {
+  console.log('🎽', JSON.stringify(req.body));
+  axios.post(`${keys.API}cart`, req.body, {
+    headers: {
+      Authorization: keys.TOKEN
+    }
+  })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((err) => {
+      console.log('🧩', err);
+      res.status(400).send(err);
+    });
+});
+
 module.exports = router;
