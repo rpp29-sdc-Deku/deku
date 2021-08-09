@@ -1,6 +1,7 @@
 import React from 'react';
 import ListView from './ListView.jsx';
 import Ratings from './Ratings.jsx';
+import AddReview from './AddReview.jsx';
 /* eslint-disable react/prop-types */
 class Reviews extends React.Component {
   constructor (props) {
@@ -10,7 +11,8 @@ class Reviews extends React.Component {
       characteristics: [],
       ratings: {},
       recommended: {},
-      sortBy: 'relevant'
+      sortBy: 'relevant',
+      addReview: false
     };
     // function goes here for api call
     this.props.getReviews(28212, this.state.sortBy, (results) => {
@@ -75,13 +77,21 @@ class Reviews extends React.Component {
     }
   }
 
+  addReview () {
+    console.log('you clicked me');
+    this.setState({
+      addReview: !this.state.addReview
+    });
+  }
+
   render () {
     return (
       <div>
         REVIEWS
         <div className='Reviews'>
         <Ratings characteristics={this.state.characteristics}/>
-        <ListView reviewList={this.state.reviewList} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)}/>
+        <ListView reviewList={this.state.reviewList} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
+        {this.state.addReview && <AddReview characteristics={this.state.characteristics}/>}
         </div>
       </div>
     );
