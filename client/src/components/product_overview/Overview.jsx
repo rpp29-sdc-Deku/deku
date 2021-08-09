@@ -22,7 +22,6 @@ class Overview extends React.Component {
       url: '/atelier/productStyles/',
       type: 'GET',
       success: (data) => {
-        console.log('success back to client', data.results);
         this.setState({ styles: data.results });
         const imagesArray = this.state.styles.map((style) => {
           return style.photos;
@@ -40,7 +39,6 @@ class Overview extends React.Component {
       url: '/atelier/product',
       type: 'GET',
       success: (data) => {
-        console.log('success back to client product', data);
         this.setState({ product: data });
       },
       error: (err) => {
