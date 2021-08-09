@@ -12,7 +12,9 @@ class Carousel extends React.Component {
   render () {
     return (
       <div className="carousel">
+
         <div className="carousel_container" style={{ backgroundImage: `url(${this.props.currentImage})` }} >
+
           <div className="tumbnails_container">
             {this.props.currentStyle.photos
               ? this.props.currentStyle.photos.map((photo, key) => {
@@ -21,17 +23,21 @@ class Carousel extends React.Component {
               : null }
               <MdArrowDropDown className="drop_down" />
           </div>
+
           <div className="arrows">
             <div className="arrows_container">
               <MdArrowBack onClick={() => { this.props.backArrowClick(); }} className="back_arrow" />
               <MdArrowForward onClick={() => { this.props.forwardArrowClick(); }} className="forward_arrow" />
             </div>
           </div>
+
           <div className="expand_container">
             {/* <MdFullscreenExit /> */}
             <MdFullscreen className="expand" />
           </div>
+
         </div>
+
       </div>
     );
   }

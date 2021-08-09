@@ -256,6 +256,7 @@
 }
 
 .add_to_bag {
+  cursor: pointer;
   border: solid .3px;
   padding: .5em;
   height: 30px;
@@ -266,4 +267,12 @@
 .star {
   border: solid .2px;
   padding: .5em;
+}
+
+.selected_style_check {
+  height: .7em;
+  width: .7em;
+  border-radius: 50%;
+  border: solid .02em;
+  background-color: white;
 }
