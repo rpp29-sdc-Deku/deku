@@ -49,9 +49,9 @@ class ProductInfo extends React.Component {
             ? urlIdArray.map((element, key) => (<div key={key} onClick={() => {
               this.props.changeStyle(findMatchingStyleId(element.id), findMatchingStyleId(element.id).photos[0].url);
               this.setState({ thumbnailClicked: true });
-            }} className="product_styles_thumbnail" style={{ backgroundImage: `url(${element.url})` }}>
+            }} className={`product_styles_thumbnail ${element.id === this.props.currentStyle.style_id ? 'selected_style' : ''}`} style={{ backgroundImage: `url(${element.url})` }}>
 
-            {this.state.thumbnailClicked ? <MdCheck className="selected_style_check" /> : null}
+            <MdCheck className="selected_style_check" />
           </div>))
             : null }
         </div>
