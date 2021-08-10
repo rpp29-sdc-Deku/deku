@@ -18,7 +18,7 @@ class Carousel extends React.Component {
           <div className="tumbnails_container">
             {this.props.currentStyle.photos
               ? this.props.currentStyle.photos.map((photo, key) => {
-                return (<div style={{ backgroundImage: `url(${photo.url})` }} className= "carousel_thumbnail_image" key={key} onClick={ () => { this.props.thumbnailClick(photo.url); }}></div>);
+                return (<div style={{ backgroundImage: `url(${photo.url})` }} className= {`${photo.url === this.props.currentImage ? 'selectedd' : ''} carousel_thumbnail_image`} key={key} onClick={ () => { this.props.thumbnailClick(photo.url); }}></div>);
               })
               : null }
               <MdArrowDropDown className="drop_down" />

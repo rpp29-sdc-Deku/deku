@@ -47,6 +47,10 @@
   cursor: pointer
 }
 
+.selectedd {
+  color: rgb(240, 243, 54);
+}
+
 .carousel_thumbnail_image {
   display: flex;
   align-content: space-between;
@@ -288,3 +292,4 @@
 .sale_price {
   color: red;
 }
+
