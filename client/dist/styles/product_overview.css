@@ -276,3 +276,15 @@
   border: solid .02em;
   background-color: white;
 }
+
+.please_select_size {
+  color: red;
+}
+
+.original_price {
+  text-decoration-line: line-through;
+}
+
+.sale_price {
+  color: red;
+}

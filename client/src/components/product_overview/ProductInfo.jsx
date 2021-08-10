@@ -39,7 +39,7 @@ class ProductInfo extends React.Component {
           {this.props.product.name}
         </div>
         <div className="product_price info">
-          {this.props.currentStyle.original_price}
+          {this.props.currentStyle.sale_price !== null ? <div><p className="sale_price">{this.props.currentStyle.sale_price}</p> <p className="original_price">{this.props.currentStyle.original_price}</p></div> : this.props.currentStyle.original_price }
         </div>
         <div className="product_style info">
           <b>STYLE{' > '}</b>{this.props.currentStyle.name}
