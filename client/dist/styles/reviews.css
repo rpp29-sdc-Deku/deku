@@ -108,6 +108,7 @@
   width: 75%;
   height: 75%;
   background-color: white;
+  border-radius: 0.5%;
 }
 
 .reviewPop {
@@ -122,4 +123,34 @@
   left: 0;
   bottom: 0;
   right: 0;
+}
+
+input[type='radio'] {
+  width: 10px;
+  margin-left: 2%;
+}
+.radioReviews {
+  justify-content: space-around;
+  display: flex;
+}
+
+.reviewRadio {
+  display: flex;
+  flex-direction: column;
+  width: 110%;
+}
+.reviewRadio label {
+  width: auto;
+}
+
+.radios {
+  display: flex;
+  align-items: center;
+  height: 3vh;
+}
+
+.addReviewSummary textarea {
+  max-width: fit-content;
+  max-height: 15vh;
+  min-width: fit-content;
 }
