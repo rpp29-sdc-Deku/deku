@@ -59,10 +59,12 @@ class Ratings extends React.Component {
       </div>
       <div className='reviewSpecifics'>
         {this.props.characteristics.map((item, index) => {
+          const [characteristics] = Object.keys(item);
+          const [value] = Object.values(item);
           return <div key={index}>
-            {Object.keys(item)}
-            <input type='range' min='1' max='5' value={Object.values(item)} disabled></input>
-            {this.setDescription(Object.keys(item)[0])}
+            {characteristics}
+            <input type='range' min='1' max='5' step='any' value={value.value} disabled></input>
+            {this.setDescription(characteristics)}
           </div>;
         })}
       </div>

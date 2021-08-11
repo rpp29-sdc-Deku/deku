@@ -15,7 +15,7 @@ const getReviews = (sort) => {
   });
 };
 const getMeta = () => {
-  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/?product_id=28212', {
+  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/?product_id=29000', {
     headers: {
       Authorization: key.TOKEN
     }
