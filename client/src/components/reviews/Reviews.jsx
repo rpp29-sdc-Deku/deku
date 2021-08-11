@@ -37,10 +37,10 @@ class Reviews extends React.Component {
     });
   }
 
-  sortList (e) {
+  sortList (event, sorting) {
     let sorted;
     let sortBy = '';
-    const sort = e || e.target.value;
+    const sort = sorting || event.target.value;
     if (sort === 'helpful' || sort === 'Helpful') {
       sortBy = 'helpful';
       sorted = this.state.reviewList.sort((a, b) => {

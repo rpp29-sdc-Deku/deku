@@ -19,7 +19,7 @@ class ListView extends React.Component {
 
   reSortList () {
     const reSort = this.props.sortBy;
-    this.props.sortList(reSort);
+    this.props.sortList(null, reSort);
   }
 
   render () {
