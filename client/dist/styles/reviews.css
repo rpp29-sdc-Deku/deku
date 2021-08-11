@@ -149,7 +149,7 @@ input[type='radio'] {
   height: 3vh;
 }
 
-.addReviewSummary textarea {
+.addReviewBody textarea {
   max-width: fit-content;
   max-height: 15vh;
   min-width: fit-content;

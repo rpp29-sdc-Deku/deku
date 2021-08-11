@@ -22,17 +22,18 @@ class Reviews extends React.Component {
     });
 
     this.props.getMeta(28212, (results) => {
+      console.log('resultsss', results);
       const characteristics = [];
       for (const keys in results.characteristics) {
         const obj = {};
-        obj[keys] = results.characteristics[keys].value;
+        obj[keys] = { value: results.characteristics[keys].value, id: results.characteristics[keys].id };
         characteristics.push(obj);
       };
       this.setState({
         characteristics: characteristics,
         ratings: results.ratings,
         recommended: results.recommended
-      });
+      }, () => console.log(this.state.characteristics));
     });
   }
 
