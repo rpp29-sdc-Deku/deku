@@ -18,6 +18,7 @@ class ProductDescription extends React.Component {
             {this.props.product.slogan}. {this.props.product.description}
           </b>
         </div>
+        <div className="vertical_line"></div>
 
         <div className="description_fakeData">
 
