@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-
+import postReview from '../../helpers/reviews/postReview.js';
 class AddReview extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      product_id: 29000,
       helpful: '',
       characteristics: {},
       body: '',
@@ -215,7 +216,7 @@ class AddReview extends React.Component {
 
   sendData (e) {
     e.preventDefault();
-    console.log('you submited');
+    postReview(this.state);
   }
 
   render () {
