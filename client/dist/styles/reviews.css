@@ -177,3 +177,14 @@ input[type='radio'] {
   bottom: 0;
   right: 0;
 }
+
+.reviewFileUpload {
+  max-height: 5vh;
+  min-height: 5vh;
+  display: flex;
+  align-items: center;
+
+}
+.reviewFileUpload input {
+  height: auto;
+}

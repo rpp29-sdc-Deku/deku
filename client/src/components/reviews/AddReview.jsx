@@ -12,7 +12,9 @@ class AddReview extends React.Component {
       summary: '',
       name: '',
       email: '',
-      rating: 0
+      rating: 0,
+      file: [],
+      thumbnail: ''
     };
     // this.description = this.description.bind(this);
   }
@@ -219,6 +221,16 @@ class AddReview extends React.Component {
     postReview(this.state);
   }
 
+  upload (e) {
+    const image = this.state.file;
+    // eslint-disable-next-line new-cap
+    image.push(URL.createObjectURL(e.target.files[0]));
+    console.log(e.target.files[0]);
+    this.setState({
+      file: image
+    }, () => console.log(this.state.file));
+  }
+
   render () {
     return (
       <div className='reviewPop'>
@@ -254,6 +266,13 @@ class AddReview extends React.Component {
               <label htmlFor='email'>Email</label>
               <br></br>
               <input type='email' id='email' onChange={this.email.bind(this)} placeholder='Example: jackson11@email.com'></input>
+            </div>
+            <div className='reviewFileUpload'>
+            <input type='file' onChange={this.upload.bind(this)} name='image' accept='image/png, image/jpeg'></input>
+            {this.state.file.map((photo) => {
+              // eslint-disable-next-line react/jsx-key
+              return <img src={photo} style={{ minHeight: '4vh', maxHeight: '4vh', maxWidth: '3vw' }}></img>;
+            })}
             </div>
             <input type='submit' value='Submit'></input>
            </div>
