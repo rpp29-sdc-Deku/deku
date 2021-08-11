@@ -1,17 +1,20 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-
+import postReview from '../../helpers/reviews/postReview.js';
 class AddReview extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      product_id: 29000,
       helpful: '',
       characteristics: {},
       body: '',
       summary: '',
       name: '',
       email: '',
-      rating: 0
+      rating: 0,
+      file: [],
+      thumbnail: ''
     };
     // this.description = this.description.bind(this);
   }
@@ -215,7 +218,17 @@ class AddReview extends React.Component {
 
   sendData (e) {
     e.preventDefault();
-    console.log('you submited');
+    postReview(this.state);
+  }
+
+  upload (e) {
+    const image = this.state.file;
+    // eslint-disable-next-line new-cap
+    image.push(URL.createObjectURL(e.target.files[0]));
+    console.log(e.target.files[0]);
+    this.setState({
+      file: image
+    }, () => console.log(this.state.file));
   }
 
   render () {
@@ -253,6 +266,13 @@ class AddReview extends React.Component {
               <label htmlFor='email'>Email</label>
               <br></br>
               <input type='email' id='email' onChange={this.email.bind(this)} placeholder='Example: jackson11@email.com'></input>
+            </div>
+            <div className='reviewFileUpload'>
+            <input type='file' onChange={this.upload.bind(this)} name='image' accept='image/png, image/jpeg'></input>
+            {this.state.file.map((photo) => {
+              // eslint-disable-next-line react/jsx-key
+              return <img src={photo} style={{ minHeight: '4vh', maxHeight: '4vh', maxWidth: '3vw' }}></img>;
+            })}
             </div>
             <input type='submit' value='Submit'></input>
            </div>
