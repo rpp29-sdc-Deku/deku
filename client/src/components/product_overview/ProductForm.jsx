@@ -82,7 +82,7 @@ class ProductForm extends React.Component {
     return (
       <div>
 
-        {this.addToBagClicked ? <p className="please_select_size">Please select size</p> : null}
+        {this.state.addToBagClicked && this.state.size === '' ? <p className="please_select_size">Please select size</p> : null}
 
         {
           this.props.currentStyle.skus
@@ -124,6 +124,7 @@ class ProductForm extends React.Component {
                 : null)
             : null
         }
+        {console.log('👛', this.state.addToBagClicked)}
 
         <div className="star" onClick={this.handleStarClick.bind(this)}>
           {this.state.starClicked ? <MdStar /> : <MdStarBorder />}
