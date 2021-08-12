@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import RelatedProductCard from './RelatedProductCard.jsx';
+import ProductCard from './ProductCard.jsx';
 
 class RelatedProduct extends React.Component {
   constructor (props) {
@@ -12,19 +12,19 @@ class RelatedProduct extends React.Component {
     const { relatedProducts, addToUserOutfits } = this.props;
     // console.log('RELATED PRODUCT PHOTO IN PROPS ======= ', relatedProducts);
 
-    const relatedProductCards = relatedProducts.map((product, i) => {
+    const ProductCards = relatedProducts.map((product, i) => {
       let photo = product.photos[0].thumbnail_url;
       if (!photo) {
         photo = '';
       }
 
-      return <RelatedProductCard key={i} index={i} productid={product.id} name={product.name} category={product.category} defaultPrice={product.default_price} photo={photo} addToUserOutfits={addToUserOutfits} />;
+      return <ProductCard key={i} index={i} productid={product.id} name={product.name} category={product.category} defaultPrice={product.default_price} photo={photo} addToUserOutfits={addToUserOutfits} />;
     });
 
     return (
     <div className='related-products-wrapper'>
       <div className='section-title'>Related Products</div>
-      {relatedProductCards}
+      {ProductCards}
     </div>
     );
   }
