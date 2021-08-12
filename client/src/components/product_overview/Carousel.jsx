@@ -23,19 +23,23 @@ class Carousel extends React.Component {
 
         <div className={`carousel_container ${this.state.expandButtonClicked ? 'expand_clicked' : ''}`} style={{ backgroundImage: `url(${this.props.currentImage})` }} >
 
-          <div className="tumbnails_container">
+          <div className="thumbnails_container">
             {this.props.currentStyle.photos
               ? this.props.currentStyle.photos.slice(0, 7).map((photo, key) => {
                 return (<div style={{ backgroundImage: `url(${photo.url})` }} className= {`${photo.url === this.props.currentImage ? 'selectedd' : ''} carousel_thumbnail_image`} key={key} onClick={ () => { this.props.thumbnailClick(photo.url); }}></div>);
               })
               : null }
-              {this.props.currentStyle.photos ? (this.props.currentStyle.photos.length > 7 ? <MdArrowDropDown className="drop_down" /> : null) : null }
+              {this.props.currentStyle.photos ? (this.props.currentStyle.photos.length > 7 ? <MdArrowDropDown className="drop_down" onClick={() => this.props.handleDropDownClick()} /> : null) : null }
           </div>
 
           <div className="arrows">
             <div className="arrows_container">
-              <MdArrowBack onClick={() => { this.props.backArrowClick(); }} className="back_arrow" />
-              <MdArrowForward onClick={() => { this.props.forwardArrowClick(); }} className="forward_arrow" />
+              {this.props.currentStyle.photos
+                ? (this.props.currentImage !== this.props.currentStyle.photos[0].url ? <MdArrowBack onClick={() => { this.props.backArrowClick(); }} className="back_arrow" /> : null)
+                : null }
+              {this.props.currentStyle.photos
+                ? (this.props.currentImage !== this.props.currentStyle.photos[this.props.currentStyle.photos.length - 1].url ? <MdArrowForward onClick={() => { this.props.forwardArrowClick(); }} className="forward_arrow" /> : null)
+                : null }
             </div>
           </div>
 
