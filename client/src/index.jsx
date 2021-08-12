@@ -7,6 +7,9 @@ import QuestionsAnswers from './components/questions_answers/QuestionsAnswers.js
 import '../dist/styles/product_overview.css';
 import getReviews from './helpers/reviews/serverReview.js';
 import getMeta from './helpers/reviews/meta.js';
+import withClickTrackingQA from './components/questions_answers/withClickTrackingQA.jsx';
+const QuestionsAnswersWithClickTracking = withClickTrackingQA(QuestionsAnswers);
+
 class App extends React.Component {
   constructor (props) {
     super(props);
@@ -33,7 +36,7 @@ class App extends React.Component {
         </div>
         <Overview productId={this.state.id} />
         <RelatedLists masterId={this.state.id} />
-        <QuestionsAnswers id={this.state.id} />
+        <QuestionsAnswersWithClickTracking id={this.state.id} />
         <Reviews getReviews={getReviews} getMeta={getMeta}/>
       </div>
     );

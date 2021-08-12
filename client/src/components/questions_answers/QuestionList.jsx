@@ -1,5 +1,7 @@
 import React from 'react';
 import Question from './Question.jsx';
+import withClickTrackingQA from './withClickTrackingQA.jsx';
+const QuestionWithTracking = withClickTrackingQA(Question);
 
 class QuestionList extends React.Component {
   constructor (props) {
@@ -14,7 +16,7 @@ class QuestionList extends React.Component {
         {}
         {Object.keys(this.props.questions).length > 0
           ? this.props.questions.slice(0, this.props.length).map((q, index) =>
-            <Question
+            <QuestionWithTracking
             key={q.question_id}
             id={q.question_id}
             question={q}

@@ -1,5 +1,7 @@
 import React from 'react';
 import Answer from './Answer.jsx';
+import withClickTrackingQA from './withClickTrackingQA.jsx';
+const AnswerWithClickTracking = withClickTrackingQA(Answer);
 
 class Question extends React.Component {
   constructor (props) {
@@ -10,13 +12,15 @@ class Question extends React.Component {
     };
   }
 
-  displayAnswers () {
+  displayAnswers (e) {
+    this.state.displayAll === true ? this.props.clickTracker('hideAnswers') : this.props.clickTracker('displayAnswers');
     this.setState({ displayAll: !this.state.displayAll });
     this.props.displayMoreAnswers();
   }
 
   helpfulQuestion (e) {
     if (!this.state.liked) {
+      this.props.clickTracker('helpfulQuestion');
       this.setState({ liked: true }, () => {
         this.props.likeQuestion(this.props.id);
       });
@@ -24,6 +28,7 @@ class Question extends React.Component {
   }
 
   reportQuestion (e) {
+    this.props.clickTracker('reportQuestion');
     this.props.reportQuestion(this.props.id);
   }
 
@@ -51,7 +56,7 @@ class Question extends React.Component {
 
         {(Object.keys(this.props.question.answers).length > 0 && this.props.question.answers.length > 0 && this.state.displayAll === false)
           ? this.props.question.answers.slice(0, 2).map((el) =>
-          <Answer
+          <AnswerWithClickTracking
           id={el.id}
           key={el.id}
           answer={el}
@@ -59,7 +64,7 @@ class Question extends React.Component {
           reportAnswer={this.props.reportAnswer} />)
           : this.state.displayAll
             ? this.props.question.answers.map((el) =>
-            <Answer
+            <AnswerWithClickTracking
             id={el.id}
             className='allAnswers'
             key={el.id} answer={el}

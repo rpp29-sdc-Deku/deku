@@ -1,5 +1,4 @@
 import React from 'react';
-// import QuestionForm from './QuestionForm.jsx';
 
 class QModal extends React.Component {
   constructor(props) {
@@ -13,6 +12,7 @@ class QModal extends React.Component {
 
   submitQuestion (e) {
     e.preventDefault();
+    this.props.clickTracker('submitQuestion');
     this.props.submitQuestion(this.state);
   }
 

@@ -10,6 +10,7 @@ class Search extends React.Component {
 
   searchQuestions (e) {
     e.preventDefault();
+    this.props.clickTracker('searchQuestionsSubmit');
     this.props.submitSearch(this.state.searchPhrase.toLowerCase());
   }
 
