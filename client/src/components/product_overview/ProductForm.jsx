@@ -124,7 +124,6 @@ class ProductForm extends React.Component {
                 : null)
             : null
         }
-        {console.log('👛', this.state.addToBagClicked)}
 
         <div className="star" onClick={this.handleStarClick.bind(this)}>
           {this.state.starClicked ? <MdStar /> : <MdStarBorder />}

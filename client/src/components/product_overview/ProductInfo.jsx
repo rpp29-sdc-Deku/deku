@@ -7,7 +7,7 @@ class ProductInfo extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      thumbnailClicked: false
+      thumbnailClicked: [true, false, false, false, false, false, false, false, false, false, false]
     };
   }
 
@@ -19,6 +19,17 @@ class ProductInfo extends React.Component {
         return { id: style.style_id, url: style.photos[0].thumbnail_url };
       });
     }
+
+    const toggleBoolAtIndex = (array, index) => {
+      for (let i = 0; i < array.length; i++) {
+        if (i === index) {
+          array[i] = true;
+        } else {
+          array[i] = false;
+        }
+      }
+      return array;
+    };
 
     const findMatchingStyleId = (id) => {
       const selectedStyle = this.props.styles.filter((style) => {
@@ -48,10 +59,9 @@ class ProductInfo extends React.Component {
           {this.props.images[0]
             ? urlIdArray.map((element, key) => (<div key={key} onClick={() => {
               this.props.changeStyle(findMatchingStyleId(element.id), findMatchingStyleId(element.id).photos[0].url);
-              this.setState({ thumbnailClicked: true });
+              this.setState({ thumbnailClicked: toggleBoolAtIndex(this.state.thumbnailClicked, key) });
             }} className="product_styles_thumbnail" style={{ backgroundImage: `url(${element.url})` }}>
-
-            {this.state.thumbnailClicked ? <MdCheck className="selected_style_check" /> : null}
+            {this.state.thumbnailClicked[key] ? <MdCheck className="selected_style_check" /> : null}
           </div>))
             : null }
         </div>
