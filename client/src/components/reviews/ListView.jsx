@@ -1,5 +1,6 @@
 import React from 'react';
 import List from './List.jsx';
+
 /* eslint-disable react/prop-types */
 
 class ListView extends React.Component {
@@ -16,7 +17,13 @@ class ListView extends React.Component {
     });
   }
 
+  reSortList () {
+    const reSort = this.props.sortBy;
+    this.props.sortList(null, reSort);
+  }
+
   render () {
+    const listView = this;
     return (
       <div className='reviewList'>
         <h2>{this.props.reviewList.length + ' reviews sorted by '}
@@ -38,10 +45,10 @@ class ListView extends React.Component {
           if (this.state.list <= index) {
             return '';
           }
-          return <List key={review.review_id} review={review}/>;
+          return <List key={review.review_id} review={review} reSortList={listView.reSortList.bind(listView)}/>;
         })}
-        <button onClick={this.increaseList.bind(this)} disabled={this.props.reviewList.length < 2 || this.state.list >= this.props.reviewList.length}>More Reviews</button>
-        <button>Add A Review +</button>
+        <button className='moreReviews' onClick={this.increaseList.bind(this)} disabled={this.props.reviewList.length < 2 || this.state.list >= this.props.reviewList.length}>More Reviews</button>
+        <button className='addReviews' onClick={this.props.addReview}>Add A Review +</button>
       </div>
     );
   }

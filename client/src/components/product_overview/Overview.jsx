@@ -14,7 +14,6 @@ class Overview extends React.Component {
       images: [],
       currentImage: '',
       currentStyle: {}
-      // skus: {}
     };
   }
 
@@ -22,9 +21,7 @@ class Overview extends React.Component {
     $.ajax({
       url: '/atelier/productStyles/',
       type: 'GET',
-      data: { productId: 24778 },
       success: (data) => {
-        console.log('success back to client', data.results);
         this.setState({ styles: data.results });
         const imagesArray = this.state.styles.map((style) => {
           return style.photos;
@@ -32,7 +29,6 @@ class Overview extends React.Component {
         this.setState({ images: imagesArray });
         this.setState({ currentImage: imagesArray[0][0].url });
         this.setState({ currentStyle: data.results[0] });
-        // this.setState({ skus: this.state.currentStyle.skus });
       },
       error: (err) => {
         console.log('error in getting back to client', err);
@@ -43,7 +39,6 @@ class Overview extends React.Component {
       url: '/atelier/product',
       type: 'GET',
       success: (data) => {
-        console.log('success back to client product', data);
         this.setState({ product: data });
       },
       error: (err) => {
@@ -91,21 +86,40 @@ class Overview extends React.Component {
     this.setState({ currentImage: this.state.currentStyle.photos[index].url });
   }
 
+  addToBag (obj) {
+    $.ajax({
+      url: 'atelier/cart',
+      type: 'POST',
+      data: obj,
+      success: (data) => {
+        console.log('success in post', data);
+      },
+      error: (err) => {
+        console.log('error in post', err);
+      }
+    });
+  }
+
   render () {
     return (
       <div className="overview">
+
         <div className="website_announcement">
           <i>SITE-WIDE ANNOUCEMENT MESSAGE! </i> SALE / DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u>
         </div>
+
         <div id="overview">
           <div id="carouselProductInfo">
             <Carousel productId={this.props.productId} images={this.state.images} currentImage={this.state.currentImage} styles={this.state.styles} currentStyle={this.state.currentStyle} thumbnailClick={this.handleThumbnailClick.bind(this)} forwardArrowClick={this.handleForwardArrowClick.bind(this)} backArrowClick={this.handleBackArrowClick.bind(this)} />
-            <ProductInfo product={this.state.product} styles={this.state.styles} currentStyle={this.state.currentStyle} images={this.state.images} changeStyle={this.handleChangeStyle.bind(this)} skus={this.state.skus} />
+            <ProductInfo product={this.state.product} styles={this.state.styles} currentStyle={this.state.currentStyle} images={this.state.images} changeStyle={this.handleChangeStyle.bind(this)} addToBag={this.addToBag.bind(this)} />
           </div>
+
           <div >
             <ProductDescription product={this.state.product} />
           </div>
+
         </div>
+
       </div>
     );
   }
