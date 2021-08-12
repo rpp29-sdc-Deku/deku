@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-class RelatedProductCard extends React.Component {
+class ProductCard extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -11,11 +11,17 @@ class RelatedProductCard extends React.Component {
 
   render () {
     const { index, name, category, defaultPrice, photo, addToUserOutfits } = this.props;
+    const featuredImg = {
+
+    };
+
+    console.log('BACKGROUND IMAGE ======== ', featuredImg);
 
     return (
-      <div className='related-product-card' key={index}>
-        <div className='favorite-star' onClick={(e => addToUserOutfits(e, index))}>Star</div>
-        <div className='featured-image'><img src={photo} /></div>
+      <div className='product-card' key={index}>
+        <div className='featured-image' style={{ backgroundImage: `url(${photo})` }}>
+          <div className='favorite-star' onClick={(e => addToUserOutfits(e, index))}>Star</div>
+        </div>
         <div className='card-description-container'>
           <div className='category-name'>{category}</div>
           <div className='product-card-title'>{name}</div>
@@ -27,4 +33,4 @@ class RelatedProductCard extends React.Component {
   }
 }
 
-export default RelatedProductCard;
+export default ProductCard;
