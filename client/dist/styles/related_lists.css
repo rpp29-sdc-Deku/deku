@@ -54,3 +54,12 @@
   color: #888;
   padding: 17px 0;
 }
+
+.favorite-star {
+  width: 3em;
+  float: right;
+  z-index: 2;
+  position: relative;
+  margin-bottom: -3em;
+  color: white;
+}

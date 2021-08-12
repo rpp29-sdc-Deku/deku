@@ -9,8 +9,11 @@ class RelatedLists extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      relatedProducts: []
+      relatedProducts: [],
+      userOutfits: []
     };
+
+    this.addToUserOutfits = this.addToUserOutfits.bind(this);
   }
 
   componentDidMount () {
@@ -22,16 +25,22 @@ class RelatedLists extends React.Component {
     })
       .then((relatedProducts) => {
         this.setState({ relatedProducts: relatedProducts.data });
-        console.log('🛍️   THIS STATE RELATED LISTS =================  ', this.state);
+        // console.log('🛍️   THIS STATE RELATED LISTS =================  ', this.state);
       });
   }
 
+  addToUserOutfits (e, index) {
+    const outfit = this.state.relatedProducts[index];
+    this.state.userOutfits.push(outfit);
+    this.setState({ userOutfits: this.state.userOutfits });
+  }
+
   render () {
-    const { relatedProducts } = this.state;
+    const { relatedProducts, userOutfits } = this.state;
     return (
       <section className='suggested-products'>
-        <RelatedProduct relatedProducts={relatedProducts} />
-        <YourOutfit />
+        <RelatedProduct relatedProducts={relatedProducts} addToUserOutfits={this.addToUserOutfits} />
+        <YourOutfit userOutfits={userOutfits} />
       </section>
     );
   }
