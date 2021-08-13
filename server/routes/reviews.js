@@ -20,4 +20,8 @@ router.get('/reviews/meta', (req, res) => {
     res.send(results);
   });
 });
+
+router.post('/reviews', (req, res) => {
+  console.log(req);
+});
 module.exports = router;

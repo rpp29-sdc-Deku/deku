@@ -13,6 +13,7 @@ class AModal extends React.Component {
 
   submitAnswer (e) {
     e.preventDefault();
+    this.props.clickTracker('submitAnswer');
     const formOutput = {
       ...this.state,
       ...this.props

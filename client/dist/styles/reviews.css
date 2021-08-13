@@ -149,8 +149,54 @@ input[type='radio'] {
   height: 3vh;
 }
 
-.addReviewSummary textarea {
+.addReviewBody textarea {
   max-width: fit-content;
   max-height: 15vh;
   min-width: fit-content;
+}
+
+.reviewImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65vw;
+  height: 70vh;
+  background-color: rgb(0, 0, 0, 0.25);
+}
+
+.reviewImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.25);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.reviewFileUpload {
+  max-height: 5vh;
+  min-height: 5vh;
+  display: flex;
+  align-items: center;
+
+}
+.reviewFileUpload input {
+  height: auto;
+}
+
+
+.reviewStarContainer {
+  width: 10%;
+  margin-right: 0.1%;
+  margin-left: 0.5%;
+}
+.ReviewStars {
+  display: flex;
+  width: 100vw;
+  align-items: center;
 }

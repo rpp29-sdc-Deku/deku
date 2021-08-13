@@ -12,6 +12,7 @@ class Answer extends React.Component {
 
   helpfulAnswer (e) {
     if (!this.state.liked) {
+      this.props.clickTracker('helpfulAnswer');
       this.setState({ liked: true }, () => {
         this.props.likeAnswer(this.props.id);
       });
@@ -19,6 +20,7 @@ class Answer extends React.Component {
   }
 
   reportAnswer (e) {
+    this.props.clickTracker('reportAnswer');
     this.props.reportAnswer(this.props.id);
   }
 

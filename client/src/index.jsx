@@ -7,17 +7,27 @@ import QuestionsAnswers from './components/questions_answers/QuestionsAnswers.js
 import '../dist/styles/product_overview.css';
 import getReviews from './helpers/reviews/serverReview.js';
 import getMeta from './helpers/reviews/meta.js';
+import withClickTrackingQA from './components/questions_answers/withClickTrackingQA.jsx';
+const QuestionsAnswersWithClickTracking = withClickTrackingQA(QuestionsAnswers);
+
 class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       id: 28212,
-      value: ''
+      value: '',
+      starValue: 0
     };
   }
 
   onChange (e) {
     this.setState({ value: e.target.value });
+  }
+
+  setStars (value) {
+    this.setState({
+      starValue: value
+    });
   }
 
   render () {
@@ -33,8 +43,8 @@ class App extends React.Component {
         </div>
         <Overview productId={this.state.id} />
         <RelatedLists masterId={this.state.id} />
-        <QuestionsAnswers id={this.state.id} />
-        <Reviews getReviews={getReviews} getMeta={getMeta}/>
+        <QuestionsAnswersWithClickTracking id={this.state.id} />
+        <Reviews getReviews={getReviews} getMeta={getMeta} setStars={this.setStars.bind(this)} starsValue={this.state.starValue}/>
       </div>
     );
   }
