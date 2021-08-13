@@ -108,6 +108,7 @@ class QuestionsAnswers extends React.Component {
   }
 
   displayMoreQuestions () {
+    this.props.clickTracker('displayMoreQuestions');
     this.setState({ Qlength: this.state.Qlength + 2, qlDisplay: true });
   }
 

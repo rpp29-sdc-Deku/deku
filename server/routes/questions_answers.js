@@ -2,11 +2,14 @@ const router = require('express').Router();
 const axios = require('axios');
 const keys = require('../config.js');
 
+const apiToken = keys.TOKEN || process.env.API_TOKEN;
+const apiURL = keys.API || process.env.API;
+
 router.get('/initialQA', (req, res) => {
-  axios.get(`${keys.API || process.env.API}qa/questions`, {
+  axios.get(`${apiURL}qa/questions`, {
     method: 'GET',
     headers: {
-      Authorization: keys.TOKEN || process.env.API_TOKEN
+      Authorization: apiToken
     },
     params: {
       product_id: req.query.product_id,
@@ -23,18 +26,18 @@ router.get('/initialQA', (req, res) => {
 });
 
 router.put('/likeQuestion', (req, res) => {
-  axios.put(`${keys.API || process.env.API}qa/questions/${req.body.id}/helpful`, {
+  axios.put(`${apiURL}qa/questions/${req.body.id}/helpful`, {
     question_id: req.body.id
   }, {
     headers: {
-      Authorization: keys.TOKEN || process.env.API_TOKEN
+      Authorization: apiToken
     }
   })
     .then((response) => {
-      return axios.get(`${keys.API || process.env.API}qa/questions`, {
+      return axios.get(`${apiURL}qa/questions`, {
         method: 'GET',
         headers: {
-          Authorization: keys.TOKEN || process.env.API_TOKEN
+          Authorization: apiToken
         },
         params: {
           product_id: req.body.product,
@@ -52,18 +55,18 @@ router.put('/likeQuestion', (req, res) => {
 });
 
 router.put('/likeAnswer', (req, res) => {
-  axios.put(`${keys.API || process.env.API}qa/answers/${req.body.id}/helpful`, {
+  axios.put(`${apiURL}qa/answers/${req.body.id}/helpful`, {
     answer_id: req.body.id
   }, {
     headers: {
-      Authorization: keys.TOKEN || process.env.API_TOKEN
+      Authorization: apiToken
     }
   })
     .then((response) => {
-      return axios.get(`${keys.API || process.env.API}qa/questions`, {
+      return axios.get(`${apiURL}qa/questions`, {
         method: 'GET',
         headers: {
-          Authorization: keys.TOKEN || process.env.API_TOKEN
+          Authorization: apiToken
         },
         params: {
           product_id: req.body.product,
@@ -81,18 +84,18 @@ router.put('/likeAnswer', (req, res) => {
 });
 
 router.put('/reportQuestion', (req, res) => {
-  axios.put(`${keys.API || process.env.API}qa/questions/${req.body.id}/report`, {
+  axios.put(`${apiURL}qa/questions/${req.body.id}/report`, {
     question_id: req.body.id
   }, {
     headers: {
-      Authorization: keys.TOKEN || process.env.API_TOKEN
+      Authorization: apiToken
     }
   })
     .then((response) => {
-      return axios.get(`${keys.API || process.env.API}qa/questions`, {
+      return axios.get(`${apiURL}qa/questions`, {
         method: 'GET',
         headers: {
-          Authorization: keys.TOKEN || process.env.API_TOKEN
+          Authorization: apiToken
         },
         params: {
           product_id: req.body.product,
@@ -110,18 +113,18 @@ router.put('/reportQuestion', (req, res) => {
 });
 
 router.put('/reportAnswer', (req, res) => {
-  axios.put(`${keys.API || process.env.API}qa/answers/${req.body.id}/report`, {
+  axios.put(`${apiURL}qa/answers/${req.body.id}/report`, {
     question_id: req.body.id
   }, {
     headers: {
-      Authorization: keys.TOKEN || process.env.API_TOKEN
+      Authorization: apiToken
     }
   })
     .then((response) => {
-      return axios.get(`${keys.API || process.env.API}qa/questions`, {
+      return axios.get(`${apiURL}qa/questions`, {
         method: 'GET',
         headers: {
-          Authorization: keys.TOKEN || process.env.API_TOKEN
+          Authorization: apiToken
         },
         params: {
           product_id: req.body.product,
@@ -141,17 +144,17 @@ router.put('/reportAnswer', (req, res) => {
 router.post('/submitQuestion', (req, res) => {
   axios({
     method: 'POST',
-    url: `${keys.API || process.env.API}qa/questions`,
+    url: `${apiURL}qa/questions`,
     headers: {
-      Authorization: keys.TOKEN || process.env.API_TOKEN
+      Authorization: apiToken
     },
     data: req.body
   })
     .then((response) => {
-      return axios.get(`${keys.API || process.env.API}qa/questions`, {
+      return axios.get(`${apiURL}qa/questions`, {
         method: 'GET',
         headers: {
-          Authorization: keys.TOKEN || process.env.API_TOKEN
+          Authorization: apiToken
         },
         params: {
           product_id: req.body.product_id,
@@ -177,17 +180,17 @@ router.post('/submitAnswer', (req, res) => {
   };
   axios({
     method: 'POST',
-    url: `${keys.API || process.env.API}qa/questions/${req.body.qid}/answers`,
+    url: `${apiURL}qa/questions/${req.body.qid}/answers`,
     headers: {
-      Authorization: keys.TOKEN || process.env.API_TOKEN
+      Authorization: apiToken
     },
     data: answerForm
   })
     .then((response) => {
-      return axios.get(`${keys.API || process.env.API}qa/questions`, {
+      return axios.get(`${apiURL}qa/questions`, {
         method: 'GET',
         headers: {
-          Authorization: keys.TOKEN || process.env.API_TOKEN
+          Authorization: apiToken
         },
         params: {
           product_id: req.body.product_id,
@@ -207,17 +210,17 @@ router.post('/submitAnswer', (req, res) => {
 router.post('/logInteraction', (req, res) => {
   axios({
     method: 'POST',
-    url: `${keys.API || process.env.API}interactions`,
+    url: `${apiURL}interactions`,
     headers: {
-      Authorization: keys.TOKEN || process.env.API_TOKEN
+      Authorization: apiToken
     },
     data: req.body
   })
     .then((response) => {
-      console.log('QA interaction sent');
+      res.send('QA interaction sent');
     })
     .catch((err) => {
-      console.log('err with interaction', err);
+      res.send('err with interaction', err);
     });
 });
 
