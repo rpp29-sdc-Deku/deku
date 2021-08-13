@@ -12,12 +12,19 @@ class App extends React.Component {
     super(props);
     this.state = {
       id: 28212,
-      value: ''
+      value: '',
+      starValue: 0
     };
   }
 
   onChange (e) {
     this.setState({ value: e.target.value });
+  }
+
+  setStars (value) {
+    this.setState({
+      starValue: value
+    });
   }
 
   render () {
@@ -34,7 +41,7 @@ class App extends React.Component {
         <Overview productId={this.state.id} />
         <RelatedLists masterId={this.state.id} />
         <QuestionsAnswers id={this.state.id} />
-        <Reviews getReviews={getReviews} getMeta={getMeta}/>
+        <Reviews getReviews={getReviews} getMeta={getMeta} setStars={this.setStars.bind(this)} starsValue={this.state.starValue}/>
       </div>
     );
   }

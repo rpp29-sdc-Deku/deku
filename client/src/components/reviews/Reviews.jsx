@@ -22,13 +22,22 @@ class Reviews extends React.Component {
     });
 
     this.props.getMeta(28212, (results) => {
-      console.log('resultsss', results);
       const characteristics = [];
+      let averageRating = 0;
+      let num = 0;
+      let den = 0;
+      console.log(results);
       for (const keys in results.characteristics) {
         const obj = {};
         obj[keys] = { value: results.characteristics[keys].value, id: results.characteristics[keys].id };
         characteristics.push(obj);
       };
+      for (const keys in results.ratings) {
+        num = (num + (keys * results.ratings[keys]));
+        den += parseInt(results.ratings[keys]);
+      }
+      averageRating = num / den;
+      this.props.setStars(averageRating);
       this.setState({
         characteristics: characteristics,
         ratings: results.ratings,
@@ -90,7 +99,7 @@ class Reviews extends React.Component {
       <div>
         REVIEWS
         <div className='Reviews'>
-        <Ratings characteristics={this.state.characteristics}/>
+        <Ratings starValue={this.props.starsValue} characteristics={this.state.characteristics}/>
         <ListView reviewList={this.state.reviewList} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
         {this.state.addReview && <AddReview characteristics={this.state.characteristics}/>}
         </div>
