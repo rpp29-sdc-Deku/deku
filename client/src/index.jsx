@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      id: 28212,
+      id: 36300,
       value: '',
       starValue: 0
     };
@@ -50,7 +50,7 @@ class App extends React.Component {
           </div>
         </div>
         <Overview productId={this.state.id} />
-        <RelatedLists productId={this.state.id} />
+        <RelatedLists productId={this.state.id} selectProduct={this.selectProduct} />
         <QuestionsAnswersWithClickTracking id={this.state.id} />
         <Reviews getReviews={getReviews} getMeta={getMeta} setStars={this.setStars.bind(this)} starsValue={this.state.starValue}/>
       </div>
