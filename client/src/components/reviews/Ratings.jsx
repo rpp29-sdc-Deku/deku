@@ -1,4 +1,5 @@
 import React from 'react';
+import StarsGlobal from './StarsGlobal.jsx';
 /* eslint-disable react/prop-types */
 class Ratings extends React.Component {
   constructor (props) {
@@ -47,9 +48,12 @@ class Ratings extends React.Component {
   }
 
   render () {
+    console.log('this.props.characterstics', this.props.characteristics);
     return (
     <div className='reviewRatings'>
-      <div className='reviewRating'></div>
+      <div className='reviewRating'>
+      <StarsGlobal value={this.props.starValue}/>
+      </div>
       <div className='reviewBars'>
         <div>5 stars ------</div>
         <div>4 stars ------</div>
