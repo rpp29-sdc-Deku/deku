@@ -18,10 +18,18 @@ class App extends React.Component {
       value: '',
       starValue: 0
     };
+
+    this.selectProduct = this.selectProduct.bind(this);
   }
 
   onChange (e) {
     this.setState({ value: e.target.value });
+  }
+
+  selectProduct (e, productid) {
+    this.setState({
+      id: parseInt(productid)
+    });
   }
 
   setStars (value) {
@@ -42,7 +50,7 @@ class App extends React.Component {
           </div>
         </div>
         <Overview productId={this.state.id} />
-        <RelatedLists masterId={this.state.id} />
+        <RelatedLists productId={this.state.id} />
         <QuestionsAnswersWithClickTracking id={this.state.id} />
         <Reviews getReviews={getReviews} getMeta={getMeta} setStars={this.setStars.bind(this)} starsValue={this.state.starValue}/>
       </div>
