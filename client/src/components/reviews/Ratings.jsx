@@ -1,9 +1,12 @@
 import React from 'react';
+import StarsGlobal from './StarsGlobal.jsx';
 /* eslint-disable react/prop-types */
 class Ratings extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {
+      reviewTotal: 0
+    };
   }
 
   setDescription (description) {
@@ -46,10 +49,32 @@ class Ratings extends React.Component {
      </div>);
   }
 
+  componentDidUpdate (prevProps, prevState, snapshot) {
+    if (prevProps.ratingsBreakdown !== this.props.ratingsBreakdown) {
+      this.getTotal();
+    }
+  }
+
+  getTotal () {
+    console.log('what is this in that', this);
+    let result = 0;
+    console.log('this.props. um ok hehe', this.props.ratingsBreakdown);
+    for (const keys in this.props.ratingsBreakdown) {
+      result += parseInt(this.props.ratingsBreakdown[keys]);
+      console.log('result after being called', result);
+    }
+    this.setState({
+      reviewTotal: result
+    });
+  }
+
   render () {
+    console.log('this.props.characterstics', this.props.characteristics);
     return (
     <div className='reviewRatings'>
-      <div className='reviewRating'></div>
+      <div className='reviewRating'>
+      <StarsGlobal value={this.props.starValue}/>
+      </div>
       <div className='reviewBars'>
         <div>5 stars ------</div>
         <div>4 stars ------</div>

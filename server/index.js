@@ -1,5 +1,7 @@
 const path = require('path');
-const express = require('express'); // npm installed
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
 
 const productOverview = require('./routes/product_overview.js');
 const questionsAnswers = require('./routes/questions_answers.js');
@@ -8,10 +10,10 @@ const reviews = require('./routes/reviews.js');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '/../client/dist')));
+app.use(cors());
 
 app.listen(4000);
 
-// product overview routes
 app.use('/atelier', productOverview);
 app.use('/atelier', questionsAnswers);
 app.use('/atelier', relatedProducts);

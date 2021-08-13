@@ -12,29 +12,10 @@ class Reviews extends React.Component {
       ratings: {},
       recommended: {},
       sortBy: 'relevant',
-      addReview: false
+      addReview: false,
+      ratingsBreakdown: {}
     };
     // function goes here for api call
-    this.props.getReviews(28212, this.state.sortBy, (results) => {
-      this.setState({
-        reviewList: results
-      });
-    });
-
-    this.props.getMeta(28212, (results) => {
-      console.log('resultsss', results);
-      const characteristics = [];
-      for (const keys in results.characteristics) {
-        const obj = {};
-        obj[keys] = { value: results.characteristics[keys].value, id: results.characteristics[keys].id };
-        characteristics.push(obj);
-      };
-      this.setState({
-        characteristics: characteristics,
-        ratings: results.ratings,
-        recommended: results.recommended
-      }, () => console.log(this.state.characteristics));
-    });
   }
 
   sortList (event, sorting) {
@@ -85,12 +66,44 @@ class Reviews extends React.Component {
     });
   }
 
+  componentDidMount () {
+    this.props.getReviews(28212, this.state.sortBy, (results) => {
+      this.setState({
+        reviewList: results
+      });
+    });
+    this.props.getMeta(28212, (results) => {
+      const characteristics = [];
+      let averageRating = 0;
+      let num = 0;
+      let den = 0;
+      console.log(results);
+      for (const keys in results.characteristics) {
+        const obj = {};
+        obj[keys] = { value: results.characteristics[keys].value, id: results.characteristics[keys].id };
+        characteristics.push(obj);
+      };
+      for (const keys in results.ratings) {
+        num = (num + (keys * results.ratings[keys]));
+        den += parseInt(results.ratings[keys]);
+      }
+      averageRating = num / den;
+      this.props.setStars(averageRating);
+      this.setState({
+        characteristics: characteristics,
+        ratings: results.ratings,
+        recommended: results.recommended,
+        ratingsBreakdown: results.ratings
+      }, () => console.log('uggghh come on', this.state.ratingsBreakdown));
+    });
+  }
+
   render () {
     return (
       <div>
         REVIEWS
         <div className='Reviews'>
-        <Ratings characteristics={this.state.characteristics}/>
+        <Ratings ratingsBreakdown={this.state.ratingsBreakdown} starValue={this.props.starsValue} characteristics={this.state.characteristics}/>
         <ListView reviewList={this.state.reviewList} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
         {this.state.addReview && <AddReview characteristics={this.state.characteristics}/>}
         </div>

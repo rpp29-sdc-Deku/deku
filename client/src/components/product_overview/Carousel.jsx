@@ -1,40 +1,54 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { MdArrowForward, MdArrowBack, MdFullscreen, MdArrowDropDown } from 'react-icons/md';
+import { MdArrowForward, MdArrowBack, MdArrowDropDown } from 'react-icons/md';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 class Carousel extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      expandButtonClicked: false
     };
   }
 
+  handleFullScreen () {
+    this.setState({ expandButtonClicked: true });
+  }
+
   render () {
+    if (this.props.currentStyle.photos) {
+      console.log('♟', this.props.currentStyle.photos.slice(0, 7));
+    }
     return (
       <div className="carousel">
 
-        <div className="carousel_container" style={{ backgroundImage: `url(${this.props.currentImage})` }} >
+        <div className={`carousel_container ${this.state.expandButtonClicked ? 'expand_clicked' : ''}`} style={{ backgroundImage: `url(${this.props.currentImage})` }} >
 
-          <div className="tumbnails_container">
+          <List className="thumbnails_container" style={{ maxHeight: 450, overflow: 'auto' }}>
             {this.props.currentStyle.photos
               ? this.props.currentStyle.photos.map((photo, key) => {
-                return (<div style={{ backgroundImage: `url(${photo.url})` }} className= {`${photo.url === this.props.currentImage ? 'selectedd' : ''} carousel_thumbnail_image`} key={key} onClick={ () => { this.props.thumbnailClick(photo.url); }}></div>);
+                return (<ListItem style={{ backgroundImage: `url(${photo.url})` }} className= {`${photo.url === this.props.currentImage ? 'selectedd' : ''} carousel_thumbnail_image`} key={key} onClick={ () => { this.props.thumbnailClick(photo.url); }}></ListItem>);
               })
               : null }
-              <MdArrowDropDown className="drop_down" />
-          </div>
+              {this.props.currentStyle.photos ? (this.props.currentStyle.photos.length > 7 ? <MdArrowDropDown className="drop_down" onClick={() => this.props.handleDropDownClick()} /> : null) : null }
+          </List>
 
           <div className="arrows">
             <div className="arrows_container">
-              <MdArrowBack onClick={() => { this.props.backArrowClick(); }} className="back_arrow" />
-              <MdArrowForward onClick={() => { this.props.forwardArrowClick(); }} className="forward_arrow" />
+              {this.props.currentStyle.photos
+                ? (this.props.currentImage !== this.props.currentStyle.photos[0].url ? <MdArrowBack onClick={() => { this.props.backArrowClick(); }} className="back_arrow" /> : null)
+                : null }
+              {this.props.currentStyle.photos
+                ? (this.props.currentImage !== this.props.currentStyle.photos[this.props.currentStyle.photos.length - 1].url ? <MdArrowForward onClick={() => { this.props.forwardArrowClick(); }} className="forward_arrow" /> : null)
+                : null }
             </div>
           </div>
 
-          <div className="expand_container">
+          {/* <div className="expand_container"> */}
             {/* <MdFullscreenExit /> */}
-            <MdFullscreen className="expand" />
-          </div>
+            {/* <MdFullscreen className="expand" onClick={this.handleFullScreen.bind(this)} /> */}
+          {/* </div> */}
 
         </div>
 

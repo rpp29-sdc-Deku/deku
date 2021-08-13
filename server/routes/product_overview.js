@@ -1,15 +1,17 @@
 const axios = require('axios');
-const keys = require('../config.js');
 const router = require('express').Router();
 const bodyParser = require('body-parser');
+
+const apiToken = process.env.API_TOKEN;
+const apiURL = process.env.API;
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/productStyles', (req, res) => {
-  axios.get(`${keys.API}products/28212/styles`, {
+  axios.get(`${apiURL}products/28212/styles`, {
     headers: {
-      Authorization: keys.TOKEN
+      Authorization: apiToken
     }
   })
     .then((response) => {
@@ -22,9 +24,9 @@ router.get('/productStyles', (req, res) => {
 });
 
 router.get('/product', (req, res) => {
-  axios.get(`${keys.API}products/28212`, {
+  axios.get(`${apiURL}products/28212`, {
     headers: {
-      Authorization: keys.TOKEN
+      Authorization: apiToken
     }
   })
     .then((response) => {
@@ -38,9 +40,9 @@ router.get('/product', (req, res) => {
 
 router.post('/cart', (req, res) => {
   console.log('🎽', JSON.stringify(req.body));
-  axios.post(`${keys.API}cart`, req.body, {
+  axios.post(`${apiURL}cart`, req.body, {
     headers: {
-      Authorization: keys.TOKEN
+      Authorization: apiToken
     }
   })
     .then((response) => {

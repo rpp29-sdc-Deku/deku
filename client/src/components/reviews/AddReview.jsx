@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import postReview from '../../helpers/reviews/postReview.js';
+import StarRating from './StarRating.jsx';
 class AddReview extends React.Component {
   constructor (props) {
     super(props);
@@ -236,6 +237,7 @@ class AddReview extends React.Component {
       <div className='reviewPop'>
        <div className='reviewPopUp'>
          <form onSubmit={this.sendData.bind(this)}>
+           <StarRating/>
            <label htmlFor='Testing'>Rating</label>
            <input type='range' min='1' max='5' onChange={this.rating.bind(this)} step='0.5' id='Testing'></input>
            <div>

@@ -1,24 +1,26 @@
 const axios = require('axios');
-const keys = require('../config.js');
 const router = require('express').Router();
 const bodyParser = require('body-parser');
+
+const apiToken = process.env.API_TOKEN;
+const apiURL = process.env.API;
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 const getRelatedProducts = (productId) => {
-  const relatedProductIds = axios.get(`${keys.API}products/${productId}/related`, {
+  const relatedProductIds = axios.get(`${apiURL}products/${productId}/related`, {
     headers: {
-      Authorization: keys.TOKEN
+      Authorization: apiToken
     }
   });
 
   // need to retrievee for category, name, slogan, price
   const relatedProductDetails = relatedProductIds.then(productIds => {
     return Promise.all(productIds.data.map(id => {
-      return axios.get(`${keys.API}products/${id}`, {
+      return axios.get(`${apiURL}products/${id}`, {
         headers: {
-          Authorization: keys.TOKEN
+          Authorization: apiToken
         }
       });
     }));
@@ -26,9 +28,9 @@ const getRelatedProducts = (productId) => {
 
   const productImages = relatedProductDetails.then((productsList) => {
     return Promise.all(productsList.map(product => {
-      return axios.get(`${keys.API}products/${product.data.id}/styles`, {
+      return axios.get(`${apiURL}products/${product.data.id}/styles`, {
         headers: {
-          Authorization: keys.TOKEN
+          Authorization: apiToken
         }
       });
     }));
