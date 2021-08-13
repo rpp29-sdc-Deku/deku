@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { MdArrowForward, MdArrowBack, MdFullscreen, MdArrowDropDown } from 'react-icons/md';
+import { MdArrowForward, MdArrowBack, MdArrowDropDown } from 'react-icons/md';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 class Carousel extends React.Component {
   constructor (props) {
@@ -23,14 +25,14 @@ class Carousel extends React.Component {
 
         <div className={`carousel_container ${this.state.expandButtonClicked ? 'expand_clicked' : ''}`} style={{ backgroundImage: `url(${this.props.currentImage})` }} >
 
-          <div className="thumbnails_container">
+          <List className="thumbnails_container" style={{ maxHeight: 450, overflow: 'auto' }}>
             {this.props.currentStyle.photos
-              ? this.props.currentStyle.photos.slice(0, 7).map((photo, key) => {
-                return (<div style={{ backgroundImage: `url(${photo.url})` }} className= {`${photo.url === this.props.currentImage ? 'selectedd' : ''} carousel_thumbnail_image`} key={key} onClick={ () => { this.props.thumbnailClick(photo.url); }}></div>);
+              ? this.props.currentStyle.photos.map((photo, key) => {
+                return (<ListItem style={{ backgroundImage: `url(${photo.url})` }} className= {`${photo.url === this.props.currentImage ? 'selectedd' : ''} carousel_thumbnail_image`} key={key} onClick={ () => { this.props.thumbnailClick(photo.url); }}></ListItem>);
               })
               : null }
               {this.props.currentStyle.photos ? (this.props.currentStyle.photos.length > 7 ? <MdArrowDropDown className="drop_down" onClick={() => this.props.handleDropDownClick()} /> : null) : null }
-          </div>
+          </List>
 
           <div className="arrows">
             <div className="arrows_container">
@@ -43,10 +45,10 @@ class Carousel extends React.Component {
             </div>
           </div>
 
-          <div className="expand_container">
+          {/* <div className="expand_container"> */}
             {/* <MdFullscreenExit /> */}
-            <MdFullscreen className="expand" onClick={this.handleFullScreen.bind(this)} />
-          </div>
+            {/* <MdFullscreen className="expand" onClick={this.handleFullScreen.bind(this)} /> */}
+          {/* </div> */}
 
         </div>
 
