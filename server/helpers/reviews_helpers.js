@@ -1,7 +1,5 @@
 const axios = require('axios');
-const key = require('../config.js');
-
-const apiToken = key.TOKEN || process.env.API_TOKEN;
+const apiToken = process.env.API_TOKEN;
 
 const getReviews = (sort) => {
   return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews', {
