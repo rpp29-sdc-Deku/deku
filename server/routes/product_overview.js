@@ -1,10 +1,9 @@
 const axios = require('axios');
-const keys = require('../config.js');
 const router = require('express').Router();
 const bodyParser = require('body-parser');
 
-const apiToken = keys.TOKEN || process.env.API_TOKEN;
-const apiURL = keys.API || process.env.API;
+const apiToken = process.env.API_TOKEN;
+const apiURL = process.env.API;
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));

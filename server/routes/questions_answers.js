@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const axios = require('axios');
-const keys = require('../config.js');
 
-const apiToken = keys.TOKEN || process.env.API_TOKEN;
-const apiURL = keys.API || process.env.API;
+const apiToken = process.env.API_TOKEN;
+const apiURL = process.env.API;
 
 router.get('/initialQA', (req, res) => {
   axios.get(`${apiURL}qa/questions`, {
