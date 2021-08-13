@@ -4,6 +4,7 @@ const router = require('express').Router();
 const { getRelatedProducts, combineDetailsAndImages } = require('../helpers/related_products_helpers.js');
 
 router.get('/related-products', (req, res) => {
+  console.log('RELATED PRODUCTS SERVER ============ ');
   const masterProductId = req.query.product_id;
   getRelatedProducts(masterProductId)
     .then(([productDetails, productImages]) => {

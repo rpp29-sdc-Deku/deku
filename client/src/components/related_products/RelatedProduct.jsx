@@ -9,8 +9,8 @@ class RelatedProduct extends React.Component {
   }
 
   render () {
-    const { relatedProducts, addToUserOutfits } = this.props;
-    // console.log('RELATED PRODUCT PHOTO IN PROPS ======= ', relatedProducts);
+    // console.log('RENDER RELATED PRODUCT PROPS ====== ', this.props.relatedProducts);
+    const { relatedProducts, addToUserOutfits, selectProduct } = this.props;
 
     const ProductCards = relatedProducts.map((product, i) => {
       let photo = product.photos[0].thumbnail_url;
@@ -18,7 +18,17 @@ class RelatedProduct extends React.Component {
         photo = '';
       }
 
-      return <ProductCard key={i} index={i} productid={product.id} name={product.name} category={product.category} defaultPrice={product.default_price} photo={photo} addToUserOutfits={addToUserOutfits} />;
+      return <ProductCard
+        key={i}
+        index={i}
+        productid={product.id}
+        name={product.name}
+        category={product.category}
+        defaultPrice={product.default_price}
+        photo={photo}
+        addToUserOutfits={addToUserOutfits}
+        selectProduct={selectProduct}
+        />;
     });
 
     return (

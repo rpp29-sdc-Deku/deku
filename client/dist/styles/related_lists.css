@@ -36,6 +36,10 @@
   padding: 6px;
 }
 
+.card-description-container:hover {
+  cursor: pointer;
+}
+
 .product-card .category-name {
   text-transform: uppercase;
   color: #888;
