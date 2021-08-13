@@ -6,7 +6,9 @@ class List extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      isClicked: false
+      isClicked: false,
+      imageClick: false,
+      src: ''
     };
   }
 
@@ -30,10 +32,25 @@ class List extends React.Component {
     }
   }
 
+  expandImage (e) {
+    console.log(e.target.src);
+    this.setState({
+      imageClick: !this.state.imageClick,
+      src: e.target.src
+    });
+  }
+
+  closeImage () {
+    this.setState({
+      imageClick: false
+    });
+  }
+
   render () {
     return (
       <div className='reviewTile'>
           <div className='reviewStarRating'>
+
             <h3>starts review | {this.props.review.rating}</h3>
             <h3>{this.props.review.reviewer_name + ', ' + this.parseDate(this.props.review.date)}</h3>
           </div>
@@ -42,6 +59,11 @@ class List extends React.Component {
           </div>
           <div className='reviewBody'>
             <p>{this.props.review.body}</p>
+            {this.props.review.photos.map((photo) => {
+              return <img onClick={this.expandImage.bind(this)} style={{ width: '5em', height: '5em' }}
+              key={photo.id} src={photo.url}></img>
+              ;
+            })}
           </div>
           <div className='reviewHelpful'>
             <p>Helpful? <button onClick={this.increaseHelfpulness.bind(this)} className='reviewYes'>Yes</button>({this.props.review.helpfulness}) | <span>Report</span></p>
@@ -50,6 +72,9 @@ class List extends React.Component {
             review response | {this.props.review.response}
           </div>
           <hr></hr>
+          {this.state.imageClick && (<div onClick={this.closeImage.bind(this)}className='reviewImageContainer'>
+            <img onClick={this.expandImage.bind(this)} className='reviewImage' src={this.state.src}></img>
+          </div>)}
         </div>
     );
   }

@@ -11,8 +11,17 @@ class ProductForm extends React.Component {
       size: '',
       amount: '',
       starClicked: false,
-      open: false
+      open: false,
+      addToBagClicked: false
     };
+  }
+
+  handleOpen () {
+    this.setState({ open: true });
+  }
+
+  handleClose () {
+    this.setState({ open: false });
   }
 
   handleSizeChange (e) {
@@ -73,11 +82,13 @@ class ProductForm extends React.Component {
     return (
       <div>
 
+        {this.addToBagClicked ? <p className="please_select_size">Please select size</p> : null}
+
         {
           this.props.currentStyle.skus
             ? (Object.keys(this.props.currentStyle.skus)[0] !== 'null'
                 ? <FormControl className="form">
-                <Select className="select select_size" onChange={this.handleSizeChange.bind(this)} displayEmpty value={this.state.size} open={this.state.open}>
+                <Select className="select select_size" onChange={this.handleSizeChange.bind(this)} displayEmpty value={this.state.size} onOpen={this.handleOpen.bind(this)} onClose={this.handleClose.bind(this)} open={this.state.open}>
                   <MenuItem value="" disabled>SELECT SIZE</MenuItem>
                   {arrayOfSkus.map((element, key) => (<MenuItem key={key} value={`"${element.size}"`}>{element.size}</MenuItem>))}
                 </Select>
@@ -107,7 +118,7 @@ class ProductForm extends React.Component {
         {
           this.props.currentStyle.skus
             ? (Object.keys(this.props.currentStyle.skus)[0] !== 'null'
-                ? <div className="add_to_bag" onClick={() => { if (this.state.size === '') { this.setState({ open: true }); } else { this.props.addToBag({ sku_id: findSkuIdAccordingToSelectedSize(this.state.size) }); } }}>
+                ? <div className="add_to_bag" onClick={() => { if (this.state.size === '') { this.setState({ open: true }); this.setState({ addToBagClicked: true }); } else { this.props.addToBag({ sku_id: findSkuIdAccordingToSelectedSize(this.state.size) }); } }}>
               ADD TO BAG +
             </div>
                 : null)

@@ -1,4 +1,5 @@
 import React from 'react';
+import StarsGlobal from './StarsGlobal.jsx';
 /* eslint-disable react/prop-types */
 class Ratings extends React.Component {
   constructor (props) {
@@ -47,9 +48,12 @@ class Ratings extends React.Component {
   }
 
   render () {
+    console.log('this.props.characterstics', this.props.characteristics);
     return (
     <div className='reviewRatings'>
-      <div className='reviewRating'></div>
+      <div className='reviewRating'>
+      <StarsGlobal value={this.props.starValue}/>
+      </div>
       <div className='reviewBars'>
         <div>5 stars ------</div>
         <div>4 stars ------</div>
@@ -59,10 +63,12 @@ class Ratings extends React.Component {
       </div>
       <div className='reviewSpecifics'>
         {this.props.characteristics.map((item, index) => {
+          const [characteristics] = Object.keys(item);
+          const [value] = Object.values(item);
           return <div key={index}>
-            {Object.keys(item)}
-            <input type='range' min='1' max='5' value={Object.values(item)} disabled></input>
-            {this.setDescription(Object.keys(item)[0])}
+            {characteristics}
+            <input type='range' min='1' max='5' step='any' value={value.value} disabled></input>
+            {this.setDescription(characteristics)}
           </div>;
         })}
       </div>

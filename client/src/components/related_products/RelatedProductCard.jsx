@@ -4,14 +4,17 @@ import React from 'react';
 class RelatedProductCard extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {
+      productid: this.props.productid
+    };
   }
 
   render () {
-    const { name, category, defaultPrice, photo } = this.props;
+    const { index, name, category, defaultPrice, photo, addToUserOutfits } = this.props;
 
     return (
-      <div className='related-product-card'>
+      <div className='related-product-card' key={index}>
+        <div className='favorite-star' onClick={(e => addToUserOutfits(e, index))}>Star</div>
         <div className='featured-image'><img src={photo} /></div>
         <div className='card-description-container'>
           <div className='category-name'>{category}</div>

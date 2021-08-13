@@ -9,14 +9,16 @@ class RelatedProduct extends React.Component {
   }
 
   render () {
-    const { relatedProducts } = this.props;
+    const { relatedProducts, addToUserOutfits } = this.props;
     // console.log('RELATED PRODUCT PHOTO IN PROPS ======= ', relatedProducts);
 
-    const relatedProductCards = relatedProducts.map(product => {
-      if (!product.photos[0].url) {
-        product.photos[0].url = 'loading...';
+    const relatedProductCards = relatedProducts.map((product, i) => {
+      let photo = product.photos[0].thumbnail_url;
+      if (!photo) {
+        photo = '';
       }
-      return <RelatedProductCard key={product.id} name={product.name} category={product.category} defaultPrice={product.default_price} photo={product.photos[0].url} />;
+
+      return <RelatedProductCard key={i} index={i} productid={product.id} name={product.name} category={product.category} defaultPrice={product.default_price} photo={photo} addToUserOutfits={addToUserOutfits} />;
     });
 
     return (
