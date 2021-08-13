@@ -4,6 +4,10 @@ import QuestionList from './QuestionList.jsx';
 import QModal from './QModal.jsx';
 import AModal from './AModal.jsx';
 import Search from './Search.jsx';
+import withClickTrackingQA from './withClickTrackingQA.jsx';
+const QModalWithTracking = withClickTrackingQA(QModal);
+const AModalWithTracking = withClickTrackingQA(AModal);
+const SearchWithTracking = withClickTrackingQA(Search);
 
 class QuestionsAnswers extends React.Component {
   constructor (props) {
@@ -22,6 +26,16 @@ class QuestionsAnswers extends React.Component {
     };
 
     this.submitSearch = this.submitSearch.bind(this);
+    this.submitQuestion = this.submitQuestion.bind(this);
+    this.submitAnswer = this.submitAnswer.bind(this);
+    this.displayMoreAnswers = this.displayMoreAnswers.bind(this);
+    this.likeAnswer = this.likeAnswer.bind(this);
+    this.likeQuestion = this.likeQuestion.bind(this);
+    this.reportQuestion = this.reportQuestion.bind(this);
+    this.reportAnswer = this.reportAnswer.bind(this);
+    this.aModalDisplay = this.aModalDisplay.bind(this);
+    this.displayMoreQuestions = this.displayMoreQuestions.bind(this);
+    this.qModalDisplay = this.qModalDisplay.bind(this);
   }
 
   componentDidMount () {
@@ -36,6 +50,7 @@ class QuestionsAnswers extends React.Component {
         const ordered = this.sortQuestions(response.data);
         const orderedAnswers = this.sortAnswers(ordered);
         const receivedLength = response.data.length;
+        console.log(orderedAnswers);
         this.setState({ questions: orderedAnswers, orgLength: receivedLength });
       });
   }
@@ -93,6 +108,7 @@ class QuestionsAnswers extends React.Component {
   }
 
   displayMoreQuestions () {
+    this.props.clickTracker('displayMoreQuestions');
     this.setState({ Qlength: this.state.Qlength + 2, qlDisplay: true });
   }
 
@@ -158,10 +174,20 @@ class QuestionsAnswers extends React.Component {
 
   qModalDisplay (e) {
     e.preventDefault();
+    if (this.state.qModalStatus === true) {
+      this.props.clickTracker('addQuestionClose');
+    } else {
+      this.props.clickTracker('addQuestionOpen');
+    }
     this.setState({ qModalStatus: !this.state.qModalStatus });
   }
 
   aModalDisplay (qid) {
+    if (this.state.aModalStatus === true) {
+      this.props.clickTracker('addAnswerClose');
+    } else {
+      this.props.clickTracker('addAnswerOpen');
+    }
     this.setState({ aModalStatus: !this.state.aModalStatus, question_id: qid });
   }
 
@@ -200,30 +226,30 @@ class QuestionsAnswers extends React.Component {
       <div className='QA'>
         <div id='Qtitle'>QUESTIONS AND ANSWERS</div><br></br>
 
-        <div className='searchContainer'><Search submitSearch={this.submitSearch} /></div><br></br>
+        <div className='searchContainer'><SearchWithTracking submitSearch={this.submitSearch} /></div><br></br>
 
         <QuestionList
         questions={this.state.activeSearch ? this.state.filteredQuestions : this.state.questions}
         length={this.state.Qlength}
-        displayMoreAnswers={this.displayMoreAnswers.bind(this)}
-        likeAnswer={this.likeAnswer.bind(this)}
-        likeQuestion={this.likeQuestion.bind(this)}
-        reportQuestion={this.reportQuestion.bind(this)}
-        reportAnswer={this.reportAnswer.bind(this)}
-        aModalDisplay={this.aModalDisplay.bind(this)}
+        displayMoreAnswers={this.displayMoreAnswers}
+        likeAnswer={this.likeAnswer}
+        likeQuestion={this.likeQuestion}
+        reportQuestion={this.reportQuestion}
+        reportAnswer={this.reportAnswer}
+        aModalDisplay={this.aModalDisplay}
         qlDisplay={this.state.qlDisplay}
         />
 
-        { this.state.questions.length > 2 && this.state.orgLength > this.state.Qlength && !this.state.activeSearch && <button className='btn' onClick={this.displayMoreQuestions.bind(this)} >More Answered Questions</button>
+        { this.state.questions.length > 2 && this.state.orgLength > this.state.Qlength && !this.state.activeSearch && <button className='btn' onClick={this.displayMoreQuestions} >More Answered Questions</button>
         }
 
-        { this.state.filteredQuestions.length > 2 && this.state.filteredQuestions.length > this.state.Qlength && this.state.activeSearch && <button className='btn' onClick={this.displayMoreQuestions.bind(this)} >More Answered Questions</button>
+        { this.state.filteredQuestions.length > 2 && this.state.filteredQuestions.length > this.state.Qlength && this.state.activeSearch && <button className='btn' onClick={this.displayMoreQuestions} >More Answered Questions</button>
         }
-        <button className='btn' onClick={this.qModalDisplay.bind(this)} >Add A Question + </button>
+        <button className='btn' onClick={this.qModalDisplay} >Add A Question + </button>
 
-        {this.state.qModalStatus === true && <QModal submitQuestion={this.submitQuestion.bind(this)} qModalDisplay={this.qModalDisplay.bind(this)} />}
+        {this.state.qModalStatus === true && <QModalWithTracking submitQuestion={this.submitQuestion} qModalDisplay={this.qModalDisplay} />}
 
-        {this.state.aModalStatus === true && <AModal submitAnswer={this.submitAnswer.bind(this)} aModalDisplay={this.aModalDisplay.bind(this)} qid={this.state.question_id} />}
+        {this.state.aModalStatus === true && <AModalWithTracking submitAnswer={this.submitAnswer} aModalDisplay={this.aModalDisplay} qid={this.state.question_id} />}
         </div>
     );
   }

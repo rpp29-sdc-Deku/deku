@@ -1,5 +1,6 @@
 const path = require('path');
-const express = require('express'); // npm installed
+const express = require('express');
+require('dotenv').config();
 
 const productOverview = require('./routes/product_overview.js');
 const questionsAnswers = require('./routes/questions_answers.js');
