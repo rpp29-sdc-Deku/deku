@@ -69,18 +69,34 @@ class Ratings extends React.Component {
   }
 
   render () {
-    console.log('this.props.characterstics', this.props.characteristics);
+    const rounded = Math.floor(this.props.starValue * 10) / 10;
     return (
     <div className='reviewRatings'>
       <div className='reviewRating'>
+        {rounded}
       <StarsGlobal value={this.props.starValue}/>
       </div>
       <div className='reviewBars'>
-        <div>5 stars ------</div>
-        <div>4 stars ------</div>
-        <div>3 stars ------</div>
-        <div>2 stars ------</div>
-        <div>1 stars ------</div>
+        <div>
+          <label htmlFor='fiveStars'>5 stars</label>
+          <meter id='fiveStars' value={(Number(this.props.ratingsBreakdown[5]) / this.state.reviewTotal) || 0}></meter>
+          </div>
+        <div>
+          <label htmlFor='fourStars'>4 stars</label>
+          <meter id='fourStars' value={(Number(this.props.ratingsBreakdown[4]) / this.state.reviewTotal) || 0}></meter>
+          </div>
+        <div>
+          <label htmlFor='threeStars'>3 stars</label>
+          <meter id='threeStars' value={(Number(this.props.ratingsBreakdown[3]) / this.state.reviewTotal) || 0}></meter>
+          </div>
+        <div>
+          <label htmlFor='twoStars'>2 stars</label>
+          <meter id='twoStars' value={(Number(this.props.ratingsBreakdown[2]) / this.state.reviewTotal) || 0}></meter>
+          </div>
+        <div>
+          <label htmlFor='oneStars'>1 stars</label>
+          <meter id='oneStars' value={(Number(this.props.ratingsBreakdown[1]) / this.state.reviewTotal) || 0}></meter>
+          </div>
       </div>
       <div className='reviewSpecifics'>
         {this.props.characteristics.map((item, index) => {
