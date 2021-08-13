@@ -13,7 +13,8 @@ class Overview extends React.Component {
       styles: [], // main thing that comes from API
       images: [],
       currentImage: '',
-      currentStyle: {}
+      currentStyle: {},
+      currentSetOfThumbnails: []
     };
   }
 
@@ -29,6 +30,7 @@ class Overview extends React.Component {
         this.setState({ images: imagesArray });
         this.setState({ currentImage: imagesArray[0][0].url });
         this.setState({ currentStyle: data.results[0] });
+        // this.setState({ currentSetOfThumbnails: this.state.currentStyle.photos.slice(0, 7) });
       },
       error: (err) => {
         console.log('error in getting back to client', err);
@@ -53,6 +55,7 @@ class Overview extends React.Component {
 
   handleChangeStyle (style, image) {
     this.setState({ currentStyle: style });
+    // this.setState({ currentSetOfThumbnails: this.state.currentStyle.photos.slice(0, 7) });
     this.setState({ currentImage: image });
   }
 
@@ -86,6 +89,10 @@ class Overview extends React.Component {
     this.setState({ currentImage: this.state.currentStyle.photos[index].url });
   }
 
+  handleDropDownClick () {
+
+  }
+
   addToBag (obj) {
     $.ajax({
       url: 'atelier/cart',
@@ -110,7 +117,7 @@ class Overview extends React.Component {
 
         <div id="overview">
           <div id="carouselProductInfo">
-            <Carousel productId={this.props.productId} images={this.state.images} currentImage={this.state.currentImage} styles={this.state.styles} currentStyle={this.state.currentStyle} thumbnailClick={this.handleThumbnailClick.bind(this)} forwardArrowClick={this.handleForwardArrowClick.bind(this)} backArrowClick={this.handleBackArrowClick.bind(this)} />
+            <Carousel productId={this.props.productId} images={this.state.images} currentImage={this.state.currentImage} styles={this.state.styles} currentStyle={this.state.currentStyle} currentSetOfThumbnails={this.state.currentSetOfThumbnails} thumbnailClick={this.handleThumbnailClick.bind(this)} forwardArrowClick={this.handleForwardArrowClick.bind(this)} backArrowClick={this.handleBackArrowClick.bind(this)} handleDropDownClick={this.handleDropDownClick.bind(this)} />
             <ProductInfo product={this.state.product} styles={this.state.styles} currentStyle={this.state.currentStyle} images={this.state.images} changeStyle={this.handleChangeStyle.bind(this)} addToBag={this.addToBag.bind(this)} />
           </div>
 

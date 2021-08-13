@@ -82,7 +82,7 @@ class ProductForm extends React.Component {
     return (
       <div>
 
-        {this.addToBagClicked ? <p className="please_select_size">Please select size</p> : null}
+        {this.state.addToBagClicked && this.state.size === '' ? <p className="please_select_size">Please select size</p> : null}
 
         {
           this.props.currentStyle.skus
