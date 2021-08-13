@@ -11,7 +11,7 @@ class StarsGlobal extends React.Component {
   render () {
     return (
     <div className='StarsGlobal'>
-      <Rating value={this.props.value} precision={0.25} readOnly/>
+      <Rating value={this.props.value} precision={0.1} readOnly/>
     </div>);
   }
 }

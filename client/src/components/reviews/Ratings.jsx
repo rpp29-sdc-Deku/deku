@@ -4,7 +4,9 @@ import StarsGlobal from './StarsGlobal.jsx';
 class Ratings extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {
+      reviewTotal: 0
+    };
   }
 
   setDescription (description) {
@@ -45,6 +47,25 @@ class Ratings extends React.Component {
       <span >Poor</span>
       <span>Excelent</span>
      </div>);
+  }
+
+  componentDidUpdate (prevProps, prevState, snapshot) {
+    if (prevProps.ratingsBreakdown !== this.props.ratingsBreakdown) {
+      this.getTotal();
+    }
+  }
+
+  getTotal () {
+    console.log('what is this in that', this);
+    let result = 0;
+    console.log('this.props. um ok hehe', this.props.ratingsBreakdown);
+    for (const keys in this.props.ratingsBreakdown) {
+      result += parseInt(this.props.ratingsBreakdown[keys]);
+      console.log('result after being called', result);
+    }
+    this.setState({
+      reviewTotal: result
+    });
   }
 
   render () {
