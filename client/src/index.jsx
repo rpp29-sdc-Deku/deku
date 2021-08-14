@@ -52,7 +52,7 @@ class App extends React.Component {
         <Overview productId={this.state.id} />
         <RelatedLists productId={this.state.id} selectProduct={this.selectProduct} />
         <QuestionsAnswersWithClickTracking id={this.state.id} />
-        <Reviews getReviews={getReviews} getMeta={getMeta} setStars={this.setStars.bind(this)} starsValue={this.state.starValue}/>
+        <Reviews getReviews={getReviews} getMeta={getMeta} setStars={this.setStars.bind(this)} starsValue={this.state.starValue} product_id={36322}/>
       </div>
     );
   }

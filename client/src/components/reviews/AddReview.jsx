@@ -6,7 +6,7 @@ class AddReview extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      product_id: 29000,
+      product_id: this.props.product_id,
       helpful: '',
       characteristics: {},
       body: '',

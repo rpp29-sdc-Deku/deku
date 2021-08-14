@@ -67,12 +67,12 @@ class Reviews extends React.Component {
   }
 
   componentDidMount () {
-    this.props.getReviews(28212, this.state.sortBy, (results) => {
+    this.props.getReviews(this.props.product_id, this.state.sortBy, (results) => {
       this.setState({
         reviewList: results
       });
     });
-    this.props.getMeta(28212, (results) => {
+    this.props.getMeta(this.props.product_id, (results) => {
       const characteristics = [];
       let averageRating = 0;
       let num = 0;
@@ -105,7 +105,7 @@ class Reviews extends React.Component {
         <div className='Reviews'>
         <Ratings ratingsBreakdown={this.state.ratingsBreakdown} starValue={this.props.starsValue} characteristics={this.state.characteristics}/>
         <ListView reviewList={this.state.reviewList} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
-        {this.state.addReview && <AddReview characteristics={this.state.characteristics}/>}
+        {this.state.addReview && <AddReview product_id={this.props.product_id} characteristics={this.state.characteristics}/>}
         </div>
       </div>
     );

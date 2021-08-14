@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { getReviews, getMeta, putHelp } = require('../helpers/reviews_helpers.js');
 
 router.get('/reviews', (req, res) => {
-  getReviews(req.query.sort).then((results) => {
+  getReviews(req.query.productId, req.query.sort).then((results) => {
     res.send(results);
   }).catch((err) => {
     res.send(err);
@@ -16,7 +16,7 @@ router.put('/reviews/helpful', (req, res) => {
 });
 
 router.get('/reviews/meta', (req, res) => {
-  getMeta().then((results) => {
+  getMeta(req.query.product_id).then((results) => {
     res.send(results);
   });
 });
