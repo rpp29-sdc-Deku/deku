@@ -24,6 +24,7 @@ class ListView extends React.Component {
 
   render () {
     const listView = this;
+    let count = 0;
     return (
       <div className='reviewList'>
         <h2>{this.props.reviewList.length + ' reviews sorted by '}
@@ -42,6 +43,15 @@ class ListView extends React.Component {
         </select>
         </h2>
         {this.props.reviewList.map((review, index) => {
+          if (this.props.filterRatings.some((value) => value > 0)) {
+            if (this.props.filterRatings.indexOf(review.rating) !== -1) {
+              count++;
+              if (count <= this.state.list) {
+                return <List key={review.review_id} review={review} reSortList={listView.reSortList.bind(listView)}/>;
+              }
+            }
+            return '';
+          }
           if (this.state.list <= index) {
             return '';
           }

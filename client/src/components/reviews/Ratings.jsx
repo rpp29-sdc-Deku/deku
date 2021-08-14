@@ -78,23 +78,23 @@ class Ratings extends React.Component {
       </div>
       <div className='reviewBars'>
         <div>
-          <label htmlFor='fiveStars'>5 stars</label>
+          <label onClick={() => this.props.filterRatings(5)} htmlFor='fiveStars'>5 stars</label>
           <meter id='fiveStars' value={(Number(this.props.ratingsBreakdown[5]) / this.state.reviewTotal) || 0}></meter>
           </div>
         <div>
-          <label htmlFor='fourStars'>4 stars</label>
+          <label onClick={() => this.props.filterRatings(4)} htmlFor='fourStars'>4 stars</label>
           <meter id='fourStars' value={(Number(this.props.ratingsBreakdown[4]) / this.state.reviewTotal) || 0}></meter>
           </div>
         <div>
-          <label htmlFor='threeStars'>3 stars</label>
+          <label onClick={() => this.props.filterRatings(3)} htmlFor='threeStars'>3 stars</label>
           <meter id='threeStars' value={(Number(this.props.ratingsBreakdown[3]) / this.state.reviewTotal) || 0}></meter>
           </div>
         <div>
-          <label htmlFor='twoStars'>2 stars</label>
+          <label onClick={() => this.props.filterRatings(2)} htmlFor='twoStars'>2 stars</label>
           <meter id='twoStars' value={(Number(this.props.ratingsBreakdown[2]) / this.state.reviewTotal) || 0}></meter>
           </div>
         <div>
-          <label htmlFor='oneStars'>1 stars</label>
+          <label onClick={() => this.props.filterRatings(1)} htmlFor='oneStars'>1 stars</label>
           <meter id='oneStars' value={(Number(this.props.ratingsBreakdown[1]) / this.state.reviewTotal) || 0}></meter>
           </div>
       </div>

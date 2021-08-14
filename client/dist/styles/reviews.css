@@ -200,3 +200,7 @@ input[type='radio'] {
   width: 100vw;
   align-items: center;
 }
+
+.reviewSpace {
+  margin-left: 5%;
+}

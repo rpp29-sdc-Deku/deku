@@ -237,9 +237,11 @@ class AddReview extends React.Component {
       <div className='reviewPop'>
        <div className='reviewPopUp'>
          <form onSubmit={this.sendData.bind(this)}>
+            <div>
+
            <StarRating/>
-           <label htmlFor='Testing'>Rating</label>
-           <input type='range' min='1' max='5' onChange={this.rating.bind(this)} step='0.5' id='Testing'></input>
+            </div>
+
            <div>
             <br></br>
             <label htmlFor='yes'>Yes</label>
@@ -249,7 +251,7 @@ class AddReview extends React.Component {
             <input onChange={this.helpful.bind(this)} type='radio' id='no' value='No' name='helpful'></input>
             <div className='radioReviews'>
               {this.props.characteristics.map((item, index) => {
-                return <div key={index}>
+                return <div className='reviewSpace' key={index}>
                   {Object.keys(item)}
                   {this.setDescription(Object.keys(item)[0])}
                 </div>;
