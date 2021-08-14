@@ -4,20 +4,38 @@ import React from 'react';
 class ProductCard extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      // productid: this.props.productid,
-      inUserOutfits: false
-    };
+    this.state = {};
   }
 
   render () {
-    // console.log('PRODUCT CARD ============ ');
-    const { index, name, category, defaultPrice, photo, addToUserOutfits, selectProduct, productid } = this.props;
+    const {
+      index,
+      name,
+      category,
+      defaultPrice,
+      photo,
+      addToUserOutfits,
+      removeFromUserOutfits,
+      selectProduct,
+      productid,
+      type
+    } = this.props;
+
+    let method, actionIcon;
+    if (type === 'relatedProduct') {
+      method = addToUserOutfits;
+      actionIcon = 'Star';
+    }
+
+    if (type === 'userOutfit') {
+      method = removeFromUserOutfits;
+      actionIcon = '❌';
+    }
 
     return (
       <div className='product-card' key={index}>
         <div className='featured-image' style={{ backgroundImage: `url(${photo})` }}>
-          <div className='favorite-star' onClick={(e => addToUserOutfits(e, index))}>Star</div>
+          <div className='product-action-icon' onClick={(e => method(e, index))}>{ actionIcon }</div>
         </div>
         <div className='card-description-container' onClick={(e => selectProduct(e, productid))} >
           <div className='category-name'>{category}</div>
