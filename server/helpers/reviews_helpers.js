@@ -9,14 +9,14 @@ const getReviews = (sort) => {
     params: {
       sort: sort,
       count: 100,
-      product_id: 29000
+      product_id: 36322
     }
   }).then((results) => {
     return results.data.results;
   });
 };
 const getMeta = () => {
-  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/?product_id=29000', {
+  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/?product_id=36322', {
     headers: {
       Authorization: apiToken
     }
