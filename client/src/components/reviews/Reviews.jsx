@@ -121,6 +121,7 @@ class Reviews extends React.Component {
 
   componentDidUpdate (prevProps) {
     if (prevProps.product_id !== this.props.product_id) {
+      console.log('you called me');
       this.props.getReviews(this.props.product_id, this.state.sortBy, (results) => {
         this.setState({
           reviewList: results,
@@ -148,7 +149,7 @@ class Reviews extends React.Component {
           characteristics: characteristics,
           ratings: results.ratings,
           recommended: results.recommended,
-          ratingsBreakdown: results.ratings
+          ratingsBreakdown: results.ratings || {}
         }, () => console.log('uggghh come on', this.state.ratingsBreakdown));
       });
     }

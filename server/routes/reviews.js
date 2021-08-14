@@ -5,7 +5,7 @@ router.get('/reviews', (req, res) => {
   getReviews(req.query.productId, req.query.sort).then((results) => {
     res.send(results);
   }).catch((err) => {
-    res.send(err);
+    res.send([]);
   });
 });
 
@@ -18,7 +18,7 @@ router.put('/reviews/helpful', (req, res) => {
 router.get('/reviews/meta', (req, res) => {
   getMeta(req.query.product_id).then((results) => {
     res.send(results);
-  });
+  }).catch((err) => res.send([]));
 });
 
 router.post('/reviews', (req, res) => {
