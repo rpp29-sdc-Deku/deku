@@ -1,7 +1,7 @@
 const axios = require('axios');
 const apiToken = process.env.API_TOKEN;
 
-const getReviews = (sort) => {
+const getReviews = (product, sort) => {
   return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews', {
     headers: {
       Authorization: apiToken
@@ -9,14 +9,14 @@ const getReviews = (sort) => {
     params: {
       sort: sort,
       count: 100,
-      product_id: 36322
+      product_id: product
     }
   }).then((results) => {
     return results.data.results;
   });
 };
-const getMeta = () => {
-  return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/?product_id=36322', {
+const getMeta = (product) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/?product_id=${product}`, {
     headers: {
       Authorization: apiToken
     }

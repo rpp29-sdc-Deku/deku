@@ -1,5 +1,6 @@
 import React from 'react';
 import increaseHelp from '../../helpers/reviews/helpfulness.js';
+import StarsGlobal from './StarsGlobal.jsx';
 /* eslint-disable react/prop-types */
 
 class List extends React.Component {
@@ -50,7 +51,7 @@ class List extends React.Component {
     return (
       <div className='reviewTile'>
           <div className='reviewStarRating'>
-
+              <StarsGlobal value={this.props.review.rating}/>
             <h3>starts review | {this.props.review.rating}</h3>
             <h3>{this.props.review.reviewer_name + ', ' + this.parseDate(this.props.review.date)}</h3>
           </div>

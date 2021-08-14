@@ -5,7 +5,8 @@ const getReviews = (productId, sort, cb) => {
     type: 'GET',
     url: '/atelier/reviews',
     data: {
-      sort: sort
+      sort: sort,
+      productId: productId
     },
     success: (results) => {
       cb(results);
