@@ -8,6 +8,7 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       reviewList: [],
+      filterRatings: [],
       characteristics: [],
       ratings: {},
       recommended: {},
@@ -59,6 +60,25 @@ class Reviews extends React.Component {
     }
   }
 
+  filterRatings (rating) {
+    console.log(rating);
+    const filterRatings = this.state.filterRatings;
+    if (filterRatings.indexOf(rating) === -1) {
+      if (filterRatings.length < 5) {
+        filterRatings.push(rating);
+      } else {
+        const index = filterRatings.indexOf(0);
+        filterRatings[index] = rating;
+      }
+    } else {
+      const index = filterRatings.indexOf(rating);
+      filterRatings[index] = 0;
+    }
+    this.setState({
+      filterRatings: filterRatings
+    }, () => console.log(this.state.filterRatings));
+  }
+
   addReview () {
     console.log('you clicked me');
     this.setState({
@@ -103,8 +123,8 @@ class Reviews extends React.Component {
       <div>
         REVIEWS
         <div className='Reviews'>
-        <Ratings ratingsBreakdown={this.state.ratingsBreakdown} starValue={this.props.starsValue} characteristics={this.state.characteristics}/>
-        <ListView reviewList={this.state.reviewList} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
+        <Ratings filterRatings={this.filterRatings.bind(this)} ratingsBreakdown={this.state.ratingsBreakdown} starValue={this.props.starsValue} characteristics={this.state.characteristics}/>
+        <ListView filterRatings={this.state.filterRatings} reviewList={this.state.reviewList} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
         {this.state.addReview && <AddReview product_id={this.props.product_id} characteristics={this.state.characteristics}/>}
         </div>
       </div>
