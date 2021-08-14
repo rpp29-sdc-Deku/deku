@@ -9,7 +9,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/productStyles', (req, res) => {
-  axios.get(`${apiURL}products/28212/styles`, {
+  axios.get(`${apiURL}products/36300/styles`, {
     headers: {
       Authorization: apiToken
     }
@@ -24,7 +24,7 @@ router.get('/productStyles', (req, res) => {
 });
 
 router.get('/product', (req, res) => {
-  axios.get(`${apiURL}products/28212`, {
+  axios.get(`${apiURL}products/36300`, {
     headers: {
       Authorization: apiToken
     }

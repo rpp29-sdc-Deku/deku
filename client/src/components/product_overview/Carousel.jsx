@@ -17,9 +17,6 @@ class Carousel extends React.Component {
   }
 
   render () {
-    if (this.props.currentStyle.photos) {
-      console.log('♟', this.props.currentStyle.photos.slice(0, 7));
-    }
     return (
       <div className="carousel">
 
