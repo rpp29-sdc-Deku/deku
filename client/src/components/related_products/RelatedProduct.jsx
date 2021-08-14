@@ -10,7 +10,7 @@ class RelatedProduct extends React.Component {
 
   render () {
     // console.log('RENDER RELATED PRODUCT PROPS ====== ', this.props.relatedProducts);
-    const { relatedProducts, addToUserOutfits, selectProduct } = this.props;
+    const { relatedProducts, addToUserOutfits, selectProduct, type } = this.props;
 
     const ProductCards = relatedProducts.map((product, i) => {
       let photo = product.photos[0].thumbnail_url;
@@ -28,13 +28,16 @@ class RelatedProduct extends React.Component {
         photo={photo}
         addToUserOutfits={addToUserOutfits}
         selectProduct={selectProduct}
+        type={type}
         />;
     });
 
     return (
     <div className='related-products-wrapper'>
       <div className='section-title'>Related Products</div>
-      {ProductCards}
+      <div className='carousel-container'>
+        {ProductCards}
+      </div>
     </div>
     );
   }

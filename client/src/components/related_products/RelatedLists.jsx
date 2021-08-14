@@ -17,6 +17,7 @@ class RelatedLists extends React.Component {
     this.update = false;
     // console.log('THIS STATE RELATED LISTS ', this.state);
     this.addToUserOutfits = this.addToUserOutfits.bind(this);
+    this.removeFromUserOutfits = this.removeFromUserOutfits.bind(this);
   }
 
   componentDidMount () {
@@ -25,7 +26,7 @@ class RelatedLists extends React.Component {
   }
 
   componentDidUpdate (prevState) {
-    // console.log('PREV STATE ========= ', prevState);
+    // console.log('COMPONENT DID UPDATE ======= ');
     const { productId } = this.props;
     if (this.state.currentProduct !== productId) {
       this.setState(prevstate => ({
@@ -51,20 +52,52 @@ class RelatedLists extends React.Component {
   }
 
   addToUserOutfits (e, index) {
-    const outfit = this.state.relatedProducts[index];
-    this.state.userOutfits.push(outfit);
+    const { relatedProducts } = this.state;
+    const outfit = relatedProducts[index];
+    let existsInOutFit = false;
+    // iterate over user ouftits
+    this.state.userOutfits.forEach((existingOutfit, i) => {
+      if (existingOutfit.id === outfit.id) {
+        existsInOutFit = true;
+      }
+    });
+
+    if (!existsInOutFit) {
+      this.state.userOutfits.push(outfit);
+      this.setState({ userOutfits: this.state.userOutfits });
+      console.log('user ouftis add =========== ', this.state.userOutfits);
+    }
+  }
+
+  removeFromUserOutfits (e, index) {
+    const { userOutfits } = this.state;
+    userOutfits.splice(index, 1);
     this.setState({ userOutfits: this.state.userOutfits });
   }
 
   render () {
     // console.log('RENDER PROPS IN RELATED LISTS ====== ', this.props);
-    const { relatedProducts, userOutfits } = this.state;
+    const { relatedProducts, userOutfits, currentProduct } = this.state;
+    // console.log('RENDER RELATED LISTS USEROUTFITS ', userOutfits);
     const { selectProduct } = this.props;
 
     return (
       <section className='suggested-products'>
-        <RelatedProduct relatedProducts={relatedProducts} addToUserOutfits={this.addToUserOutfits} selectProduct={selectProduct} />
-        <YourOutfit userOutfits={userOutfits} selectProduct={selectProduct} />
+        <RelatedProduct
+          relatedProducts={relatedProducts}
+          addToUserOutfits={this.addToUserOutfits}
+          selectProduct={selectProduct}
+          type={'relatedProduct'}
+        />
+
+        <YourOutfit
+          userOutfits={userOutfits}
+          selectProduct={selectProduct}
+          currentProduct={currentProduct}
+          addToUserOutfits={this.addToUserOutfits}
+          removeFromUserOutfits={this.removeFromUserOutfits}
+          type={'userOutfit'}
+        />
       </section>
     );
   }
