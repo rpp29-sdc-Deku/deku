@@ -27,9 +27,11 @@ class App extends React.Component {
   }
 
   selectProduct (e, productid) {
+    console.log('productid', productid);
+    console.log('this state before set', this.state);
     this.setState({
       id: parseInt(productid)
-    });
+    }, () => console.log(this.state));
   }
 
   setStars (value) {

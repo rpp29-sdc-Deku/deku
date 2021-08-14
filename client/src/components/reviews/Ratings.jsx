@@ -104,7 +104,7 @@ class Ratings extends React.Component {
           const [value] = Object.values(item);
           return <div key={index}>
             {characteristics}
-            <input type='range' min='1' max='5' step='any' value={value.value} disabled></input>
+            <input type='range' min='1' max='5' step='any' value={value.value || 1} disabled></input>
             {this.setDescription(characteristics)}
           </div>;
         })}

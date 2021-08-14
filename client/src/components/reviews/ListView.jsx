@@ -23,6 +23,7 @@ class ListView extends React.Component {
   }
 
   render () {
+    console.log('this.props.reviewList ', this.props.reviewList);
     const listView = this;
     let count = 0;
     return (
