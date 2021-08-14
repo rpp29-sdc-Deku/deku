@@ -114,7 +114,7 @@ class Reviews extends React.Component {
         characteristics: characteristics,
         ratings: results.ratings,
         recommended: results.recommended,
-        ratingsBreakdown: results.ratings
+        ratingsBreakdown: results.ratings || {}
       }, () => console.log('uggghh come on', this.state.ratingsBreakdown));
     });
   }
