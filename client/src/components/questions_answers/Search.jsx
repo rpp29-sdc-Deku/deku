@@ -21,7 +21,7 @@ class Search extends React.Component {
   render () {
     return (
       <form className='Qsearch'>
-      <input id='searchbar' type='text' onChange={this.searchInput.bind(this)} placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
+      <input className='qaInput' id='searchbar' type='text' onChange={this.searchInput.bind(this)} placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
       <button type='submit' id='searchbtn' onClick={this.searchQuestions.bind(this)} >Search</button>
       </form>
     );

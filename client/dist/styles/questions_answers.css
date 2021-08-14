@@ -74,6 +74,12 @@
   font-weight: bold;
 }
 
+.qaPhoto {
+  height: 5em;
+  width: 5em;
+  margin: 0.5em;
+}
+
 
 /* BUTTONS ---------------------------------------------*/
 
@@ -137,6 +143,16 @@
   cursor:default;
 }
 
+.QAfullscreenPhoto {
+  margin: 15% auto;
+  background-color: white;
+  border-radius: 0.25rem;
+  width: 75%;
+  padding: 2rem;
+  position: relative;
+  cursor:default;
+}
+
 #aModalClose {
   float: right;
 }
@@ -145,17 +161,17 @@
   float: right;
 }
 
-label {
+.qaLabel {
   width:100em;
   font-weight: bold;
 }
 
-input {
+.qaInput {
   width: 40vw;
   height: 5vh;
 }
 
-textarea {
+.qaTextarea {
   height: 25vh;
   width: 40vw;
 }

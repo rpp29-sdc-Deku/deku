@@ -42,7 +42,7 @@ describe('Question', function () {
 
 describe('Answer', function () {
   it('should render the Answer component without crashing', function () {
-    const wrapper = shallow(<Answer answer={{body: 'test', date: '234252323234345'}}/>);
+    const wrapper = shallow(<Answer answer={{body: 'test', date: '234252323234345', photos: [1, 2, 3] }}/>);
     expect(wrapper.hasClass('A')).toBeTruthy();
   });
 });

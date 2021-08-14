@@ -13,6 +13,7 @@ class QuestionsAnswers extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      id: this.props.id,
       questions: [],
       filteredQuestions: [],
       activeSearch: false,
@@ -36,21 +37,32 @@ class QuestionsAnswers extends React.Component {
     this.aModalDisplay = this.aModalDisplay.bind(this);
     this.displayMoreQuestions = this.displayMoreQuestions.bind(this);
     this.qModalDisplay = this.qModalDisplay.bind(this);
+    this.loadProductPage = this.loadProductPage.bind(this);
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.state.id !== this.props.id) {
+      this.loadProductPage(this.props.id);
+    }
   }
 
   componentDidMount () {
+    this.loadProductPage(this.state.id);
+  }
+
+  loadProductPage (productId) {
     const url = window.location.href;
     axios.get(`${url}atelier/initialQA`, {
       method: 'GET',
       params: {
-        product_id: this.props.id
+        product_id: productId
       }
     })
       .then((response) => {
         const ordered = this.sortQuestions(response.data);
         const orderedAnswers = this.sortAnswers(ordered);
         const receivedLength = response.data.length;
-        this.setState({ questions: orderedAnswers, orgLength: receivedLength });
+        this.setState({ questions: orderedAnswers, orgLength: receivedLength, id: productId });
       });
   }
 

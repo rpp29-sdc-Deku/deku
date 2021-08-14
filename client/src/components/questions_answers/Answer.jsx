@@ -4,10 +4,13 @@ class Answer extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      liked: false
+      liked: false,
+      photoDisplay: false,
+      photoLink: ''
     };
 
     this.sellerCheck = this.sellerCheck.bind(this);
+    this.displayFullScreenPhoto = this.displayFullScreenPhoto.bind(this);
   }
 
   helpfulAnswer (e) {
@@ -70,16 +73,30 @@ class Answer extends React.Component {
     }
   }
 
+  displayFullScreenPhoto (e) {
+    if (this.state.photoDisplay === true) {
+      this.props.clickTracker('hideFullscreenAnswerPhoto');
+    } else {
+      this.props.clickTracker('showFullscreenAnswerPhoto');
+    }
+    this.setState({ photoDisplay: !this.state.photoDisplay, photoLink: e.target.src });
+  }
+
   render () {
     return (
       <div className='A'>
         <div>
           <div className='Qblock'>A: <span className='mid' >{this.props.answer.body}</span>
           </div>
+          {this.props.answer.photos.length > 0 &&
+          this.props.answer.photos.map((photo) => <img className='qaPhoto' key={Math.random() * 100000} src={photo} onClick={this.displayFullScreenPhoto} />)}
         </div>
         <div className='sub'>
           by: {this.sellerCheck(this.props.answer.answerer_name)}, {this.generateDate(this.props.answer.date.slice(0, 10))}   |   Helpful? <button className='wordbtn' onClick={this.helpfulAnswer.bind(this)} key={this.props.id} >Yes</button>({this.props.answer.helpfulness})   |   <button className='wordbtn' onClick={this.reportAnswer.bind(this)} >Report</button>
           </div><br></br>
+
+        {this.state.photoDisplay === true && <div className='modalContainer'><img className='QAfullscreenPhoto' src={this.state.photoLink} onClick={this.displayFullScreenPhoto}/></div> }
+
       </div>
     );
   }
