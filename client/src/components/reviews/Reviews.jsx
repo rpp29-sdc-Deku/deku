@@ -7,6 +7,7 @@ class Reviews extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      product_id: 36300,
       reviewList: [],
       filterRatings: [],
       characteristics: [],
@@ -113,19 +114,56 @@ class Reviews extends React.Component {
         characteristics: characteristics,
         ratings: results.ratings,
         recommended: results.recommended,
-        ratingsBreakdown: results.ratings
+        ratingsBreakdown: results.ratings || {}
       }, () => console.log('uggghh come on', this.state.ratingsBreakdown));
     });
   }
 
+  componentDidUpdate (prevProps) {
+    if (prevProps.product_id !== this.props.product_id) {
+      console.log('you called me');
+      this.props.getReviews(this.props.product_id, this.state.sortBy, (results) => {
+        this.setState({
+          reviewList: results,
+          product_id: this.props.product_id
+        });
+      });
+      this.props.getMeta(this.props.product_id, (results) => {
+        const characteristics = [];
+        let averageRating = 0;
+        let num = 0;
+        let den = 0;
+        console.log(results);
+        for (const keys in results.characteristics) {
+          const obj = {};
+          obj[keys] = { value: results.characteristics[keys].value, id: results.characteristics[keys].id };
+          characteristics.push(obj);
+        };
+        for (const keys in results.ratings) {
+          num = (num + (keys * results.ratings[keys]));
+          den += parseInt(results.ratings[keys]);
+        }
+        averageRating = num / den;
+        this.props.setStars(averageRating);
+        this.setState({
+          characteristics: characteristics,
+          ratings: results.ratings,
+          recommended: results.recommended,
+          ratingsBreakdown: results.ratings || {}
+        }, () => console.log('uggghh come on', this.state.ratingsBreakdown));
+      });
+    }
+  }
+
   render () {
+    console.log('this.props.id', this.props.product_id);
     return (
       <div>
         REVIEWS
         <div className='Reviews'>
         <Ratings filterRatings={this.filterRatings.bind(this)} ratingsBreakdown={this.state.ratingsBreakdown} starValue={this.props.starsValue} characteristics={this.state.characteristics}/>
-        <ListView filterRatings={this.state.filterRatings} reviewList={this.state.reviewList} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
-        {this.state.addReview && <AddReview product_id={this.props.product_id} characteristics={this.state.characteristics}/>}
+        <ListView filterRatings={this.state.filterRatings} reviewList={this.state.reviewList || []} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
+        {this.state.addReview && <AddReview product_id={this.state.product_id} characteristics={this.state.characteristics}/>}
         </div>
       </div>
     );
