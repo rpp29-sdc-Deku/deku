@@ -73,8 +73,8 @@ class Ratings extends React.Component {
     return (
     <div className='reviewRatings'>
       <div className='reviewRating'>
-        {rounded}
-      <StarsGlobal value={this.props.starValue}/>
+        {rounded || 0}
+      <StarsGlobal value={this.props.starValue || 0}/>
       </div>
       <div className='reviewBars'>
         <div>
@@ -102,9 +102,13 @@ class Ratings extends React.Component {
         {this.props.characteristics.map((item, index) => {
           const [characteristics] = Object.keys(item);
           const [value] = Object.values(item);
+          console.log('charactersitcs 🥱', item);
+          if (value.value === null) {
+            return '';
+          }
           return <div key={index}>
             {characteristics}
-            <input type='range' min='1' max='5' step='any' value={value.value || 1} disabled></input>
+            <input type='range' min='1' max='5' step='any' value={value.value || 3} disabled></input>
             {this.setDescription(characteristics)}
           </div>;
         })}
