@@ -51,7 +51,7 @@ class App extends React.Component {
             <input type="text" onChange={this.onChange.bind(this)}></input>
           </div>
         </div>
-        <Overview productId={this.state.id} />
+        <Overview starValue={this.state.starValue} productId={this.state.id} />
         <RelatedLists productId={this.state.id} selectProduct={this.selectProduct} />
         <QuestionsAnswersWithClickTracking id={this.state.id} />
         <Reviews getReviews={getReviews} getMeta={getMeta} setStars={this.setStars.bind(this)} starsValue={this.state.starValue} product_id={this.state.id}/>
