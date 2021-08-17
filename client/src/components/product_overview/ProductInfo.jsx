@@ -2,6 +2,7 @@
 import React from 'react';
 import ProductForm from './ProductForm.jsx';
 import { MdCheck } from 'react-icons/md';
+import StarsGlobal from '../reviews/StarsGlobal.jsx';
 
 class ProductInfo extends React.Component {
   constructor (props) {
@@ -41,7 +42,7 @@ class ProductInfo extends React.Component {
     return (
       <div id="info">
         <div className="info">
-          Stars Component
+          <StarsGlobal value={this.props.starValue} />
         </div>
         <div className="product_category info">
           {this.props.product.category}
