@@ -3,6 +3,7 @@ import React from 'react';
 import { MdArrowForward, MdArrowBack, MdArrowDropDown } from 'react-icons/md';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+// import Zoom from 'react-img-zoom';
 
 class Carousel extends React.Component {
   constructor (props) {
@@ -16,7 +17,7 @@ class Carousel extends React.Component {
       <div className={`carousel ${this.props.expandedView ? 'expand_clicked_carousel' : ''}`}>
 
         <div className="carousel_container" style={{ backgroundImage: `url(${this.props.currentImage})` }} onClick={() => { this.props.expand(); }} >
-
+          {/* {this.props.expandedView ? <Zoom img={`'${this.props.currentImage}'`} zoomScale={2.5} height={200} width={100} transitionTime={0.5} /> : null } */}
           <List className="thumbnails_container" style={{ maxHeight: 450, overflow: 'auto' }}>
             {this.props.currentStyle.photos
               ? this.props.currentStyle.photos.map((photo, key) => {

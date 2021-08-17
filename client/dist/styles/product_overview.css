@@ -210,10 +210,11 @@
 
 .product_styles_thumbnails {
   display: flex;
-  justify-content: stretch;
+  /* justify-content: stretch; */
   flex-flow: row wrap;
   align-items: center;
-  gap: 10px;
+  width: 40%;
+  gap: .5em;
 }
 
 .select {
