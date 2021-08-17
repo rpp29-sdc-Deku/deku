@@ -8,19 +8,14 @@ class Carousel extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      expandButtonClicked: false
     };
-  }
-
-  handleFullScreen () {
-    this.setState({ expandButtonClicked: true });
   }
 
   render () {
     return (
-      <div className="carousel">
+      <div className={`carousel ${this.props.expandedView ? 'expand_clicked_carousel' : ''}`}>
 
-        <div className={`carousel_container ${this.state.expandButtonClicked ? 'expand_clicked' : ''}`} style={{ backgroundImage: `url(${this.props.currentImage})` }} >
+        <div className="carousel_container" style={{ backgroundImage: `url(${this.props.currentImage})` }} onClick={() => { this.props.expand(); }} >
 
           <List className="thumbnails_container" style={{ maxHeight: 450, overflow: 'auto' }}>
             {this.props.currentStyle.photos

@@ -39,15 +39,14 @@
   margin: 0 auto;
 }
 
-.expand_clicked {
-  /* object-fit: fill; */
+.expand_clicked_carousel {
   position:relative;
-  right:-100px;
-  left: -100px;
   width:5000px;
   height:auto;
-  display:block;
-  z-index:999;
+}
+
+.expand_clicked_info {
+  display: none;
 }
 
 .selectedd {
@@ -145,6 +144,7 @@
 
 .info {
   margin-bottom: 10px;
+  display: flex;
 }
 
 .description_slogan {
@@ -279,4 +279,12 @@
 .vertical_line {
   border-left: .07em solid #000;
   height: 7em;
+}
+
+.read_reviews {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: .75em;
+  margin-top: .5em;
+  margin-left: .5em;
 }
