@@ -155,14 +155,11 @@ class Reviews extends React.Component {
 
   render () {
     return (
-      <div>
-        REVIEWS
         <div className='Reviews'>
           {this.state.reviewList.length > 0 && (<Ratings filterRatings={this.filterRatings.bind(this)} ratingsBreakdown={this.state.ratingsBreakdown} starValue={this.props.starsValue} characteristics={this.state.characteristics}/>)}
         <ListView filterRatings={this.state.filterRatings} reviewList={this.state.reviewList || []} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
         {this.state.addReview && <AddReview product_id={this.state.product_id} characteristics={this.state.characteristics}/>}
         </div>
-      </div>
     );
   }
 }
