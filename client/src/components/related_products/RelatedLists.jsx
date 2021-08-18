@@ -8,10 +8,11 @@ import YourOutfit from './YourOutfit.jsx';
 class RelatedLists extends React.Component {
   constructor (props) {
     super(props);
+    const cachedOutfits = JSON.parse(window.localStorage.getItem('outfits'));
     this.state = {
       currentProduct: null,
       relatedProducts: [],
-      userOutfits: []
+      userOutfits: cachedOutfits || []
     };
 
     this.update = false;
@@ -47,32 +48,42 @@ class RelatedLists extends React.Component {
     })
       .then((relatedProducts) => {
         this.setState({ relatedProducts: relatedProducts.data });
-        // console.log('🛍️   FETCH RELATED LISTS STATE =================  ', this.state);
+        console.log('🛍️   FETCH RELATED LISTS STATE =================  ', this.state);
       });
   }
 
   addToUserOutfits (e, index) {
     const { relatedProducts } = this.state;
     const outfit = relatedProducts[index];
-    let existsInOutFit = false;
+    let newOutfitItem = true;
     // iterate over user ouftits
     this.state.userOutfits.forEach((existingOutfit, i) => {
       if (existingOutfit.id === outfit.id) {
-        existsInOutFit = true;
+        newOutfitItem = false;
       }
     });
 
-    if (!existsInOutFit) {
+    if (newOutfitItem) {
       this.state.userOutfits.push(outfit);
-      this.setState({ userOutfits: this.state.userOutfits });
-      console.log('user ouftis add =========== ', this.state.userOutfits);
+      this.setState({
+        userOutfits: this.state.userOutfits
+      }, () => window.localStorage.setItem('outfits', JSON.stringify(this.state.userOutfits))
+      );
+      // console.log('user ouftis add =========== ', this.state.userOutfits);
+      // const cachedOutfits = window.localStorage.getItem('outfits');
+      // console.log('localStorage ======== ', JSON.parse(cachedOutfits));
     }
   }
 
   removeFromUserOutfits (e, index) {
     const { userOutfits } = this.state;
     userOutfits.splice(index, 1);
-    this.setState({ userOutfits: this.state.userOutfits });
+    this.setState({
+      userOutfits: this.state.userOutfits
+    }, () => window.localStorage.setItem('outfits', JSON.stringify(this.state.userOutfits))
+    );
+    // const cachedOutfits = window.localStorage.getItem('outfits');
+    // console.log('removed from local storage ======== ', JSON.parse(cachedOutfits));
   }
 
   render () {
