@@ -6,14 +6,52 @@ class QModal extends React.Component {
     this.state = {
       body: '',
       name: '',
-      email: ''
+      email: '',
+      badInput: false,
+      missingFields: []
     };
+
+    this.validateQuestionForm = this.validateQuestionForm.bind(this);
+    this.submitQuestion = this.submitQuestion.bind(this);
+    this.formInput = this.formInput.bind(this);
+    this.validateEmail = this.validateEmail.bind(this);
+  }
+
+  validateQuestionForm (formInputs) {
+    const missing = [];
+    if (formInputs.body.length === 0) {
+      missing.push('body');
+    }
+    if (formInputs.name.length === 0) {
+      missing.push('name');
+    }
+    if (formInputs.email.length === 0) {
+      missing.push('email');
+    }
+    console.log(missing);
+    return missing;
+  }
+
+  validateEmail (email) {
+    if (email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+      return false;
+    }
+    return true;
   }
 
   submitQuestion (e) {
     e.preventDefault();
     this.props.clickTracker('submitQuestion');
-    this.props.submitQuestion(this.state);
+    const missingInputFields = this.validateQuestionForm(this.state);
+    if (!this.validateEmail(this.state.email)) {
+      this.setState({ badInput: true, missingFields: ['valid email address'] });
+      return;
+    }
+    if (!missingInputFields.length) {
+      this.props.submitQuestion(this.state);
+    } else {
+      this.setState({ badInput: true, missingFields: missingInputFields });
+    }
   }
 
   formInput (e) {
@@ -21,27 +59,30 @@ class QModal extends React.Component {
   }
 
   render () {
+    const productName =  this.props.productName || document.getElementsByClassName('product_name info')[0].innerText;
+
     return (
       <div className='modalContainer'>
       <div className='modalContent'>
         <button id='qModalClose' className='wordbtn' onClick={this.props.qModalDisplay}>Close</button>
 
         <div className='modalTitle'>Ask Your Question</div>
-        <div className='modalSubTitle'>About the {}</div><br/>
+        <div className='modalSubTitle'>About the <strong>{productName}</strong></div><br/>
 
         <form>
-          <label className='qaLabel' htmlFor='body' >Your Question (mandatory)</label><br/>
-          <textarea className='qaTextarea' type='text' name='body' onChange={this.formInput.bind(this)} ></textarea><br/><br/>
+          <label className='qaLabel' htmlFor='body' >Your Question*</label><br/>
+          <textarea className='qaTextarea' type='text' name='body' maxLength='1000' onChange={this.formInput} required></textarea><br/><br/>
 
-          <label className='qaLabel' htmlFor='name' >What is your nickname (mandatory)</label><br/>
-          <div>For privacy reasons, do not use your full name or email address” will appear.</div>
-          <input className='qaInput' type='text' name='name' placeholder='Example: jackson11!' onChange={this.formInput.bind(this)}></input><br/><br/>
+          <label className='qaLabel' htmlFor='name' >What is your nickname*</label><br/>
+          <div className='subHeading'>For privacy reasons, do not use your full name or email address” will appear.</div>
+          <input className='qaInput' type='text' name='name' maxLength='60' placeholder='Example: jackson11!' onChange={this.formInput} required></input><br/><br/>
 
-          <label className='qaLabel' htmlFor='email' >Your Email (mandatory)</label>
-          <div>For authentication reasons, you will not be emailed</div>
-          <input className='qaInput' type='text' name='email' placeholder='Example: jack@email.com' onChange={this.formInput.bind(this)}></input><br/><br/>
+          <label className='qaLabel' htmlFor='email' >Your Email*</label>
+          <div className='subHeading' >For authentication reasons, you will not be emailed</div>
+          <input className='qaInput' type='text' name='email' maxLength='60' placeholder='Example: jack@email.com' onChange={this.formInput} required></input><br/><br/>
 
-          <input type='submit' className='wordbtn' onClick={this.submitQuestion.bind(this)} />
+          {this.state.badInput && <div className='qaError'>You must enter the following: {this.state.missingFields.map((field, index) => <span key={index}> [{field}] </span>)}</div>}
+          <input type='submit' className='wordbtn qaInput' onClick={this.submitQuestion} />
         </form>
 
       </div>

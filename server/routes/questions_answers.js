@@ -223,4 +223,22 @@ router.post('/logInteraction', (req, res) => {
     });
 });
 
+// router.post('/addPhoto', (req, res) => {
+//   console.log('adding a photo');
+//   axios({
+//     method: 'POST',
+//     url: 'https://api.imgur.com/3/image',
+//     headers: {
+//       Authorization:
+//     },
+//     data: req.body
+//   })
+//     .then((response) => {
+//       res.send('QA interaction sent');
+//     })
+//     .catch((err) => {
+//       res.send('err with interaction', err);
+//     });
+// });
+
 module.exports = router;

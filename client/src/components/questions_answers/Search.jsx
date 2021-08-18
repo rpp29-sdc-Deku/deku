@@ -16,6 +16,7 @@ class Search extends React.Component {
 
   searchInput (e) {
     this.setState({ searchPhrase: e.target.value });
+    this.props.submitSearch(e.target.value.toLowerCase());
   }
 
   render () {

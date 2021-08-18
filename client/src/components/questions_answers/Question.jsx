@@ -34,7 +34,7 @@ class Question extends React.Component {
 
   addAnswer (e) {
     e.preventDefault();
-    this.props.aModalDisplay(this.props.id);
+    this.props.aModalDisplay(this.props.id, this.props.question.question_body);
   }
 
   render () {
@@ -46,7 +46,7 @@ class Question extends React.Component {
             : 'No Questions Have Been Asked Yet!'
           }
           </span>
-          <span className='Qsub sub' >
+          <span className='Qsub subHeading' >
             Helpful?<button className='wordbtn' onClick={this.helpfulQuestion.bind(this)}>Yes</button>
               ({this.props.question.question_helpfulness})
               |  <button className='wordbtn' qid={this.props.id} onClick={this.addAnswer.bind(this)}>Add Answer</button>
@@ -70,11 +70,11 @@ class Question extends React.Component {
             key={el.id} answer={el}
             likeAnswer={this.props.likeAnswer}
             reportAnswer={this.props.reportAnswer} />)
-            : <div>Be the first to provide an answer!<br></br></div> }
+            : <div className='qaPlaceHolder' >Be the first to provide an answer!<br/> <br/></div> }
 
         {this.state.displayAll === true && <div><button className='wordbtn' onClick={this.displayAnswers.bind(this)}>Hide Answers</button><br></br><br></br></div>}
 
-        {this.state.displayAll === false && <div><button className='wordbtn' onClick={this.displayAnswers.bind(this)}>See More Answers</button><br></br><br></br></div>}
+        {this.state.displayAll === false && Object.keys(this.props.question.answers).length > 2 && <div><button className='wordbtn' onClick={this.displayAnswers.bind(this)}>See More Answers</button><br></br><br></br></div>}
 
       </div>
     );
