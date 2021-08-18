@@ -39,7 +39,7 @@
   float: left;
 }
 
-.Qblock .sub {
+.Qblock .subHeading {
   float: right;
 }
 
@@ -61,7 +61,7 @@
   border: 0.03em solid darkgray;
 }
 
-.sub {
+.subHeading {
   font-size: 0.75em;
 }
 
@@ -153,6 +153,7 @@
   cursor:default;
 }
 
+
 #aModalClose {
   float: right;
 }
@@ -174,4 +175,18 @@
 .qaTextarea {
   height: 25vh;
   width: 40vw;
+}
+
+.qaModalTitle {
+  font-weight: bold;
+}
+
+.qaError {
+  font-weight: bold;
+  color: red;
+}
+
+.qaPlaceHolder {
+  font-style: italic;
+  font-weight: 200;
 }

@@ -91,7 +91,7 @@ class Answer extends React.Component {
           {this.props.answer.photos.length > 0 &&
           this.props.answer.photos.map((photo) => <img className='qaPhoto' key={Math.random() * 100000} src={photo} onClick={this.displayFullScreenPhoto} />)}
         </div>
-        <div className='sub'>
+        <div className='subHeading'>
           by: {this.sellerCheck(this.props.answer.answerer_name)}, {this.generateDate(this.props.answer.date.slice(0, 10))}   |   Helpful? <button className='wordbtn' onClick={this.helpfulAnswer.bind(this)} key={this.props.id} >Yes</button>({this.props.answer.helpfulness})   |   <button className='wordbtn' onClick={this.reportAnswer.bind(this)} >Report</button>
           </div><br></br>
 

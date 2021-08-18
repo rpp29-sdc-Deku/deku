@@ -23,6 +23,7 @@ class QuestionsAnswers extends React.Component {
       qModalStatus: false,
       aModalStatus: false,
       question_id: '',
+      questionBody: '',
       qlDisplay: false
     };
 
@@ -47,7 +48,7 @@ class QuestionsAnswers extends React.Component {
   }
 
   componentDidMount () {
-    this.loadProductPage(this.state.id);
+    this.loadProductPage(this.props.id);
   }
 
   loadProductPage (productId) {
@@ -62,7 +63,12 @@ class QuestionsAnswers extends React.Component {
         const ordered = this.sortQuestions(response.data);
         const orderedAnswers = this.sortAnswers(ordered);
         const receivedLength = response.data.length;
-        this.setState({ questions: orderedAnswers, orgLength: receivedLength, id: productId });
+        this.setState({
+          questions: orderedAnswers,
+          orgLength: receivedLength,
+          id: productId,
+          Qlength: 2
+        });
       });
   }
 
@@ -73,6 +79,7 @@ class QuestionsAnswers extends React.Component {
     }
 
     if (searchPhrase.length < 3) {
+      this.setState({ activeSearch: false });
       return;
     }
 
@@ -185,21 +192,13 @@ class QuestionsAnswers extends React.Component {
 
   qModalDisplay (e) {
     e.preventDefault();
-    if (this.state.qModalStatus === true) {
-      this.props.clickTracker('addQuestionClose');
-    } else {
-      this.props.clickTracker('addQuestionOpen');
-    }
+    this.state.qModalStatus ? this.props.clickTracker('addQuestionClose') : this.props.clickTracker('addQuestionOpen');
     this.setState({ qModalStatus: !this.state.qModalStatus });
   }
 
-  aModalDisplay (qid) {
-    if (this.state.aModalStatus === true) {
-      this.props.clickTracker('addAnswerClose');
-    } else {
-      this.props.clickTracker('addAnswerOpen');
-    }
-    this.setState({ aModalStatus: !this.state.aModalStatus, question_id: qid });
+  aModalDisplay (qid, questionBody) {
+    this.state.aModalStatus ? this.props.clickTracker('addAnswerClose') : this.props.clickTracker('addAnswerOpen');
+    this.setState({ aModalStatus: !this.state.aModalStatus, question_id: qid, questionBody: questionBody });
   }
 
   submitQuestion (formResults) {
@@ -260,7 +259,7 @@ class QuestionsAnswers extends React.Component {
 
         {this.state.qModalStatus === true && <QModalWithTracking submitQuestion={this.submitQuestion} qModalDisplay={this.qModalDisplay} />}
 
-        {this.state.aModalStatus === true && <AModalWithTracking submitAnswer={this.submitAnswer} aModalDisplay={this.aModalDisplay} qid={this.state.question_id} />}
+        {this.state.aModalStatus === true && <AModalWithTracking questionBody={this.state.questionBody} submitAnswer={this.submitAnswer} aModalDisplay={this.aModalDisplay} qid={this.state.question_id} />}
         </div>
     );
   }

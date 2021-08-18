@@ -49,14 +49,14 @@ describe('Answer', function () {
 
 describe('Question Modal', function () {
   it('should render the Question Modal without crashing', function () {
-    const wrapper = shallow(<QModal />);
+    const wrapper = shallow(<QModal productName={'test'} />);
     expect(wrapper.hasClass('modalContainer')).toBeTruthy();
   });
 });
 
 describe('Answer Modal', function () {
   it('should render the Answer Modal without crashing', function () {
-    const wrapper = shallow(<AModal />);
+    const wrapper = shallow(<AModal productName={'test'} />);
     expect(wrapper.hasClass('modalContainer')).toBeTruthy();
   });
 });
