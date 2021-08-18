@@ -22,8 +22,8 @@
   margin-bottom: 5px;
 }
 .reviewList {
-  width: 65%;
-  max-height: 50vh;
+  width: 45vw;
+  max-height: 35vh;
   overflow-y: scroll;
 }
 
@@ -58,9 +58,9 @@
 }
 
 .Reviews {
-  width: 62%;
+  width: 75vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .reviewRatings {

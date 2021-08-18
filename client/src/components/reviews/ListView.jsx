@@ -27,7 +27,6 @@ class ListView extends React.Component {
     let count = 0;
     return (
       <div>
-        <div className='reviewList'>
         <h2>{this.props.reviewList.length + ' reviews sorted by '}
         <select defaultValue={
           this.props.sortBy === 'relevant'
@@ -43,6 +42,7 @@ class ListView extends React.Component {
         <option value='Newest'>Newest</option>
         </select>
         </h2>
+        <div className='reviewList'>
         {this.props.reviewList.map((review, index) => {
           if (this.props.filterRatings.some((value) => value > 0)) {
             if (this.props.filterRatings.indexOf(review.rating) !== -1) {
