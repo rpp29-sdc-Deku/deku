@@ -23,11 +23,11 @@ class ListView extends React.Component {
   }
 
   render () {
-    console.log('this.props.reviewList ', this.props.reviewList);
     const listView = this;
     let count = 0;
     return (
-      <div className='reviewList'>
+      <div>
+        <div className='reviewList'>
         <h2>{this.props.reviewList.length + ' reviews sorted by '}
         <select defaultValue={
           this.props.sortBy === 'relevant'
@@ -58,6 +58,7 @@ class ListView extends React.Component {
           }
           return <List key={review.review_id} review={review} reSortList={listView.reSortList.bind(listView)}/>;
         })}
+        </div>
         <button className='moreReviews' onClick={this.increaseList.bind(this)} disabled={this.props.reviewList.length < 2 || this.state.list >= this.props.reviewList.length}>More Reviews</button>
         <button className='addReviews' onClick={this.props.addReview}>Add A Review +</button>
       </div>

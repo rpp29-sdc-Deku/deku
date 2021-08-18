@@ -7,7 +7,6 @@ class Reviews extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      product_id: 36300,
       reviewList: [],
       filterRatings: [],
       characteristics: [],
@@ -81,7 +80,6 @@ class Reviews extends React.Component {
   }
 
   addReview () {
-    console.log('you clicked me');
     this.setState({
       addReview: !this.state.addReview
     });
@@ -92,6 +90,7 @@ class Reviews extends React.Component {
       this.setState({
         reviewList: results
       });
+      this.props.getReviewLength(results.length);
     });
     this.props.getMeta(this.props.product_id, (results) => {
       const characteristics = [];
@@ -115,18 +114,17 @@ class Reviews extends React.Component {
         ratings: results.ratings,
         recommended: results.recommended,
         ratingsBreakdown: results.ratings || {}
-      }, () => console.log('uggghh come on', this.state.ratingsBreakdown));
+      });
     });
   }
 
   componentDidUpdate (prevProps) {
     if (prevProps.product_id !== this.props.product_id) {
-      console.log('you called me');
       this.props.getReviews(this.props.product_id, this.state.sortBy, (results) => {
         this.setState({
-          reviewList: results,
-          product_id: this.props.product_id
+          reviewList: results
         });
+        this.props.getReviewLength(results.length);
       });
       this.props.getMeta(this.props.product_id, (results) => {
         const characteristics = [];
@@ -150,22 +148,18 @@ class Reviews extends React.Component {
           ratings: results.ratings,
           recommended: results.recommended,
           ratingsBreakdown: results.ratings || {}
-        }, () => console.log('uggghh come on', this.state.ratingsBreakdown));
+        });
       });
     }
   }
 
   render () {
-    console.log('this.props.id', this.props.product_id);
     return (
-      <div>
-        REVIEWS
         <div className='Reviews'>
-        <Ratings filterRatings={this.filterRatings.bind(this)} ratingsBreakdown={this.state.ratingsBreakdown} starValue={this.props.starsValue} characteristics={this.state.characteristics}/>
+          {this.state.reviewList.length > 0 && (<Ratings filterRatings={this.filterRatings.bind(this)} ratingsBreakdown={this.state.ratingsBreakdown} starValue={this.props.starsValue} characteristics={this.state.characteristics}/>)}
         <ListView filterRatings={this.state.filterRatings} reviewList={this.state.reviewList || []} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
         {this.state.addReview && <AddReview product_id={this.state.product_id} characteristics={this.state.characteristics}/>}
         </div>
-      </div>
     );
   }
 }

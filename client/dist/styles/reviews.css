@@ -22,8 +22,7 @@
   margin-bottom: 5px;
 }
 .reviewList {
-  max-width: 85vh;
-  min-width: 70vh;
+  width: 65%;
   max-height: 50vh;
   overflow-y: scroll;
 }
@@ -59,13 +58,13 @@
 }
 
 .Reviews {
+  width: 62%;
   display: flex;
-  max-width: 90%;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .reviewRatings {
-  width: 25%;
+  width: 30%;
 }
 
 .reviewDetail {
@@ -203,4 +202,10 @@ input[type='radio'] {
 
 .reviewSpace {
   margin-left: 5%;
+}
+
+#Reviews {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
