@@ -31,7 +31,7 @@ class Ratings extends React.Component {
     return (
     <div className='reviewRatings'>
       <div className='reviewRating'>
-        {rounded || 0}
+        <h1>{rounded || 0}</h1>
       <StarsGlobal value={this.props.starValue || 0}/>
       </div>
       <div className='reviewBars'>
