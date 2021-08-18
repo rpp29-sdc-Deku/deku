@@ -56,12 +56,9 @@ class Ratings extends React.Component {
   }
 
   getTotal () {
-    console.log('what is this in that', this);
     let result = 0;
-    console.log('this.props. um ok hehe', this.props.ratingsBreakdown);
     for (const keys in this.props.ratingsBreakdown) {
       result += parseInt(this.props.ratingsBreakdown[keys]);
-      console.log('result after being called', result);
     }
     this.setState({
       reviewTotal: result
@@ -102,7 +99,6 @@ class Ratings extends React.Component {
         {this.props.characteristics.map((item, index) => {
           const [characteristics] = Object.keys(item);
           const [value] = Object.values(item);
-          console.log('charactersitcs 🥱', item);
           if (value.value === null) {
             return '';
           }

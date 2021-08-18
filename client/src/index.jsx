@@ -16,7 +16,8 @@ class App extends React.Component {
     this.state = {
       id: 36300,
       value: '',
-      starValue: 0
+      starValue: 0,
+      reviewLength: 0
     };
 
     this.selectProduct = this.selectProduct.bind(this);
@@ -40,6 +41,12 @@ class App extends React.Component {
     });
   }
 
+  getReviewLength (reviews) {
+    this.setState({
+      reviewLength: reviews
+    });
+  }
+
   render () {
     return (
       <div>
@@ -54,7 +61,7 @@ class App extends React.Component {
         <Overview starValue={this.state.starValue} productId={this.state.id} />
         <RelatedLists productId={this.state.id} selectProduct={this.selectProduct} />
         <QuestionsAnswersWithClickTracking id={this.state.id} />
-        <Reviews getReviews={getReviews} getMeta={getMeta} setStars={this.setStars.bind(this)} starsValue={this.state.starValue} product_id={this.state.id}/>
+        <Reviews getReviewLength={this.getReviewLength.bind(this)} getReviews={getReviews} getMeta={getMeta} setStars={this.setStars.bind(this)} starsValue={this.state.starValue} product_id={this.state.id}/>
       </div>
     );
   }
