@@ -28,7 +28,7 @@ class ListView extends React.Component {
     return (
       <div>
         <h2>{this.props.reviewList.length + ' reviews sorted by '}
-        <select defaultValue={
+        <select className='sortMethodsReview' defaultValue={
           this.props.sortBy === 'relevant'
             ? 'Relevance'
             : this.props.sortBy === 'helpful'

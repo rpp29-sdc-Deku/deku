@@ -10,6 +10,10 @@ class Ratings extends React.Component {
     };
   }
 
+  componentDidMount () {
+    this.getTotal();
+  }
+
   componentDidUpdate (prevProps, prevState, snapshot) {
     if (prevProps.ratingsBreakdown !== this.props.ratingsBreakdown) {
       this.getTotal();
@@ -27,6 +31,8 @@ class Ratings extends React.Component {
   }
 
   render () {
+    console.log('this.state', this.props.ratingsBreakdown[5]);
+    console.log('this.reviewtotal', this.state.reviewTotal);
     const rounded = Math.floor(this.props.starValue * 10) / 10;
     return (
     <div className='reviewRatings'>

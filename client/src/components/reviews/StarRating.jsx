@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Rating from '@material-ui/lab/Rating';
 
@@ -14,6 +15,7 @@ class StarRating extends React.Component {
     <div className='ReviewStars'>
       <h2>Rating</h2>
       <Rating onChange={(e, newValue) => {
+        this.props.rating(newValue);
         this.setState({
           value: newValue
         });

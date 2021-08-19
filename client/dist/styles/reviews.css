@@ -34,7 +34,7 @@
 .moreReviews, .addReviews {
   margin: 10px
 }
-.reviewList select {
+.sortMethodsReview {
   border: 0px;
   text-decoration: underline;
 }
@@ -45,7 +45,12 @@
   display: flex;
   justify-content: space-between;
 }
-
+.reviewStarRating h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 0.8em;
+  color: rgb(59, 56, 56);
+}
 .reviewBody {
   font-size: 80%;
   margin-top: 2%;
@@ -198,7 +203,6 @@ input[type='radio'] {
 
 
 .reviewStarContainer {
-  width: 10%;
   margin-right: 0.1%;
   margin-left: 0.5%;
 }
