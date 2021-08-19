@@ -80,6 +80,13 @@
   margin-right: 5%;
 }
 
+.StarFilterReview:hover {
+  background-color: rgb(175, 170, 170);
+  cursor: pointer;
+}
+.StarFilterReview {
+  text-decoration: underline;
+}
 .reviewDetail {
   display: flex;
   justify-content: space-between;
