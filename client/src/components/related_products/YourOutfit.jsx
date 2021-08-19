@@ -14,7 +14,7 @@ class YourOutfit extends React.Component {
       addToUserOutfits,
       removeFromUserOutfits,
       selectProduct,
-      currentProduct,
+      currentProductDetails,
       type
     } = this.props;
     // console.log('RENDER YOUR OUTFITS ========== ', userOutfits);
@@ -42,8 +42,8 @@ class YourOutfit extends React.Component {
       <div className='your-outfits-wrapper'>
         <div className='section-title'>Your Outfit</div>
         <div className='carousel-container'>
-          <div className='product-card'>
-            <div className='add-to-outfits' /* onClick={(e => addToUserOutfits(e, currentProduct))} */>
+          <div className='product-card' onClick={(e => addToUserOutfits(e, 0, 'currentProductDetails'))}>
+            <div className='add-to-outfits'>
               <h3>+ Add to Outfit</h3>
             </div>
           </div>
