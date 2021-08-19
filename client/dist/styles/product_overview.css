@@ -39,17 +39,6 @@
   margin: 0 auto;
 }
 
-/* .expand_clicked_carousel {
-  position:relative;
-  width:500px;
-  height:auto;
-}
-
-.expand_clicked_info {
-  display: none;
-  width: 0;
-} */
-
 .selectedd {
   color: rgb(240, 243, 54);
 }
@@ -78,7 +67,6 @@
   align-items: flex-end;
   margin-top: 20em;
   /* margin-left: 30em; */
-
 }
 
 .icon {
@@ -95,12 +83,15 @@
 }
 
 .carousel_container {
-  background: lightgreen;
   height: 100%;
   width: 100%;
   display: flex;
   background-position: center;
   background-size: cover;
+}
+
+.carousel_container_zoomed {
+  cursor: zoom-out;
 }
 
 .arrows_container {
@@ -139,6 +130,14 @@
   cursor: -moz-zoom-in;
   cursor: -webkit-zoom-in;
   cursor: zoom-in;
+}
+
+#expanded_carousel {
+  cursor: crosshair;
+}
+
+.expand {
+  cursor: pointer;
 }
 
 .carousel_thumbnail {
@@ -230,7 +229,6 @@
 
 .product_styles_thumbnails {
   display: flex;
-  /* justify-content: stretch; */
   flex-flow: row wrap;
   align-items: center;
   width: 50%;
