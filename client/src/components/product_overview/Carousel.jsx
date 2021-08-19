@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { MdArrowForward, MdArrowBack, MdArrowDropDown, MdFullscreen, MdFullscreenExit } from 'react-icons/md';
+import { MdArrowForward, MdArrowBack, MdFullscreen, MdFullscreenExit } from 'react-icons/md';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Zoom from 'react-img-zoom';
@@ -61,8 +61,8 @@ class Carousel extends React.Component {
                 return (<ListItem style={{ backgroundImage: `url(${photo.url})` }} className= {`${photo.url === this.props.currentImage ? 'selectedd' : ''} carousel_thumbnail_image`} key={key} onClick={ (e) => { e.stopPropagation(); this.props.thumbnailClick(photo.url); }}></ListItem>);
               })
               : null }
-              {this.props.currentStyle.photos ? (this.props.currentStyle.photos.length > 7 ? <MdArrowDropDown className="drop_down" onClick={() => this.props.handleDropDownClick()} /> : null) : null }
           </List>
+          {/* {this.props.currentStyle.photos ? (this.props.currentStyle.photos.length > 7 ? <MdArrowDropDown className="drop_down" onClick={() => this.props.handleDropDownClick()} /> : null) : null } */}
 
           <div className="arrows">
             <div className="arrows_container">
