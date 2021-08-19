@@ -4,14 +4,17 @@ import React from 'react';
 import axios from 'axios';
 import RelatedProduct from './RelatedProduct.jsx';
 import YourOutfit from './YourOutfit.jsx';
+import Overview from '../product_overview/Overview.jsx';
 
 class RelatedLists extends React.Component {
   constructor (props) {
     super(props);
+    const cachedOutfits = JSON.parse(window.localStorage.getItem('outfits'));
     this.state = {
       currentProduct: null,
+      currentProductDetails: null,
       relatedProducts: [],
-      userOutfits: []
+      userOutfits: cachedOutfits || []
     };
 
     this.update = false;
@@ -46,38 +49,53 @@ class RelatedLists extends React.Component {
       }
     })
       .then((relatedProducts) => {
-        this.setState({ relatedProducts: relatedProducts.data });
-        // console.log('🛍️   FETCH RELATED LISTS STATE =================  ', this.state);
+        console.log('related products data ', relatedProducts.data.length);
+        const currentProduct = relatedProducts.data.length - 1;
+        const currentProductDetails = relatedProducts.data.splice(currentProduct);
+        this.setState({
+          relatedProducts: relatedProducts.data,
+          currentProductDetails: currentProductDetails
+        });
+        console.log('🛍️   FETCH RELATED LISTS STATE =================  ', this.state);
       });
   }
 
-  addToUserOutfits (e, index) {
-    const { relatedProducts } = this.state;
-    const outfit = relatedProducts[index];
-    let existsInOutFit = false;
+  addToUserOutfits (e, index, list) {
+    const outfit = this.state.[list][index];
+    let newOutfitItem = true;
     // iterate over user ouftits
     this.state.userOutfits.forEach((existingOutfit, i) => {
       if (existingOutfit.id === outfit.id) {
-        existsInOutFit = true;
+        newOutfitItem = false;
       }
     });
 
-    if (!existsInOutFit) {
+    if (newOutfitItem) {
       this.state.userOutfits.push(outfit);
-      this.setState({ userOutfits: this.state.userOutfits });
-      console.log('user ouftis add =========== ', this.state.userOutfits);
+      this.setState({
+        userOutfits: this.state.userOutfits
+      }, () => window.localStorage.setItem('outfits', JSON.stringify(this.state.userOutfits))
+      );
+      // console.log('user ouftis add =========== ', this.state.userOutfits);
+      // const cachedOutfits = window.localStorage.getItem('outfits');
+      // console.log('localStorage ======== ', JSON.parse(cachedOutfits));
     }
   }
 
   removeFromUserOutfits (e, index) {
     const { userOutfits } = this.state;
     userOutfits.splice(index, 1);
-    this.setState({ userOutfits: this.state.userOutfits });
+    this.setState({
+      userOutfits: this.state.userOutfits
+    }, () => window.localStorage.setItem('outfits', JSON.stringify(this.state.userOutfits))
+    );
+    // const cachedOutfits = window.localStorage.getItem('outfits');
+    // console.log('removed from local storage ======== ', JSON.parse(cachedOutfits));
   }
 
   render () {
     // console.log('RENDER PROPS IN RELATED LISTS ====== ', this.props);
-    const { relatedProducts, userOutfits, currentProduct } = this.state;
+    const { relatedProducts, userOutfits, currentProductDetails } = this.state;
     // console.log('RENDER RELATED LISTS USEROUTFITS ', userOutfits);
     const { selectProduct } = this.props;
 
@@ -93,7 +111,7 @@ class RelatedLists extends React.Component {
         <YourOutfit
           userOutfits={userOutfits}
           selectProduct={selectProduct}
-          currentProduct={currentProduct}
+          currentProductDetails={currentProductDetails}
           addToUserOutfits={this.addToUserOutfits}
           removeFromUserOutfits={this.removeFromUserOutfits}
           type={'userOutfit'}
