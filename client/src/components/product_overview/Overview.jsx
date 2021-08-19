@@ -14,7 +14,8 @@ class Overview extends React.Component {
       images: [],
       currentImage: '',
       currentStyle: {},
-      expandedView: false
+      expandedView: false,
+      expandedCarouselClicked: false
     };
   }
 
@@ -121,6 +122,18 @@ class Overview extends React.Component {
     this.setState({ expandedView: true });
   }
 
+  handleShrink () {
+    this.setState({ expandedView: false });
+  }
+
+  handleExpandedCarouselClick () {
+    this.setState({ expandedCarouselClicked: true });
+  }
+
+  handleZoomOut () {
+    this.setState({ expandedCarouselClicked: false });
+  }
+
   render () {
     return (
       <div className="overview">
@@ -131,9 +144,9 @@ class Overview extends React.Component {
 
         <div id="overview">
           <div id="carouselProductInfo">
-            <Carousel productId={this.props.productId} images={this.state.images} currentImage={this.state.currentImage} styles={this.state.styles} currentStyle={this.state.currentStyle} currentSetOfThumbnails={this.state.currentSetOfThumbnails} thumbnailClick={this.handleThumbnailClick.bind(this)} forwardArrowClick={this.handleForwardArrowClick.bind(this)} backArrowClick={this.handleBackArrowClick.bind(this)} expand={this.handleExpand.bind(this)} expandedView={this.state.expandedView} />
+            <Carousel productId={this.props.productId} images={this.state.images} currentImage={this.state.currentImage} styles={this.state.styles} currentStyle={this.state.currentStyle} currentSetOfThumbnails={this.state.currentSetOfThumbnails} thumbnailClick={this.handleThumbnailClick.bind(this)} forwardArrowClick={this.handleForwardArrowClick.bind(this)} backArrowClick={this.handleBackArrowClick.bind(this)} expand={this.handleExpand.bind(this)} expandedView={this.state.expandedView} expandedCarouselClicked={this.state.expandedCarouselClicked} expandedCarouselClick={this.handleExpandedCarouselClick.bind(this)} zoomOut={this.handleZoomOut.bind(this)} shrink={this.handleShrink.bind(this)} />
 
-            <ProductInfo product={this.state.product} styles={this.state.styles} currentStyle={this.state.currentStyle} images={this.state.images} changeStyle={this.handleChangeStyle.bind(this)} addToBag={this.addToBag.bind(this)} starValue={this.props.starValue} expand={this.handleExpand.bind(this)} expandedView={this.state.expandedView} />
+            <ProductInfo product={this.state.product} styles={this.state.styles} currentStyle={this.state.currentStyle} images={this.state.images} changeStyle={this.handleChangeStyle.bind(this)} addToBag={this.addToBag.bind(this)} starValue={this.props.starValue} expand={this.handleExpand.bind(this)} expandedView={this.state.expandedView} reviewsNumber={this.props.reviewsNumber} />
           </div>
 
           <div >

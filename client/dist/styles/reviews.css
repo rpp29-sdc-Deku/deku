@@ -9,10 +9,10 @@
   flex-direction: column;
 }
 .reviewTitle h1{
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Recursive', sans-serif;
   font-size: 1.3em;
   font-weight: 500;
-  color: rgb(7, 6, 6);
+  color: rgb(71, 66, 66);
   margin-bottom: 5px;
 }
 .reviewHelpful span {
@@ -22,8 +22,8 @@
   margin-bottom: 5px;
 }
 .reviewList {
-  width: 65%;
-  max-height: 50vh;
+  width: 45vw;
+  /* max-height: 35vh; */
   overflow-y: scroll;
 }
 
@@ -34,7 +34,7 @@
 .moreReviews, .addReviews {
   margin: 10px
 }
-.reviewList select {
+.sortMethodsReview {
   border: 0px;
   text-decoration: underline;
 }
@@ -45,11 +45,17 @@
   display: flex;
   justify-content: space-between;
 }
-
+.reviewStarRating h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 0.8em;
+  color: rgb(59, 56, 56);
+}
 .reviewBody {
   font-size: 80%;
-  margin-bottom: 5px;
-  font-family: 'Open Sans Condensed', sans-serif;
+  margin-top: 2%;
+  margin-bottom: 3%;
+  font-family: 'Roboto', sans-serif;
   color: rgb(59, 56, 56);
 }
 
@@ -58,23 +64,37 @@
 }
 
 .Reviews {
-  width: 62%;
+  width: 75vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .reviewRatings {
-  width: 30%;
+  width: 25%;
 }
 
+.reviewRating {
+  display: flex;
+}
+.reviewRating h1 {
+  margin-right: 5%;
+}
+
+.StarFilterReview:hover {
+  background-color: rgb(175, 170, 170);
+  cursor: pointer;
+}
+.StarFilterReview {
+  text-decoration: underline;
+}
 .reviewDetail {
   display: flex;
   justify-content: space-between;
-
+  font-size: 0.8em;
 }
 .reviewDetail span{
-  max-width: 25%;
-  min-width: 25%;
+  max-width: 28%;
+  min-width: 28%;
 }
 .reviewDetail span:last-child {
   text-align: right;
@@ -190,7 +210,6 @@ input[type='radio'] {
 
 
 .reviewStarContainer {
-  width: 10%;
   margin-right: 0.1%;
   margin-left: 0.5%;
 }
@@ -208,4 +227,15 @@ input[type='radio'] {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+meter {
+  width: 75%;
+  margin-left: 5%;
+}
+
+meter::-webkit-meter-bar {
+  background: #EEE;
+  /* box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset; */
+  border-radius: 0.5%;
 }
