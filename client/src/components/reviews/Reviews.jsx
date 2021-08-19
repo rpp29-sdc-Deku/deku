@@ -92,7 +92,47 @@ class Reviews extends React.Component {
     });
   }
 
+  newReviewAdded () {
+    this.setState({
+      newReviewAdded: true
+    });
+  }
+
   componentDidMount () {
+    this.getProductDetails();
+    // this.props.getReviews(this.props.product_id, this.state.sortBy, (results) => {
+    //   this.setState({
+    //     reviewList: results
+    //   });
+    //   this.props.getReviewLength(results.length);
+    // });
+    // this.props.getMeta(this.props.product_id, (results) => {
+    //   const characteristics = [];
+    //   let averageRating = 0;
+    //   let num = 0;
+    //   let den = 0;
+    //   console.log('resultsss', results);
+    //   for (const keys in results.characteristics) {
+    //     const obj = {};
+    //     obj[keys] = { value: results.characteristics[keys].value, id: results.characteristics[keys].id };
+    //     characteristics.push(obj);
+    //   };
+    //   for (const keys in results.ratings) {
+    //     num = (num + (keys * results.ratings[keys]));
+    //     den += parseInt(results.ratings[keys]);
+    //   }
+    //   averageRating = num / den;
+    //   this.props.setStars(averageRating);
+    //   this.setState({
+    //     characteristics: characteristics,
+    //     ratings: results.ratings,
+    //     recommended: results.recommended,
+    //     ratingsBreakdown: results.ratings || {}
+    //   });
+    // });
+  }
+
+  getProductDetails () {
     this.props.getReviews(this.props.product_id, this.state.sortBy, (results) => {
       this.setState({
         reviewList: results
@@ -125,38 +165,39 @@ class Reviews extends React.Component {
     });
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate (prevProps, prevState) {
     if (prevProps.product_id !== this.props.product_id) {
-      this.props.getReviews(this.props.product_id, this.state.sortBy, (results) => {
-        this.setState({
-          reviewList: results
-        });
-        this.props.getReviewLength(results.length);
-      });
-      this.props.getMeta(this.props.product_id, (results) => {
-        const characteristics = [];
-        let averageRating = 0;
-        let num = 0;
-        let den = 0;
-        console.log(results);
-        for (const keys in results.characteristics) {
-          const obj = {};
-          obj[keys] = { value: results.characteristics[keys].value, id: results.characteristics[keys].id };
-          characteristics.push(obj);
-        };
-        for (const keys in results.ratings) {
-          num = (num + (keys * results.ratings[keys]));
-          den += parseInt(results.ratings[keys]);
-        }
-        averageRating = num / den;
-        this.props.setStars(averageRating);
-        this.setState({
-          characteristics: characteristics,
-          ratings: results.ratings,
-          recommended: results.recommended,
-          ratingsBreakdown: results.ratings || {}
-        });
-      });
+      this.getProductDetails();
+      // this.props.getReviews(this.props.product_id, this.state.sortBy, (results) => {
+      //   this.setState({
+      //     reviewList: results
+      //   });
+      //   this.props.getReviewLength(results.length);
+      // });
+      // this.props.getMeta(this.props.product_id, (results) => {
+      //   const characteristics = [];
+      //   let averageRating = 0;
+      //   let num = 0;
+      //   let den = 0;
+      //   console.log('resultsss', results);
+      //   for (const keys in results.characteristics) {
+      //     const obj = {};
+      //     obj[keys] = { value: results.characteristics[keys].value, id: results.characteristics[keys].id };
+      //     characteristics.push(obj);
+      //   };
+      //   for (const keys in results.ratings) {
+      //     num = (num + (keys * results.ratings[keys]));
+      //     den += parseInt(results.ratings[keys]);
+      //   }
+      //   averageRating = num / den;
+      //   this.props.setStars(averageRating);
+      //   this.setState({
+      //     characteristics: characteristics,
+      //     ratings: results.ratings,
+      //     recommended: results.recommended,
+      //     ratingsBreakdown: results.ratings || {}
+      //   });
+      // });
     }
   }
 
@@ -165,7 +206,7 @@ class Reviews extends React.Component {
         <div className='Reviews'>
           {this.state.reviewList.length > 0 && (<Ratings filterRatings={this.filterRatings.bind(this)} ratingsBreakdown={this.state.ratingsBreakdown} removeFilterRatings={this.removeFilterRatings.bind(this)} filtered={this.state.filterRatings} starValue={this.props.starsValue} characteristics={this.state.characteristics} recommended={this.state.recommended}/>)}
         <ListView filterRatings={this.state.filterRatings} reviewList={this.state.reviewList || []} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
-        {this.state.addReview && <AddReview product_id={this.state.product_id} characteristics={this.state.characteristics}/>}
+        {this.state.addReview && <AddReview addReview={this.addReview.bind(this)} getProductDetails={this.getProductDetails.bind(this)} product_id={this.props.product_id} characteristics={this.state.characteristics}/>}
         </div>
     );
   }

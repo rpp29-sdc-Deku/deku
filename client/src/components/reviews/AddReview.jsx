@@ -26,7 +26,7 @@ class AddReview extends React.Component {
     this.props.characteristics.forEach((item) => {
       if (item[e.target.name]) {
         const obj = this.state.characteristics;
-        obj[item[e.target.name].id] = e.target.value;
+        obj[item[e.target.name].id] = parseInt(e.target.value);
         this.setState({
           characteristics: obj
         }, () => console.log(this.state));
@@ -49,7 +49,7 @@ class AddReview extends React.Component {
 
   recommend (e) {
     this.setState({
-      recommend: e.target.value
+      recommend: e.target.value === 'Yes'
     });
   }
 
@@ -77,7 +77,9 @@ class AddReview extends React.Component {
       alert('You must enter the following: Any mandatory fields are blank, The review body is less than 50 characters, The email address provided is not in correct email format or The images selected are invalid or unable to be uploaded');
       return;
     };
-    postReview(this.state);
+    postReview(this.state).then((results) => {
+      this.props.getProductDetails();
+    });
   }
 
   upload (e) {
@@ -108,6 +110,7 @@ class AddReview extends React.Component {
            <div className='ReviewTitle'>
              <h1>Write Your Review</h1>
              <h3>About the [Product Name]</h3>
+             <span onClick={this.props.addReview}>xxxx</span>
            </div>
             <div>
              rating - Manditory
