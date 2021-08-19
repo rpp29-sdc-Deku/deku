@@ -61,6 +61,19 @@ class Ratings extends React.Component {
           <label onClick={() => this.props.filterRatings(1)} htmlFor='oneStars'>1 stars</label>
           <meter id='oneStars' value={(Number(this.props.ratingsBreakdown[1]) / this.state.reviewTotal) || 0}></meter>
           </div>
+          {this.props.filtered.some((value) => value > 0) && (<div className='raitingsFiltered'>
+        <p>
+          Filter by
+        {this.props.filtered.map((filter) => {
+          if (filter > 0) {
+            return ' ' + filter + ' stars, ';
+          }
+          return '';
+        })}
+          has been applied
+        </p>
+        <a href='' onClick={this.props.removeFilterRatings}>Remove All Filters</a>
+      </div>)}
       </div>
       <div className='reviewSpecifics'>
         {this.props.characteristics.map((item, index) => {
