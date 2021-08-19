@@ -27,13 +27,13 @@ const getRelatedProducts = (productId) => {
   });
 
   const productImages = relatedProductDetails.then((productsList) => {
-    return Promise.all(productsList.map(product => {
+    productsList.map(product => {
       return axios.get(`${apiURL}products/${product.data.id}/styles`, {
         headers: {
           Authorization: apiToken
         }
       });
-    }));
+    });
   });
 
   const productDetailsWithImages = productImages.then((images) => {
