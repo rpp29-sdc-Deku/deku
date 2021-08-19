@@ -1,5 +1,6 @@
 import React from 'react';
 import StarsGlobal from './StarsGlobal.jsx';
+import RatingsDescription from './RatingsDescription.jsx';
 /* eslint-disable react/prop-types */
 class Ratings extends React.Component {
   constructor (props) {
@@ -9,44 +10,8 @@ class Ratings extends React.Component {
     };
   }
 
-  setDescription (description) {
-    if (description === 'Fit' || description === 'Size') {
-      return (<div className='reviewDetail'>
-        <span>Too Small</span>
-        <span className='two'>Perfect</span>
-        <span>Too big</span>
-       </div>);
-    }
-    if (description === 'Comfort') {
-      return (<div className='reviewDetail'>
-        <span>Poor</span>
-        <span>Perfect</span>
-       </div>);
-    }
-    if (description === 'Length') {
-      return (<div className='reviewDetail'>
-        <span>Too Short</span>
-        <span className='two'>Perfect</span>
-        <span>Too Long</span>
-       </div>);
-    }
-    if (description === 'Fit' || description === 'Width') {
-      return (<div className='reviewDetail'>
-        <span>Too Loose</span>
-        <span className='two'>Perfect</span>
-        <span>Too Tight</span>
-       </div>);
-    }
-    if (description === 'Quality') {
-      return (<div className='reviewDetail'>
-        <span>Poor</span>
-        <span>Excelent</span>
-       </div>);
-    }
-    return (<div className='reviewDetail'>
-      <span >Poor</span>
-      <span>Excelent</span>
-     </div>);
+  componentDidMount () {
+    this.getTotal();
   }
 
   componentDidUpdate (prevProps, prevState, snapshot) {
@@ -66,11 +31,13 @@ class Ratings extends React.Component {
   }
 
   render () {
+    console.log('this.state', this.props.ratingsBreakdown[5]);
+    console.log('this.reviewtotal', this.state.reviewTotal);
     const rounded = Math.floor(this.props.starValue * 10) / 10;
     return (
     <div className='reviewRatings'>
       <div className='reviewRating'>
-        {rounded || 0}
+        <h1>{rounded || 0}</h1>
       <StarsGlobal value={this.props.starValue || 0}/>
       </div>
       <div className='reviewBars'>
@@ -105,7 +72,7 @@ class Ratings extends React.Component {
           return <div key={index}>
             {characteristics}
             <input type='range' min='1' max='5' step='any' value={value.value || 3} disabled></input>
-            {this.setDescription(characteristics)}
+            <RatingsDescription description={characteristics}/>
           </div>;
         })}
       </div>
