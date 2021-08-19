@@ -104,7 +104,7 @@ class Reviews extends React.Component {
       let averageRating = 0;
       let num = 0;
       let den = 0;
-      console.log(results);
+      console.log('resultsss', results);
       for (const keys in results.characteristics) {
         const obj = {};
         obj[keys] = { value: results.characteristics[keys].value, id: results.characteristics[keys].id };
@@ -163,7 +163,7 @@ class Reviews extends React.Component {
   render () {
     return (
         <div className='Reviews'>
-          {this.state.reviewList.length > 0 && (<Ratings filterRatings={this.filterRatings.bind(this)} ratingsBreakdown={this.state.ratingsBreakdown} removeFilterRatings={this.removeFilterRatings.bind(this)} filtered={this.state.filterRatings} starValue={this.props.starsValue} characteristics={this.state.characteristics}/>)}
+          {this.state.reviewList.length > 0 && (<Ratings filterRatings={this.filterRatings.bind(this)} ratingsBreakdown={this.state.ratingsBreakdown} removeFilterRatings={this.removeFilterRatings.bind(this)} filtered={this.state.filterRatings} starValue={this.props.starsValue} characteristics={this.state.characteristics} recommended={this.state.recommended}/>)}
         <ListView filterRatings={this.state.filterRatings} reviewList={this.state.reviewList || []} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
         {this.state.addReview && <AddReview product_id={this.state.product_id} characteristics={this.state.characteristics}/>}
         </div>
