@@ -76,7 +76,7 @@ class Carousel extends React.Component {
           </div>
 
           <div className="expand_container">
-            <MdFullscreen className="expand" onClick={() => { this.props.handleExpand(); }} />
+            <MdFullscreen className="expand" />
           </div>
 
         </div>
