@@ -45,7 +45,7 @@ class ProductInfo extends React.Component {
         : <div id="info">
           <div className="info">
             <StarsGlobal value={this.props.starValue} />
-            <p onClick={() => { const element = document.getElementsByClassName('Reviews')[0]; element.scrollIntoView(); }} className="read_reviews">Read all reviews</p>
+            <p onClick={() => { const element = document.getElementsByClassName('Reviews')[0]; element.scrollIntoView(); }} className="read_reviews">Read all {this.props.reviewsNumber} reviews</p>
           </div>
           <div className="product_category info">
             {this.props.product.category}
