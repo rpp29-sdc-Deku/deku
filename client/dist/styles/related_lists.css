@@ -84,3 +84,13 @@
 .product-action-icon:hover {
   cursor: pointer;
 }
+
+.error-boundary-related-lists {
+  padding: 2em 0;
+  margin: 2em 0;
+  background: rgb(218, 218, 218);
+}
+
+.error-boundary-related-lists details:hover {
+  cursor: pointer;
+}
