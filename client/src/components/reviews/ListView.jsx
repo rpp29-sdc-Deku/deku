@@ -7,7 +7,8 @@ class ListView extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      list: 2
+      list: 2,
+      filterdSearch: ''
     };
   }
 
@@ -22,30 +23,56 @@ class ListView extends React.Component {
     this.props.sortList(null, reSort);
   }
 
+  componentDidUpdate (prevProps) {
+    if (prevProps.filterdSearch !== this.props.filterdSearch) {
+      this.setState({
+        filterdSearch: this.props.filterdSearch
+      });
+    }
+  }
+
   render () {
     const listView = this;
     let count = 0;
     return (
       <div>
         <h2>{this.props.reviewList.length + ' reviews sorted by '}
-        <select className='sortMethodsReview' defaultValue={
-          this.props.sortBy === 'relevant'
-            ? 'Relevance'
-            : this.props.sortBy === 'helpful'
-              ? 'Helpful'
-              : this.props.sortBy === 'newest'
-                ? 'Newest'
-                : ''}
-        onChange={this.props.sortList}>
-        <option value='Relevance'>Relevance</option>
-        <option value='Helpful'>Helpful</option>
-        <option value='Newest'>Newest</option>
-        </select>
+          <select className='sortMethodsReview' defaultValue={
+            this.props.sortBy === 'relevant'
+              ? 'Relevance'
+              : this.props.sortBy === 'helpful'
+                ? 'Helpful'
+                : this.props.sortBy === 'newest'
+                  ? 'Newest'
+                  : ''}
+          onChange={this.props.sortList}>
+          <option value='Relevance'>Relevance</option>
+          <option value='Helpful'>Helpful</option>
+          <option value='Newest'>Newest</option>
+          </select>
         </h2>
+        <input type='text' onChange={this.props.filterSearch} placeholder='Search For Review'></input>
         <div className='reviewList'>
         {this.props.reviewList.map((review, index) => {
           if (this.props.filterRatings.some((value) => value > 0)) {
-            if (this.props.filterRatings.indexOf(review.rating) !== -1) {
+            if (this.props.filterRatings.indexOf(review.rating) !== -1 && this.state.filterdSearch.length < 3) {
+              count++;
+              if (count <= this.state.list) {
+                return <List key={review.review_id} review={review} reSortList={listView.reSortList.bind(listView)}/>;
+              }
+            }
+            if (this.props.filterRatings.indexOf(review.rating) !== -1 && this.state.filterdSearch.length > 3) {
+              if (review.body.includes(this.state.filterdSearch) || review.summary.includes(this.state.filterdSearch)) {
+                count++;
+                if (count <= this.state.list) {
+                  return <List key={review.review_id} review={review} reSortList={listView.reSortList.bind(listView)}/>;
+                }
+              }
+            }
+            return '';
+          }
+          if (this.state.filterdSearch.length > 3) {
+            if (review.body.includes(this.state.filterdSearch) || review.summary.includes(this.state.filterdSearch)) {
               count++;
               if (count <= this.state.list) {
                 return <List key={review.review_id} review={review} reSortList={listView.reSortList.bind(listView)}/>;

@@ -58,25 +58,30 @@ class Ratings extends React.Component {
         </p>
       </div>
       <div className='reviewBars'>
-        <div>
+        <div className='RatingsBreakdowns'>
           <label className='StarFilterReview' onClick={() => this.props.filterRatings(5)} htmlFor='fiveStars'>5 stars</label>
           <meter id='fiveStars' value={(Number(this.props.ratingsBreakdown[5]) / this.state.reviewTotal) || 0}></meter>
+          <span className='numberdReview'>({this.props.ratingsBreakdown[5] || 0})</span>
           </div>
-        <div>
+        <div className='RatingsBreakdowns'>
           <label className='StarFilterReview' onClick={() => this.props.filterRatings(4)} htmlFor='fourStars'>4 stars</label>
           <meter id='fourStars' value={(Number(this.props.ratingsBreakdown[4]) / this.state.reviewTotal) || 0}></meter>
+          <span className='numberdReview'>({this.props.ratingsBreakdown[4] || 0})</span>
           </div>
-        <div>
+        <div className='RatingsBreakdowns'>
           <label className='StarFilterReview' onClick={() => this.props.filterRatings(3)} htmlFor='threeStars'>3 stars</label>
           <meter id='threeStars' value={(Number(this.props.ratingsBreakdown[3]) / this.state.reviewTotal) || 0}></meter>
+          <span className='numberdReview'>({this.props.ratingsBreakdown[3] || 0})</span>
           </div>
-        <div>
+        <div className='RatingsBreakdowns'>
           <label className='StarFilterReview' onClick={() => this.props.filterRatings(2)} htmlFor='twoStars'>2 stars</label>
           <meter id='twoStars' value={(Number(this.props.ratingsBreakdown[2]) / this.state.reviewTotal) || 0}></meter>
+          <span className='numberdReview'>({this.props.ratingsBreakdown[2] || 0})</span>
           </div>
-        <div>
+        <div className='RatingsBreakdowns'>
           <label className='StarFilterReview' onClick={() => this.props.filterRatings(1)} htmlFor='oneStars'>1 stars</label>
           <meter id='oneStars' value={(Number(this.props.ratingsBreakdown[1]) / this.state.reviewTotal) || 0}></meter>
+          <span className='numberdReview'>({this.props.ratingsBreakdown[1] || 0})</span>
           </div>
           {this.props.filtered.some((value) => value > 0) && (<div className='raitingsFiltered'>
         <p>

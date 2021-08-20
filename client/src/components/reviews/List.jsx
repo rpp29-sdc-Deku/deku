@@ -11,7 +11,7 @@ class List extends React.Component {
       imageClick: false,
       src: '',
       reviewBodyFull: this.props.review.body,
-      notClicked: true,
+      notClicked: true
     };
   }
 
