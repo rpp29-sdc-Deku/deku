@@ -75,6 +75,11 @@
   font-size: 0.95em;
 }
 
+.compare {
+  width: 100%;
+  height: 100%;
+}
+
 .add-to-outfits {
   margin: 50% 2% 2%;
   padding: 10%;
@@ -96,7 +101,7 @@
   float: right;
   z-index: 2;
   position: relative;
-  margin-bottom: -3em;
+  margin-top: -100%;
   color: white;
 }
 
@@ -111,5 +116,36 @@
 }
 
 .error-boundary-related-lists details:hover {
+  cursor: pointer;
+}
+
+.comparison-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3;
+}
+
+.comparison-modal .modal-body {
+  position: fixed;
+  background: white;
+  width: 80%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: 2em;
+  border-radius: 4px;
+  z-index: 4;
+}
+
+.comparison-modal-close {
+  float: right;
+}
+
+.comparison-modal-close:hover {
   cursor: pointer;
 }

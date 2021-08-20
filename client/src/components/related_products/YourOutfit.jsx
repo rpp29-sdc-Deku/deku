@@ -14,7 +14,6 @@ class YourOutfit extends React.Component {
       addToUserOutfits,
       removeFromUserOutfits,
       selectProduct,
-      currentProductDetails,
       type
     } = this.props;
     // console.log('RENDER YOUR OUTFITS ========== ', userOutfits);
