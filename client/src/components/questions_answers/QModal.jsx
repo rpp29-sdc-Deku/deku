@@ -59,7 +59,7 @@ class QModal extends React.Component {
   }
 
   render () {
-    const productName =  this.props.productName || document.getElementsByClassName('product_name info')[0].innerText;
+    const productName = this.props.productName || document.getElementsByClassName('product_name info')[0].innerText;
 
     return (
       <div className='modalContainer'>

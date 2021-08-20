@@ -25,7 +25,7 @@ class RelatedLists extends React.Component {
 
   componentDidMount () {
     this.fetchRelatedProducts();
-    // console.log('COMPONENT DID MOUNT ======= ', this.state);
+    console.log('COMPONENT DID MOUNT ======= ', this.state);
   }
 
   componentDidUpdate (prevState) {
