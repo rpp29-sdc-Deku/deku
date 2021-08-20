@@ -31,6 +31,7 @@ class ProductCard extends React.Component {
       removeFromUserOutfits,
       selectProduct,
       productid,
+      masterProductDetails,
       type
     } = this.props;
 
@@ -57,7 +58,7 @@ class ProductCard extends React.Component {
           <div className='product-card-price'>${defaultPrice}</div>
           <div className='product-start-rating'></div>
         </div>
-        {compare && <ComparisonModal compareProducts={compareProducts} bundle={this.props} /> }
+        {compare && <ComparisonModal compareProducts={compareProducts} products={this.props} /> }
       </div>
     );
   }
