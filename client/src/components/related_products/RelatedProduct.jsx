@@ -34,7 +34,7 @@ class RelatedProduct extends React.Component {
 
     return (
     <div className='related-products-wrapper'>
-      <div className='section-title'>Related Products</div>
+      <div className='section-title'><h3>Related Products</h3></div>
       <div className='carousel-container'>
         {ProductCards}
       </div>

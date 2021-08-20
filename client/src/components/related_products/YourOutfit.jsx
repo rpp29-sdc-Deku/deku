@@ -40,7 +40,7 @@ class YourOutfit extends React.Component {
 
     return (
       <div className='your-outfits-wrapper'>
-        <div className='section-title'>Your Outfit</div>
+        <div className='section-title'><h3>Your Outfit</h3></div>
         <div className='carousel-container'>
           <div className='product-card' onClick={(e => addToUserOutfits(e, 0, 'currentProductDetails'))}>
             <div className='add-to-outfits'>

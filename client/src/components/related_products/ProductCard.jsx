@@ -39,7 +39,7 @@ class ProductCard extends React.Component {
         </div>
         <div className='card-description-container' onClick={(e => selectProduct(e, productid))} >
           <div className='category-name'>{category}</div>
-          <div className='product-card-title'>{name}</div>
+          <div className='product-card-title'><h4>{name}</h4></div>
           <div className='product-card-price'>${defaultPrice}</div>
           <div className='product-start-rating'></div>
         </div>
