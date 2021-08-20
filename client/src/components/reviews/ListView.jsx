@@ -51,7 +51,7 @@ class ListView extends React.Component {
           <option value='Newest'>Newest</option>
           </select>
         </h2>
-        <input type='text' onChange={this.props.filterSearch} placeholder='Search For Review'></input>
+        <input type='text' onChange={(e) => this.props.filterSearch(e.target.value)} placeholder='Search For Review'></input>
         <div className='reviewList'>
         {this.props.reviewList.map((review, index) => {
           if (this.props.filterRatings.some((value) => value > 0)) {
@@ -61,7 +61,7 @@ class ListView extends React.Component {
                 return <List key={review.review_id} review={review} reSortList={listView.reSortList.bind(listView)}/>;
               }
             }
-            if (this.props.filterRatings.indexOf(review.rating) !== -1 && this.state.filterdSearch.length > 3) {
+            if (this.props.filterRatings.indexOf(review.rating) !== -1 && this.state.filterdSearch.length >= 3) {
               if (review.body.includes(this.state.filterdSearch) || review.summary.includes(this.state.filterdSearch)) {
                 count++;
                 if (count <= this.state.list) {
@@ -71,7 +71,7 @@ class ListView extends React.Component {
             }
             return '';
           }
-          if (this.state.filterdSearch.length > 3) {
+          if (this.state.filterdSearch.length >= 3) {
             if (review.body.includes(this.state.filterdSearch) || review.summary.includes(this.state.filterdSearch)) {
               count++;
               if (count <= this.state.list) {
@@ -80,10 +80,13 @@ class ListView extends React.Component {
             }
             return '';
           }
-          if (this.state.list <= index) {
-            return '';
+          if (this.state.filterdSearch.length < 3) {
+            if (this.state.list <= index) {
+              return '';
+            }
+            return <List key={review.review_id} review={review} reSortList={listView.reSortList.bind(listView)}/>;
           }
-          return <List key={review.review_id} review={review} reSortList={listView.reSortList.bind(listView)}/>;
+          return '';
         })}
         </div>
         <button className='moreReviews' onClick={this.increaseList.bind(this)} disabled={this.props.reviewList.length < 2 || this.state.list >= this.props.reviewList.length}>More Reviews</button>

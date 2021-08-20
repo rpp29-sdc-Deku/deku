@@ -2,6 +2,7 @@ import React from 'react';
 import ListView from './ListView.jsx';
 import Ratings from './Ratings.jsx';
 import AddReview from './AddReview.jsx';
+import debounce from 'lodash/debounce';
 /* eslint-disable react/prop-types */
 class Reviews extends React.Component {
   constructor (props) {
@@ -99,11 +100,11 @@ class Reviews extends React.Component {
     });
   }
 
-  filterSearch (e) {
+  filterSearch = debounce((text) => {
     this.setState({
-      filterdSearch: e.target.value
-    });
-  }
+      filterdSearch: text
+    })
+  }, 1000)
 
   componentDidMount () {
     this.getProductDetails();
