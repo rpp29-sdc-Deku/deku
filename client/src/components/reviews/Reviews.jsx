@@ -2,6 +2,7 @@ import React from 'react';
 import ListView from './ListView.jsx';
 import Ratings from './Ratings.jsx';
 import AddReview from './AddReview.jsx';
+import debounce from 'lodash/debounce';
 /* eslint-disable react/prop-types */
 class Reviews extends React.Component {
   constructor (props) {
@@ -14,7 +15,8 @@ class Reviews extends React.Component {
       recommended: {},
       sortBy: 'relevant',
       addReview: false,
-      ratingsBreakdown: {}
+      ratingsBreakdown: {},
+      filterdSearch: ''
     };
     // function goes here for api call
   }
@@ -97,6 +99,12 @@ class Reviews extends React.Component {
       newReviewAdded: true
     });
   }
+
+  filterSearch = debounce((text) => {
+    this.setState({
+      filterdSearch: text.toLowerCase()
+    })
+  }, 1000)
 
   componentDidMount () {
     this.getProductDetails();
@@ -205,7 +213,7 @@ class Reviews extends React.Component {
     return (
         <div className='Reviews'>
           {this.state.reviewList.length > 0 && (<Ratings filterRatings={this.filterRatings.bind(this)} ratingsBreakdown={this.state.ratingsBreakdown} removeFilterRatings={this.removeFilterRatings.bind(this)} filtered={this.state.filterRatings} starValue={this.props.starsValue} characteristics={this.state.characteristics} recommended={this.state.recommended}/>)}
-        <ListView filterRatings={this.state.filterRatings} reviewList={this.state.reviewList || []} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
+        <ListView filterdSearch={this.state.filterdSearch} filterSearch={this.filterSearch.bind(this)} filterRatings={this.state.filterRatings} reviewList={this.state.reviewList || []} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
         {this.state.addReview && <AddReview addReview={this.addReview.bind(this)} getProductDetails={this.getProductDetails.bind(this)} product_id={this.props.product_id} characteristics={this.state.characteristics}/>}
         </div>
     );

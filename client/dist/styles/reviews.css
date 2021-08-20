@@ -230,12 +230,25 @@ input[type='radio'] {
 }
 
 meter {
-  width: 75%;
+  width: 65%;
   margin-left: 5%;
+  margin-right: 2%;
 }
 
 meter::-webkit-meter-bar {
   background: #EEE;
   /* box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset; */
   border-radius: 0.5%;
+}
+
+.numberdReview {
+  font-size: 80%;
+  min-width: 10%;
+  max-width: 10%;
+  text-align: end;
+}
+
+.RatingsBreakdowns {
+  display: flex;
+  justify-content: space-between;
 }
