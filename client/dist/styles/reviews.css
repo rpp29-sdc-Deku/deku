@@ -119,6 +119,10 @@
   background-color: white;
 }
 
+.reviewYes:hover {
+  cursor: pointer;
+}
+
 .reviewPopUp {
   margin-top: 5%;
   margin-bottom: 5%;
@@ -251,4 +255,11 @@ meter::-webkit-meter-bar {
 .RatingsBreakdowns {
   display: flex;
   justify-content: space-between;
+}
+
+.reviewReport {
+  border: none;
+  background-color: white;
+  text-decoration: underline;
+  cursor: pointer;
 }
