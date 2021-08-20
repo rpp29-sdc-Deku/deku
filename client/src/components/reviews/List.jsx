@@ -56,6 +56,7 @@ class List extends React.Component {
   }
 
   render () {
+    console.log('this.props', this.props.review);
     return (
       <div className='reviewTile'>
           <div className='reviewStarRating'>
@@ -81,11 +82,14 @@ class List extends React.Component {
               ;
             })}
           </div>
-          <div className='reviewHelpful'>
-            <p>Helpful? <button onClick={this.increaseHelfpulness.bind(this)} className='reviewYes'>Yes</button>({this.props.review.helpfulness}) | <span>Report</span></p>
+          <div className='reviewRecommended'>
+            {this.props.review.recommend && (<p>&#10003; I recommend this product</p>)}
           </div>
           <div className='reviewResponse'>
-            review response | {this.props.review.response}
+            {this.props.review.response === null ? '' : this.props.review.response.length > 0 ? (<p>Response: <br></br>{this.props.review.response}</p>) : ''}
+          </div>
+          <div className='reviewHelpful'>
+            <p>Helpful? <button onClick={this.increaseHelfpulness.bind(this)} className='reviewYes'>Yes</button>({this.props.review.helpfulness}) | <span>Report</span></p>
           </div>
           <hr></hr>
           {this.state.imageClick && (<div onClick={this.closeImage.bind(this)}className='reviewImageContainer'>
