@@ -62,7 +62,7 @@ class ListView extends React.Component {
               }
             }
             if (this.props.filterRatings.indexOf(review.rating) !== -1 && this.state.filterdSearch.length >= 3) {
-              if (review.body.includes(this.state.filterdSearch) || review.summary.includes(this.state.filterdSearch)) {
+              if (review.body.toLowerCase().includes(this.state.filterdSearch) || review.summary.toLowerCase().includes(this.state.filterdSearch)) {
                 count++;
                 if (count <= this.state.list) {
                   return <List key={review.review_id} review={review} reSortList={listView.reSortList.bind(listView)}/>;
@@ -72,7 +72,7 @@ class ListView extends React.Component {
             return '';
           }
           if (this.state.filterdSearch.length >= 3) {
-            if (review.body.includes(this.state.filterdSearch) || review.summary.includes(this.state.filterdSearch)) {
+            if (review.body.toLowerCase().includes(this.state.filterdSearch) || review.summary.toLowerCase().includes(this.state.filterdSearch)) {
               count++;
               if (count <= this.state.list) {
                 return <List key={review.review_id} review={review} reSortList={listView.reSortList.bind(listView)}/>;

@@ -102,7 +102,7 @@ class Reviews extends React.Component {
 
   filterSearch = debounce((text) => {
     this.setState({
-      filterdSearch: text
+      filterdSearch: text.toLowerCase()
     })
   }, 1000)
 
