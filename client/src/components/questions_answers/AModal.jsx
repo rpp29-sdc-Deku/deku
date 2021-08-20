@@ -73,7 +73,7 @@ class AModal extends React.Component {
           <div className='qaModalSubTitle'>{productName}: {this.props.questionBody}</div><br/>
 
           <form>
-            <label className='qaLabel' htmlFor='body' >Your Answer*</label>
+            <label className='qaLabel' htmlFor='body' >Your Answer*</label><br/>
             <textarea className='qaTextarea' type='text' name='body' maxLength='1000' onChange={this.formInput}></textarea><br/><br/>
 
             <label className='qaLabel' htmlFor='name' >What is your nickname*</label><br/>
