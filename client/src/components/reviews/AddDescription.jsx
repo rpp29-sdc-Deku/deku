@@ -13,7 +13,7 @@ const AddDescription = (props) => {
       </div>
       <div className='radios'>
         <label htmlFor='perfect'>Perfect</label>
-        <input type='radio' id='sizeSmall' name='Size' value='3'></input>
+        <input type='radio' id='perfect' name='Size' value='3'></input>
       </div>
       <div className='radios'>
         <label htmlFor='sizeBig'>1/2 size to big</label>

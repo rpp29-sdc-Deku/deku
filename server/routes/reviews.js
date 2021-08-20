@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getReviews, getMeta, putHelp } = require('../helpers/reviews_helpers.js');
+const { getReviews, getMeta, putHelp, postReview } = require('../helpers/reviews_helpers.js');
 
 router.get('/reviews', (req, res) => {
   getReviews(req.query.productId, req.query.sort).then((results) => {
@@ -22,6 +22,6 @@ router.get('/reviews/meta', (req, res) => {
 });
 
 router.post('/reviews', (req, res) => {
-  console.log(req);
+  postReview(req.body).then((response) => res.send('Success')).catch((err) => console.log(err));
 });
 module.exports = router;

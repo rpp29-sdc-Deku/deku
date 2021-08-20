@@ -4,7 +4,6 @@ import React from 'react';
 import axios from 'axios';
 import RelatedProduct from './RelatedProduct.jsx';
 import YourOutfit from './YourOutfit.jsx';
-import Overview from '../product_overview/Overview.jsx';
 
 class RelatedLists extends React.Component {
   constructor (props) {
@@ -14,18 +13,21 @@ class RelatedLists extends React.Component {
       currentProduct: null,
       currentProductDetails: null,
       relatedProducts: [],
-      userOutfits: cachedOutfits || []
+      userOutfits: cachedOutfits || [],
+      hasError: null,
+      errorMessage: null
     };
 
-    this.update = false;
     // console.log('THIS STATE RELATED LISTS ', this.state);
     this.addToUserOutfits = this.addToUserOutfits.bind(this);
     this.removeFromUserOutfits = this.removeFromUserOutfits.bind(this);
   }
 
   componentDidMount () {
-    this.fetchRelatedProducts();
-    console.log('COMPONENT DID MOUNT ======= ', this.state);
+    if (this.state.currentProduct !== null) {
+      this.fetchRelatedProducts();
+    // console.log('COMPONENT DID MOUNT ======= ', this.state);
+    }
   }
 
   componentDidUpdate (prevState) {
@@ -49,7 +51,6 @@ class RelatedLists extends React.Component {
       }
     })
       .then((relatedProducts) => {
-        console.log('related products data ', relatedProducts.data.length);
         const currentProduct = relatedProducts.data.length - 1;
         const currentProductDetails = relatedProducts.data.splice(currentProduct);
         this.setState({
@@ -57,13 +58,18 @@ class RelatedLists extends React.Component {
           currentProductDetails: currentProductDetails
         });
         console.log('🛍️   FETCH RELATED LISTS STATE =================  ', this.state);
-      });
+      })
+      .catch((err) => {
+        this.setState({
+          hasError: true,
+          errorMessage: err
+        }, () => console.log('RELATED LISTS ', err));
+      })
   }
 
   addToUserOutfits (e, index, list) {
     const outfit = this.state.[list][index];
     let newOutfitItem = true;
-    // iterate over user ouftits
     this.state.userOutfits.forEach((existingOutfit, i) => {
       if (existingOutfit.id === outfit.id) {
         newOutfitItem = false;
@@ -76,9 +82,6 @@ class RelatedLists extends React.Component {
         userOutfits: this.state.userOutfits
       }, () => window.localStorage.setItem('outfits', JSON.stringify(this.state.userOutfits))
       );
-      // console.log('user ouftis add =========== ', this.state.userOutfits);
-      // const cachedOutfits = window.localStorage.getItem('outfits');
-      // console.log('localStorage ======== ', JSON.parse(cachedOutfits));
     }
   }
 
@@ -89,24 +92,45 @@ class RelatedLists extends React.Component {
       userOutfits: this.state.userOutfits
     }, () => window.localStorage.setItem('outfits', JSON.stringify(this.state.userOutfits))
     );
-    // const cachedOutfits = window.localStorage.getItem('outfits');
-    // console.log('removed from local storage ======== ', JSON.parse(cachedOutfits));
   }
 
   render () {
-    // console.log('RENDER PROPS IN RELATED LISTS ====== ', this.props);
-    const { relatedProducts, userOutfits, currentProductDetails } = this.state;
-    // console.log('RENDER RELATED LISTS USEROUTFITS ', userOutfits);
+    const { relatedProducts, userOutfits, currentProductDetails, hasError, errorMessage } = this.state;
     const { selectProduct } = this.props;
 
+    if (hasError) {
+      return (
+        <div>
+          <div className='error-boundary-related-lists'>
+            <h2>🤖 Uh oh, wardrobe malfuction</h2>
+            <details style={{ whiteSpace: 'pre-wrap' }}>
+                {errorMessage.toString()}
+                <br />
+              </details>
+          </div>
+          <section className='suggested-products'>
+            <YourOutfit
+            userOutfits={userOutfits}
+            selectProduct={selectProduct}
+            currentProductDetails={currentProductDetails}
+            addToUserOutfits={this.addToUserOutfits}
+            removeFromUserOutfits={this.removeFromUserOutfits}
+            type={'userOutfit'}
+            />
+          </section>
+        </div>
+      )
+    }
+
     return (
+
       <section className='suggested-products'>
         <RelatedProduct
           relatedProducts={relatedProducts}
           addToUserOutfits={this.addToUserOutfits}
           selectProduct={selectProduct}
           type={'relatedProduct'}
-        />
+          />
 
         <YourOutfit
           userOutfits={userOutfits}
@@ -115,7 +139,7 @@ class RelatedLists extends React.Component {
           addToUserOutfits={this.addToUserOutfits}
           removeFromUserOutfits={this.removeFromUserOutfits}
           type={'userOutfit'}
-        />
+          />
       </section>
     );
   }

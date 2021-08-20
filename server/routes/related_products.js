@@ -15,7 +15,7 @@ router.get('/related-products', (req, res) => {
       res.end();
     })
     .catch((error) => {
-      console.log('error in axios', error);
+      console.log('error in axios ====== ', error);
       res.status(400).send('error in server app.get axios');
       res.end();
     });
