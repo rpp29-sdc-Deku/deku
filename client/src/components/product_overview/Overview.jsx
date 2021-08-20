@@ -58,8 +58,8 @@ class Overview extends React.Component {
     this.fetchProducts(this.props.productId);
   }
 
-  componentDidUpdate () {
-    if (this.props.productId !== this.state.product.id) {
+  componentDidUpdate (prevProps) {
+    if (prevProps.productId !== this.props.productId) {
       this.fetchProducts(this.props.productId);
       this.fetchProductStyles(this.props.productId);
     }
