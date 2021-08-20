@@ -234,7 +234,7 @@ class QuestionsAnswers extends React.Component {
   render () {
     return (
       <div className='QA'>
-        <div id='Qtitle'>QUESTIONS AND ANSWERS</div><br></br>
+        <div id='Qtitle' className='Qtitle'>QUESTIONS AND ANSWERS</div><br></br>
 
         <div className='searchContainer'><SearchWithTracking submitSearch={this.submitSearch} /></div><br></br>
 
@@ -250,6 +250,10 @@ class QuestionsAnswers extends React.Component {
         qlDisplay={this.state.qlDisplay}
         />
 
+        {this.state.qModalStatus === true && <QModalWithTracking submitQuestion={this.submitQuestion} qModalDisplay={this.qModalDisplay} />}
+
+        {this.state.aModalStatus === true && <AModalWithTracking questionBody={this.state.questionBody} submitAnswer={this.submitAnswer} aModalDisplay={this.aModalDisplay} qid={this.state.question_id} />}
+
         { this.state.questions.length > 2 && this.state.orgLength > this.state.Qlength && !this.state.activeSearch && <button className='btn' onClick={this.displayMoreQuestions} >More Answered Questions</button>
         }
 
@@ -257,9 +261,6 @@ class QuestionsAnswers extends React.Component {
         }
         <button className='btn' onClick={this.qModalDisplay} >Add A Question + </button>
 
-        {this.state.qModalStatus === true && <QModalWithTracking submitQuestion={this.submitQuestion} qModalDisplay={this.qModalDisplay} />}
-
-        {this.state.aModalStatus === true && <AModalWithTracking questionBody={this.state.questionBody} submitAnswer={this.submitAnswer} aModalDisplay={this.aModalDisplay} qid={this.state.question_id} />}
         </div>
     );
   }

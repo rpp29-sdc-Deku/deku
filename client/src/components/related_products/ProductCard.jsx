@@ -35,7 +35,7 @@ class ProductCard extends React.Component {
     return (
       <div className='product-card' key={index}>
         <div className='featured-image' style={{ backgroundImage: `url(${photo})` }}>
-          <div className='product-action-icon' onClick={(e => method(e, index))}>{ actionIcon }</div>
+          <div className='product-action-icon' onClick={(e => method(e, index, 'relatedProducts'))}>{ actionIcon }</div>
         </div>
         <div className='card-description-container' onClick={(e => selectProduct(e, productid))} >
           <div className='category-name'>{category}</div>

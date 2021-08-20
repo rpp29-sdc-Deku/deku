@@ -2,176 +2,31 @@
 import React from 'react';
 import postReview from '../../helpers/reviews/postReview.js';
 import StarRating from './StarRating.jsx';
+import AddDescription from './AddDescription.jsx';
 class AddReview extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       product_id: this.props.product_id,
-      helpful: '',
+      recommend: null,
       characteristics: {},
       body: '',
+      bodyRemaining: 50,
       summary: '',
-      name: '',
+      name: null,
       email: '',
-      rating: 0,
+      rating: null,
       file: [],
       thumbnail: ''
     };
     // this.description = this.description.bind(this);
   }
 
-  setDescription (description) {
-    if (description === 'Size') {
-      return (<div onChange={this.description.bind(this)} className='reviewRadio'>
-        <div className='radios'>
-          <label htmlFor='sizeSmall'>A size to small</label>
-          <input type='radio' id='sizeSmall' name='Size' value='1'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='small'>1/2 size to small</label>
-          <input type='radio' id='small' name='Size' value='2'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='perfect'>Perfect</label>
-          <input type='radio' id='sizeSmall' name='Size' value='3'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='sizeBig'>1/2 size to big</label>
-          <input type='radio' id='sizeBig' name='Size' value='4'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='wide'>A size to wide</label>
-          <input type='radio' id='wide' name='Size' value='5'></input>
-        </div>
-      </div>);
-    }
-    if (description === 'Comfort') {
-      return (<div onChange={this.description.bind(this)} className='reviewRadio'>
-        <div className='radios'>
-          <label htmlFor='uncomfortable'>Uncomfortable</label>
-          <input type='radio' id='uncomfortable' name='Comfort' value='1'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='sligthlyUncomfortable'>Sligthly Uncomfortable</label>
-          <input type='radio' id='sligthlyUncomfortable' name='Comfort' value='2'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='ok'>Ok</label>
-          <input type='radio' id='ok' name='Comfort' value='3'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='comfortable'>Comfortable</label>
-          <input type='radio' id='comfortable' name='Comfort' value='4'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='comfortPerfect'>Perfect</label>
-          <input type='radio' id='comfortPerfect' name='Comfort' value='5'></input>
-        </div>
-      </div>);
-    }
-    if (description === 'Length') {
-      return (<div onChange={this.description.bind(this)} className='reviewRadio'>
-        <div className='radios'>
-          <label htmlFor='short'>Runs Short</label>
-          <input type='radio' id='short' name='Length' value='1'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='slightlyShort'>Runs slightly Short</label>
-          <input type='radio' id='slightlyShort' name='Length' value='2'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='lengthPerfect'>Perfect</label>
-          <input type='radio' id='lengthPerfect' name='Length' value='3'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='slightlyLong'>Runs slightly long</label>
-          <input type='radio' id='sligthlyLong' name='Length' value='4'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='lengthLong'>Runs Long</label>
-          <input type='radio' id='lengthLong' name='Length' value='5'></input>
-        </div>
-      </div>);
-    }
-    if (description === 'Fit') {
-      return (<div onChange={this.description.bind(this)} className='reviewRadio'>
-        <div className='radios'>
-          <label htmlFor='tight'>Runs tight</label>
-          <input type='radio' id='tight' name='Fit' value='1'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='slightlyTight'>Rungs slightly tight</label>
-          <input type='radio' id='slightlyTight' name='Fit' value='2'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='fitPerfect'>Perfect</label>
-          <input type='radio' id='fitPerfect' name='Fit' value='3'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='fitLong'>Runs slightly long</label>
-          <input type='radio' id='fitLong' name='Fit' value='4'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='fitLonger'>Runs Long</label>
-          <input type='radio' id='fitLonger' name='Fit' value='5'></input>
-        </div>
-      </div>);
-    }
-    if (description === 'Quality') {
-      return (<div onChange={this.description.bind(this)} className='reviewRadio'>
-        <div className='radios'>
-          <label htmlFor='poor'>Poor</label>
-          <input type='radio' id='poor' name='Quality' value='1'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='belowAverage'>Below Average</label>
-          <input type='radio' id='belowAverage' name='Quality' value='2'></input>
-        </div>
-        <div className='radios'>
-         <label htmlFor='expected'>What I expected</label>
-         <input type='radio' id='expected' name='Quality' value='3'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='great'>Pretty Great</label>
-          <input type='radio' id='great' name='Quality' value='4'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='qualityPerfect'>Perfect</label>
-          <input type='radio' id='qualityPerfect' name='Quality' value='5'></input>
-        </div>
-      </div>);
-    }
-    if (description === 'Width') {
-      return (<div onChange={this.description.bind(this)} className='reviewRadio'>
-        <div className='radios'>
-          <label htmlFor='tooNarrow'>Too Narrow</label>
-          <input type='radio' id='tooNarrow' name='Width' value='1'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='slightlyNarrow'>Slightly Narrow</label>
-          <input type='radio' id='slightlyNarrow' name='Width' value='2'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='widthPerfect'>Perfect</label>
-          <input type='radio' id='widthPerfect' name='Width' value='3'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='sligthlyWide'>Sligthly Wide</label>
-          <input type='radio' id='sligthlyWide' name='Width' value='4'></input>
-        </div>
-        <div className='radios'>
-          <label htmlFor='tooWide'>Too Wide</label>
-          <input type='radio' id='tooWide' name='Width' value='5'></input>
-        </div>
-      </div>);
-    }
-  }
-
   description (e) {
     this.props.characteristics.forEach((item) => {
       if (item[e.target.name]) {
         const obj = this.state.characteristics;
-        obj[item[e.target.name].id] = e.target.value;
+        obj[item[e.target.name].id] = parseInt(e.target.value);
         this.setState({
           characteristics: obj
         }, () => console.log(this.state));
@@ -187,14 +42,14 @@ class AddReview extends React.Component {
 
   body (e) {
     this.setState({
-      body: e.target.value
+      body: e.target.value,
+      bodyRemaining: 50 - e.target.value.length
     });
   }
 
-  helpful (e) {
-    console.log('hi');
+  recommend (e) {
     this.setState({
-      helpful: e.target.value
+      recommend: e.target.value === 'Yes'
     });
   }
 
@@ -210,16 +65,21 @@ class AddReview extends React.Component {
     });
   }
 
-  rating (e) {
-    console.log(e.target.value);
+  rating (rating) {
     this.setState({
-      rating: e.target.value
+      rating: rating
     });
   }
 
   sendData (e) {
     e.preventDefault();
-    postReview(this.state);
+    if (!this.formValidate()) {
+      alert('You must enter the following: Any mandatory fields are blank, The review body is less than 50 characters, The email address provided is not in correct email format or The images selected are invalid or unable to be uploaded');
+      return;
+    };
+    postReview(this.state).then((results) => {
+      this.props.getProductDetails();
+    });
   }
 
   upload (e) {
@@ -232,28 +92,45 @@ class AddReview extends React.Component {
     }, () => console.log(this.state.file));
   }
 
+  formValidate () {
+    if (Object.keys(this.state.characteristics).length !== this.props.characteristics.length) {
+      return false;
+    }
+    if (this.state.bodyRemaining > 0 || this.state.rating === null || this.state.recommended === null || this.state.name === null) {
+      return false;
+    }
+    return true;
+  }
+
   render () {
     return (
       <div className='reviewPop'>
        <div className='reviewPopUp'>
          <form onSubmit={this.sendData.bind(this)}>
+           <div className='ReviewTitle'>
+             <h1>Write Your Review</h1>
+             <h3>About the [Product Name]</h3>
+             <span onClick={this.props.addReview}>xxxx</span>
+           </div>
             <div>
-
-           <StarRating/>
+             rating - Manditory
+           <StarRating rating={this.rating.bind(this)}/>
             </div>
 
            <div>
             <br></br>
+              Recomend product - Manditory
             <label htmlFor='yes'>Yes</label>
-            <input onChange={this.helpful.bind(this)} type='radio' id='yes' value='Yes' name='helpful'></input>
+            <input onChange={this.recommend.bind(this)} type='radio' id='yes' value='Yes' name='helpful'></input>
             <br></br>
             <label htmlFor='no'>No</label>
-            <input onChange={this.helpful.bind(this)} type='radio' id='no' value='No' name='helpful'></input>
+            <input onChange={this.recommend.bind(this)} type='radio' id='no' value='No' name='helpful'></input>
             <div className='radioReviews'>
               {this.props.characteristics.map((item, index) => {
                 return <div className='reviewSpace' key={index}>
                   {Object.keys(item)}
-                  {this.setDescription(Object.keys(item)[0])}
+                  {/* {this.setDescription(Object.keys(item)[0])} */}
+                  <AddDescription name={Object.keys(item)[0]} description={this.description.bind(this)}/>
                 </div>;
               })}
             </div>
@@ -261,15 +138,18 @@ class AddReview extends React.Component {
               <input type='text' maxLength='60' onChange={this.summary.bind(this)} placeholder='Example: Best purchase ever!'></input>
             </div>
             <div className='addReviewBody'>
-              <textarea rows='7' cols='60' onChange={this.body.bind(this)} placeholder='Why did you like the product or not?'></textarea>
+              <textarea rows='7' cols='60' minLength='50' maxLength='1000' onChange={this.body.bind(this)} placeholder='Why did you like the product or not?'></textarea>
+              <p>{this.state.bodyRemaining > 0 ? `Minimum required characters left: ${this.state.bodyRemaining}` : 'Minimum reached' }</p>
             </div>
             <div className='reviewNickName'>
               <input type='text' maxLength='60' onChange={this.name.bind(this)} placeholder='Example: Jackson11!'></input>
+              <p>For privacy reasons, do not use your full name or email address</p>
             </div>
             <div className='reviewEmail'>
               <label htmlFor='email'>Email</label>
               <br></br>
-              <input type='email' id='email' onChange={this.email.bind(this)} placeholder='Example: jackson11@email.com'></input>
+              <input type='email' id='email' maxLength='60' onChange={this.email.bind(this)} placeholder='Example: jackson11@email.com' required></input>
+              <p>For authentication reasons, you will not be emailed</p>
             </div>
             <div className='reviewFileUpload'>
             <input type='file' onChange={this.upload.bind(this)} name='image' accept='image/png, image/jpeg'></input>

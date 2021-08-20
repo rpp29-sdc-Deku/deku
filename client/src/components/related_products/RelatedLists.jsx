@@ -8,21 +8,26 @@ import YourOutfit from './YourOutfit.jsx';
 class RelatedLists extends React.Component {
   constructor (props) {
     super(props);
+    const cachedOutfits = JSON.parse(window.localStorage.getItem('outfits'));
     this.state = {
       currentProduct: null,
+      currentProductDetails: null,
       relatedProducts: [],
-      userOutfits: []
+      userOutfits: cachedOutfits || [],
+      hasError: null,
+      errorMessage: null
     };
 
-    this.update = false;
     // console.log('THIS STATE RELATED LISTS ', this.state);
     this.addToUserOutfits = this.addToUserOutfits.bind(this);
     this.removeFromUserOutfits = this.removeFromUserOutfits.bind(this);
   }
 
   componentDidMount () {
-    this.fetchRelatedProducts();
+    if (this.state.currentProduct !== null) {
+      this.fetchRelatedProducts();
     // console.log('COMPONENT DID MOUNT ======= ', this.state);
+    }
   }
 
   componentDidUpdate (prevState) {
@@ -46,58 +51,95 @@ class RelatedLists extends React.Component {
       }
     })
       .then((relatedProducts) => {
-        this.setState({ relatedProducts: relatedProducts.data });
-        // console.log('🛍️   FETCH RELATED LISTS STATE =================  ', this.state);
-      });
+        const currentProduct = relatedProducts.data.length - 1;
+        const currentProductDetails = relatedProducts.data.splice(currentProduct);
+        this.setState({
+          relatedProducts: relatedProducts.data,
+          currentProductDetails: currentProductDetails
+        });
+        console.log('🛍️   FETCH RELATED LISTS STATE =================  ', this.state);
+      })
+      .catch((err) => {
+        this.setState({
+          hasError: true,
+          errorMessage: err
+        }, () => console.log('RELATED LISTS ', err));
+      })
   }
 
-  addToUserOutfits (e, index) {
-    const { relatedProducts } = this.state;
-    const outfit = relatedProducts[index];
-    let existsInOutFit = false;
-    // iterate over user ouftits
+  addToUserOutfits (e, index, list) {
+    const outfit = this.state.[list][index];
+    let newOutfitItem = true;
     this.state.userOutfits.forEach((existingOutfit, i) => {
       if (existingOutfit.id === outfit.id) {
-        existsInOutFit = true;
+        newOutfitItem = false;
       }
     });
 
-    if (!existsInOutFit) {
+    if (newOutfitItem) {
       this.state.userOutfits.push(outfit);
-      this.setState({ userOutfits: this.state.userOutfits });
-      console.log('user ouftis add =========== ', this.state.userOutfits);
+      this.setState({
+        userOutfits: this.state.userOutfits
+      }, () => window.localStorage.setItem('outfits', JSON.stringify(this.state.userOutfits))
+      );
     }
   }
 
   removeFromUserOutfits (e, index) {
     const { userOutfits } = this.state;
     userOutfits.splice(index, 1);
-    this.setState({ userOutfits: this.state.userOutfits });
+    this.setState({
+      userOutfits: this.state.userOutfits
+    }, () => window.localStorage.setItem('outfits', JSON.stringify(this.state.userOutfits))
+    );
   }
 
   render () {
-    // console.log('RENDER PROPS IN RELATED LISTS ====== ', this.props);
-    const { relatedProducts, userOutfits, currentProduct } = this.state;
-    // console.log('RENDER RELATED LISTS USEROUTFITS ', userOutfits);
+    const { relatedProducts, userOutfits, currentProductDetails, hasError, errorMessage } = this.state;
     const { selectProduct } = this.props;
 
+    if (hasError) {
+      return (
+        <div>
+          <div className='error-boundary-related-lists'>
+            <h2>🤖 Uh oh, wardrobe malfuction</h2>
+            <details style={{ whiteSpace: 'pre-wrap' }}>
+                {errorMessage.toString()}
+                <br />
+              </details>
+          </div>
+          <section className='suggested-products'>
+            <YourOutfit
+            userOutfits={userOutfits}
+            selectProduct={selectProduct}
+            currentProductDetails={currentProductDetails}
+            addToUserOutfits={this.addToUserOutfits}
+            removeFromUserOutfits={this.removeFromUserOutfits}
+            type={'userOutfit'}
+            />
+          </section>
+        </div>
+      )
+    }
+
     return (
+
       <section className='suggested-products'>
         <RelatedProduct
           relatedProducts={relatedProducts}
           addToUserOutfits={this.addToUserOutfits}
           selectProduct={selectProduct}
           type={'relatedProduct'}
-        />
+          />
 
         <YourOutfit
           userOutfits={userOutfits}
           selectProduct={selectProduct}
-          currentProduct={currentProduct}
+          currentProductDetails={currentProductDetails}
           addToUserOutfits={this.addToUserOutfits}
           removeFromUserOutfits={this.removeFromUserOutfits}
           type={'userOutfit'}
-        />
+          />
       </section>
     );
   }

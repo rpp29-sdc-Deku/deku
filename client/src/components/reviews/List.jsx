@@ -9,7 +9,9 @@ class List extends React.Component {
     this.state = {
       isClicked: false,
       imageClick: false,
-      src: ''
+      src: '',
+      reviewBodyFull: this.props.review.body,
+      notClicked: true,
     };
   }
 
@@ -47,6 +49,12 @@ class List extends React.Component {
     });
   }
 
+  showMoreOrLess () {
+    this.setState({
+      notClicked: !this.state.notClicked
+    });
+  }
+
   render () {
     return (
       <div className='reviewTile'>
@@ -58,7 +66,15 @@ class List extends React.Component {
             <h1>{this.props.review.summary}</h1>
           </div>
           <div className='reviewBody'>
-            <p>{this.props.review.body}</p>
+            {this.state.notClicked && this.state.reviewBodyFull.length <= 200 && (<p>{this.state.reviewBodyFull}</p>)}
+            {this.state.notClicked && this.state.reviewBodyFull.length > 200 && (<div>
+              <p>{this.state.reviewBodyFull.slice(0, 200)}</p>
+              <button onClick={this.showMoreOrLess.bind(this)}>Show More</button>
+            </div>)}
+            {!this.state.notClicked && (<div>
+              <p>{this.state.reviewBodyFull}</p>
+              <button onClick={this.showMoreOrLess.bind(this)}>Show Less</button>
+            </div>)}
             {this.props.review.photos.map((photo) => {
               return <img onClick={this.expandImage.bind(this)} style={{ width: '5em', height: '5em' }}
               key={photo.id} src={photo.url}></img>
