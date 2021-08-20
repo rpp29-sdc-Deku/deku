@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const axios = require('axios');
 const apiToken = process.env.API_TOKEN;
 
@@ -32,6 +33,17 @@ const putHelp = (reviewID) => {
   });
 };
 
+const postReview = (obj) => {
+  const { product_id, rating, summary, body, recommend, name, email, characteristics } = obj;
+  const data = { product_id: product_id, rating: rating, summary: summary, body: body, recommend: recommend, name: name, email: email, characteristics: characteristics, photos: [] };
+  return axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews', data, {
+    headers: {
+      Authorization: apiToken
+    }
+  });
+};
+
 module.exports.getReviews = getReviews;
 module.exports.getMeta = getMeta;
 module.exports.putHelp = putHelp;
+module.exports.postReview = postReview;
