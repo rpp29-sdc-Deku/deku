@@ -36,7 +36,7 @@ class ProductCard extends React.Component {
     let method, actionIcon;
     if (type === 'relatedProduct') {
       method = addToUserOutfits;
-      actionIcon = 'Star';
+      actionIcon = <span className='icon'>&#9733;</span>;
     }
 
     if (type === 'userOutfit') {
@@ -51,7 +51,7 @@ class ProductCard extends React.Component {
           <div className='product-action-icon' onClick={(e => method(e, index, 'relatedProducts'))}>{ actionIcon }</div>
         </div>
         <div className='card-description-container' onClick={(e => selectProduct(e, productid))} >
-          <div className='category-name'>{category}</div>
+          <div className='category-name'><h5>{category}</h5></div>
           <div className='product-card-title'><h4>{name}</h4></div>
           <div className='product-card-price'>${defaultPrice}</div>
           <div className='product-start-rating'></div>

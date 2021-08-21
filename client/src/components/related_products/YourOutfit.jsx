@@ -52,7 +52,7 @@ class YourOutfit extends React.Component {
         <div className='carousel-container'>
           <div className='product-card' onClick={(e => addToUserOutfits(e, 0, 'masterProductDetails'))}>
             <div className='add-to-outfits'>
-              <h3>+ Add to Outfit</h3>
+              <h4>+ Add to Outfit</h4>
             </div>
           </div>
           {outfitCards}

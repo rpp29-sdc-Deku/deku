@@ -48,10 +48,10 @@ class ProductInfo extends React.Component {
             <p onClick={() => { const element = document.getElementsByClassName('Reviews')[0]; element.scrollIntoView(); }} className="read_reviews">Read all {this.props.reviewsNumber} reviews</p>
           </div>
           <div className="product_category info">
-            {this.props.product.category}
+            <h2>{this.props.product.category}</h2>
           </div>
           <div className="product_name info">
-            {this.props.product.name}
+            <h1>{this.props.product.name}</h1>
           </div>
           <div className="product_price info">
             {this.props.currentStyle.sale_price !== null ? <div><p className="sale_price">{this.props.currentStyle.sale_price}</p> <p className="original_price">{this.props.currentStyle.original_price}</p></div> : this.props.currentStyle.original_price }

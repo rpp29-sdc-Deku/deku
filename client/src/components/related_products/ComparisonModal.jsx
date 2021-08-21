@@ -42,6 +42,8 @@ export default function ComparisonModal (props) {
     // compare matching features between products that are not null
     if (masterProductFeature) {
       if (masterProductFeature === thisProductFeature) {
+        const copyFeatureName = featureName;
+        featureName = `${masterProductFeature} ${copyFeatureName}`;
         masterProductFeature = '✔️';
         thisProductFeature = '✔️';
       }
@@ -57,9 +59,9 @@ export default function ComparisonModal (props) {
 
     return (
         <tr className='comparison-row' key={i}>
-        <td> {masterProductFeature} </td>
+        <td className='feta-cheese-blue'> {masterProductFeature} </td>
         <td className='feature-name'> {featureName} </td>
-        <td> {thisProductFeature} </td>
+        <td className='feta-cheese-blue'> {thisProductFeature} </td>
       </tr>
     );
   });
