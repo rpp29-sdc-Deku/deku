@@ -15,6 +15,7 @@ class YourOutfit extends React.Component {
       addToUserOutfits,
       removeFromUserOutfits,
       selectProduct,
+      starValue,
       type
     } = this.props;
 
@@ -42,6 +43,7 @@ class YourOutfit extends React.Component {
       removeFromUserOutfits={removeFromUserOutfits}
       selectProduct={selectProduct}
       productsToCompare={productsToCompare}
+      starValue={starValue}
       type={type}
       />;
     });

@@ -18,12 +18,13 @@
 .related-products-wrapper, .your-outfits-wrapper {
   overflow-x: auto;
   white-space: nowrap;
+  min-height: 27em;
 }
 
 .carousel-container {
   display: grid;
   grid-template-columns: repeat(12, 16em);
-  grid-auto-rows: 20em;
+  grid-auto-rows: 22em;
 }
 
 .product-card {

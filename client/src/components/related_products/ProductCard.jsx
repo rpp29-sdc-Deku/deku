@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import ComparisonModal from './ComparisonModal.jsx';
+import StarsGlobal from '../reviews/StarsGlobal.jsx';
 
 class ProductCard extends React.Component {
   constructor (props) {
@@ -30,6 +31,7 @@ class ProductCard extends React.Component {
       selectProduct,
       productid,
       productsToCompare,
+      starValue,
       type
     } = this.props;
 
@@ -54,7 +56,7 @@ class ProductCard extends React.Component {
           <div className='category-name'><h5>{category}</h5></div>
           <div className='product-card-title'><h4>{name}</h4></div>
           <div className='product-card-price'>${defaultPrice}</div>
-          <div className='product-start-rating'></div>
+          <StarsGlobal value={starValue} />
         </div>
         {this.state.compareOpen && <ComparisonModal toggleCompareProducts={this.toggleCompareProducts} productsToCompare={productsToCompare} /> }
       </div>
