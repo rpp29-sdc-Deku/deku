@@ -234,7 +234,7 @@ class QuestionsAnswers extends React.Component {
   render () {
     return (
       <div className='QA'>
-        <div id='Qtitle' className='Qtitle'>QUESTIONS AND ANSWERS</div><br></br>
+        <div id='Qtitle' className='Qtitle'><h3>Questions and Answers</h3></div><br></br>
 
         <div className='searchContainer'><SearchWithTracking submitSearch={this.submitSearch} /></div><br></br>
 

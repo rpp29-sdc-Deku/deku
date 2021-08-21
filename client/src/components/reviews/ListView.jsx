@@ -51,7 +51,7 @@ class ListView extends React.Component {
           <option value='Newest'>Newest</option>
           </select>
         </h2>
-        <input type='text' onChange={(e) => this.props.filterSearch(e.target.value)} placeholder='Search For Review'></input>
+        <input type='text' className='searchbar' onChange={(e) => this.props.filterSearch(e.target.value)} placeholder='Search For Review'></input>
         <div className='reviewList'>
         {this.props.reviewList.map((review, index) => {
           if (this.props.filterRatings.some((value) => value > 0)) {
@@ -89,8 +89,8 @@ class ListView extends React.Component {
           return '';
         })}
         </div>
-        <button className='moreReviews' onClick={this.increaseList.bind(this)} disabled={this.props.reviewList.length < 2 || this.state.list >= this.props.reviewList.length}>More Reviews</button>
-        <button className='addReviews' onClick={this.props.addReview}>Add A Review +</button>
+        <button className='moreReviews btn' onClick={this.increaseList.bind(this)} disabled={this.props.reviewList.length < 2 || this.state.list >= this.props.reviewList.length}>More Reviews</button>
+        <button className='addReviews btn' onClick={this.props.addReview}>Add A Review +</button>
       </div>
     );
   }

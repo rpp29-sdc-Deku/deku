@@ -41,7 +41,7 @@ class Question extends React.Component {
     return (
       <div className='Q'>
         <div className='Qblock'>
-          <span className="Qb">Q: {this.props.question
+          <span className="Qb"><span className='feta-cheese-red'>Q:</span> {this.props.question
             ? this.props.question.question_body
             : 'No Questions Have Been Asked Yet!'
           }

@@ -86,7 +86,7 @@ class Answer extends React.Component {
     return (
       <div className='A'>
         <div>
-          <div className='Qblock'>A: <span className='mid' >{this.props.answer.body}</span>
+          <div className='Qblock'><span className='feta-cheese-red'>A:</span> <span className='mid' >{this.props.answer.body}</span>
           </div>
           {this.props.answer.photos.length > 0 &&
           this.props.answer.photos.map((photo) => <img className='qaPhoto' key={Math.random() * 100000} src={photo} onClick={this.displayFullScreenPhoto} loading='lazy' />)}
