@@ -18,7 +18,6 @@ class RelatedLists extends React.Component {
       errorMessage: null
     };
 
-    // console.log('THIS STATE RELATED LISTS ', this.state);
     this.addToUserOutfits = this.addToUserOutfits.bind(this);
     this.removeFromUserOutfits = this.removeFromUserOutfits.bind(this);
   }
@@ -134,9 +133,10 @@ class RelatedLists extends React.Component {
           />
 
         <YourOutfit
+          masterProductDetails={masterProductDetails}
           userOutfits={userOutfits}
-          selectProduct={selectProduct}
           addToUserOutfits={this.addToUserOutfits}
+          selectProduct={selectProduct}
           removeFromUserOutfits={this.removeFromUserOutfits}
           type={'userOutfit'}
           />

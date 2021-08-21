@@ -6,21 +6,19 @@ class ProductCard extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      compare: false
+      compareOpen: false
     };
 
-    this.compareProducts = this.compareProducts.bind(this);
+    this.toggleCompareProducts = this.toggleCompareProducts.bind(this);
   }
 
-  compareProducts (e) {
-    this.setState(({ compare }) => ({
-      compare: !compare
+  toggleCompareProducts (e) {
+    this.setState(({ compareOpen }) => ({
+      compareOpen: !compareOpen
     }), () => console.log('THIS STATE COMPARISON MODAL =========== ', this.props.index));
   }
 
   render () {
-    const { compareProducts } = this;
-    const { compare } = this.state;
     const {
       index,
       name,
@@ -31,7 +29,7 @@ class ProductCard extends React.Component {
       removeFromUserOutfits,
       selectProduct,
       productid,
-      masterProductDetails,
+      productsToCompare,
       type
     } = this.props;
 
@@ -44,12 +42,13 @@ class ProductCard extends React.Component {
     if (type === 'userOutfit') {
       method = removeFromUserOutfits;
       actionIcon = '❌';
+      console.log('PROPS IN PRODUCT CARD OUTFIT ========== ', this.props);
     }
 
     return (
       <div className='product-card' key={index}>
         <div className='featured-image' style={{ backgroundImage: `url(${photo})` }}>
-          <div className='compare' onClick={compareProducts}></div>
+          <div className='compare' onClick={this.toggleCompareProducts}></div>
           <div className='product-action-icon' onClick={(e => method(e, index, 'relatedProducts'))}>{ actionIcon }</div>
         </div>
         <div className='card-description-container' onClick={(e => selectProduct(e, productid))} >
@@ -58,7 +57,7 @@ class ProductCard extends React.Component {
           <div className='product-card-price'>${defaultPrice}</div>
           <div className='product-start-rating'></div>
         </div>
-        {compare && <ComparisonModal compareProducts={compareProducts} products={this.props} /> }
+        {this.state.compareOpen && <ComparisonModal toggleCompareProducts={this.toggleCompareProducts} productsToCompare={productsToCompare} /> }
       </div>
     );
   }

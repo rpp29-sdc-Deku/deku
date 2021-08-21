@@ -24,6 +24,13 @@ class RelatedProduct extends React.Component {
         photo = '';
       }
 
+      const thisProductDetails = product;
+
+      const productsToCompare = {
+        thisProductDetails,
+        masterProductDetails: masterProductDetails[0]
+      };
+
       return <ProductCard
         key={i}
         index={i}
@@ -32,9 +39,9 @@ class RelatedProduct extends React.Component {
         category={product.category}
         defaultPrice={product.default_price}
         photo={photo}
+        productsToCompare={productsToCompare}
         addToUserOutfits={addToUserOutfits}
         selectProduct={selectProduct}
-        masterProductDetails={masterProductDetails}
         type={type}
         />;
     });

@@ -38,13 +38,13 @@ const getRelatedProducts = (currentProductId) => {
   });
 
   const productDetailsWithImages = productImages.then((images) => {
-    const needed = ['id', 'photos'];
+    // const needed = ['id', 'photos'];
     const imageData = images.map(image => {
       const id = image.data.product_id;
       const imageObj = image.data.results[0];
       imageObj.id = id;
       const filtered = Object.keys(imageObj)
-        .filter(key => needed.includes(key))
+        // .filter(key => needed.includes(key))
         .reduce((obj, key) => {
           obj[key] = imageObj[key];
           return obj;
@@ -62,11 +62,11 @@ const getRelatedProducts = (currentProductId) => {
 };
 
 const combineDetailsAndImages = (productDetails, productImages) => {
-  const needed = ['id', 'name', 'slogan', 'default_price', 'category'];
+  // const needed = ['id', 'name', 'slogan', 'default_price', 'category'];
   const productOverview = productDetails.map(product => {
     const raw = product.data;
     const filtered = Object.keys(raw)
-      .filter(key => needed.includes(key))
+      // .filter(key => needed.includes(key))
       .reduce((obj, key) => {
         obj[key] = raw[key];
         return obj;
@@ -76,8 +76,8 @@ const combineDetailsAndImages = (productDetails, productImages) => {
 
   const combinedData = productOverview.map((product, i) => {
     const combine = {
-      ...product,
-      ...productImages[i]
+      ...productImages[i],
+      ...product
     };
     return combine;
   });
