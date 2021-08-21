@@ -130,7 +130,7 @@ class ProductForm extends React.Component {
           }
 
           <div className="star" onClick={this.handleStarClick.bind(this)}>
-            {this.state.starClicked ? <MdStar /> : <MdStarBorder />}
+            {this.state.starClicked ? <MdStar className="star_clicked" /> : <MdStarBorder />}
           </div>
 
         </div>
