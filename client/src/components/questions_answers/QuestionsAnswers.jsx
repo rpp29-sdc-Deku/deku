@@ -24,7 +24,9 @@ class QuestionsAnswers extends React.Component {
       aModalStatus: false,
       question_id: '',
       questionBody: '',
-      qlDisplay: false
+      qlDisplay: false,
+      breakingError: false,
+      errorMessage: null
     };
 
     this.submitSearch = this.submitSearch.bind(this);
@@ -69,6 +71,9 @@ class QuestionsAnswers extends React.Component {
           id: productId,
           Qlength: 2
         });
+      })
+      .catch((err) => {
+        this.setState({ errorMessage: err, breakingError: true });
       });
   }
 
@@ -145,6 +150,9 @@ class QuestionsAnswers extends React.Component {
         const orderedAnswers = this.sortAnswers(ordered);
         const receivedLength = response.data.length;
         this.setState({ questions: orderedAnswers, orgLength: receivedLength });
+      })
+      .catch((err) => {
+        this.setState({ errorMessage: err, breakingError: true });
       });
   }
 
@@ -159,6 +167,9 @@ class QuestionsAnswers extends React.Component {
         const orderedAnswers = this.sortAnswers(ordered);
         const receivedLength = response.data.length;
         this.setState({ questions: orderedAnswers, orgLength: receivedLength });
+      })
+      .catch((err) => {
+        this.setState({ errorMessage: err, breakingError: true });
       });
   }
 
@@ -173,6 +184,9 @@ class QuestionsAnswers extends React.Component {
         const orderedAnswers = this.sortAnswers(ordered);
         const receivedLength = response.data.length;
         this.setState({ questions: orderedAnswers, orgLength: receivedLength });
+      })
+      .catch((err) => {
+        this.setState({ errorMessage: err, breakingError: true });
       });
   }
 
@@ -187,6 +201,9 @@ class QuestionsAnswers extends React.Component {
         const orderedAnswers = this.sortAnswers(ordered);
         const receivedLength = response.data.length;
         this.setState({ questions: orderedAnswers, orgLength: receivedLength });
+      })
+      .catch((err) => {
+        this.setState({ errorMessage: err, breakingError: true });
       });
   }
 
@@ -212,7 +229,7 @@ class QuestionsAnswers extends React.Component {
         this.setState({ qModalStatus: false, questions: orderedAnswers, orgLength: receivedLength });
       })
       .catch((err) => {
-        console.log(err);
+        this.setState({ errorMessage: err, breakingError: true });
       });
   }
 
@@ -227,7 +244,8 @@ class QuestionsAnswers extends React.Component {
         this.setState({ aModalStatus: false, questions: orderedAnswers, orgLength: receivedLength });
       })
       .catch((err) => {
-        console.log(err);
+        console.log('WE OUT HERE', err);
+        this.setState({ errorMessage: err, breakingError: true });
       });
   }
 
@@ -250,9 +268,9 @@ class QuestionsAnswers extends React.Component {
         qlDisplay={this.state.qlDisplay}
         />
 
-        {this.state.qModalStatus === true && <QModalWithTracking submitQuestion={this.submitQuestion} qModalDisplay={this.qModalDisplay} />}
+        {this.state.qModalStatus === true && <QModalWithTracking errorMessage={this.state.errorMessage} breakingError={this.state.breakingError} submitQuestion={this.submitQuestion} qModalDisplay={this.qModalDisplay} />}
 
-        {this.state.aModalStatus === true && <AModalWithTracking questionBody={this.state.questionBody} submitAnswer={this.submitAnswer} aModalDisplay={this.aModalDisplay} qid={this.state.question_id} />}
+        {this.state.aModalStatus === true && <AModalWithTracking errorMessage={this.state.errorMessage} breakingError={this.state.breakingError} questionBody={this.state.questionBody} submitAnswer={this.submitAnswer} aModalDisplay={this.aModalDisplay} qid={this.state.question_id} />}
 
         { this.state.questions.length > 2 && this.state.orgLength > this.state.Qlength && !this.state.activeSearch && <button className='btn' onClick={this.displayMoreQuestions} >More Answered Questions</button>
         }
@@ -260,6 +278,8 @@ class QuestionsAnswers extends React.Component {
         { this.state.filteredQuestions.length > 2 && this.state.filteredQuestions.length > this.state.Qlength && this.state.activeSearch && <button className='btn' onClick={this.displayMoreQuestions} >More Answered Questions</button>
         }
         <button className='btn' onClick={this.qModalDisplay} >Add A Question + </button>
+
+        {this.state.breakingError && <div className='qaError'>uh oh... don't tell Leslie we broke it... {JSON.stringify(this.state.errorMessage)}</div>}
 
         </div>
     );

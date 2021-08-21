@@ -24,6 +24,11 @@ describe('Questions and Answers', function () {
     const wrapper = shallow(<QuestionsAnswers />);
     expect(wrapper.hasClass('QA')).toBeTruthy();
   });
+  // if('should display more questions when display more questions is clicked', function() {
+  //   const wrapper = shallow(<QuestionsAnswers />);
+  //   // wrapper.find('button').simulate('click');
+  //   // expect(wrapper.)
+  // })
 });
 
 describe('Questions List', function () {
@@ -52,12 +57,24 @@ describe('Question Modal', function () {
     const wrapper = shallow(<QModal productName={'test'} />);
     expect(wrapper.hasClass('modalContainer')).toBeTruthy();
   });
+
+  it('should display error on form submit if no information is entered', function () {
+    const wrapper = shallow(<QModal productName={'test'} />);
+    wrapper.find('input').at(2).simulate('click');
+    expect(wrapper.find('qaError')).toBeTruthy();
+  });
 });
 
 describe('Answer Modal', function () {
   it('should render the Answer Modal without crashing', function () {
     const wrapper = shallow(<AModal productName={'test'} />);
     expect(wrapper.hasClass('modalContainer')).toBeTruthy();
+  });
+
+  it('should display error on form submit if no information is entered', function () {
+    const wrapper = shallow(<AModal productName={'test'} />);
+    wrapper.find('input').at(2).simulate('click');
+    expect(wrapper.find('qaError')).toBeTruthy();
   });
 });
 
