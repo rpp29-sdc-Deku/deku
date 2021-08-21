@@ -17,7 +17,6 @@ class YourOutfit extends React.Component {
       selectProduct,
       type
     } = this.props;
-    console.log('RENDER YOUR OUTFITS ========== ', this.props);
 
     const outfitCards = userOutfits.map((outfit, i) => {
       let photo = outfit.photos[0].thumbnail_url;

@@ -15,7 +15,7 @@ class ProductCard extends React.Component {
   toggleCompareProducts (e) {
     this.setState(({ compareOpen }) => ({
       compareOpen: !compareOpen
-    }), () => console.log('THIS STATE COMPARISON MODAL =========== ', this.props.index));
+    }));
   }
 
   render () {
@@ -42,7 +42,6 @@ class ProductCard extends React.Component {
     if (type === 'userOutfit') {
       method = removeFromUserOutfits;
       actionIcon = '❌';
-      console.log('PROPS IN PRODUCT CARD OUTFIT ========== ', this.props);
     }
 
     return (

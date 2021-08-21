@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function ComparisonModal (props) {
-  console.log('PROPS IN COMPARISON MODAL!! ========== ', props);
   const { toggleCompareProducts, productsToCompare } = props;
   const { thisProductDetails, masterProductDetails } = productsToCompare;
 
@@ -16,8 +15,6 @@ export default function ComparisonModal (props) {
     const name = feature.feature;
     thisProductFeatures[name] = feature.value;
   });
-
-  console.log('MASTER PRODUCT FEATURES OBJECT ====== ', masterProductFeatures);
 
   const allFeatureNames = new Set([
     ...thisProductDetails.features.map(feature => feature.feature),
