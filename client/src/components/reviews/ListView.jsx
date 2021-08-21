@@ -36,7 +36,9 @@ class ListView extends React.Component {
     let count = 0;
     return (
       <div className='ReviewContain'>
+        <div className='reviewContainerTitle'>
         <h2>{this.props.reviewList.length + ' reviews sorted by '}
+        </h2>
           <select className='sortMethodsReview' defaultValue={
             this.props.sortBy === 'relevant'
               ? 'Relevance'
@@ -50,7 +52,7 @@ class ListView extends React.Component {
           <option value='Helpful'>Helpful</option>
           <option value='Newest'>Newest</option>
           </select>
-        </h2>
+        </div>
         <input type='text' className='searchbar' onChange={(e) => this.props.filterSearch(e.target.value)} placeholder='Search For Review'></input>
         <div className='reviewList'>
         {this.props.reviewList.map((review, index) => {
