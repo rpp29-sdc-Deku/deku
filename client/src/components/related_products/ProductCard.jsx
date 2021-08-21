@@ -36,7 +36,7 @@ class ProductCard extends React.Component {
     let method, actionIcon;
     if (type === 'relatedProduct') {
       method = addToUserOutfits;
-      actionIcon = 'Star';
+      actionIcon = <span className='icon'>&#9733;</span>;
     }
 
     if (type === 'userOutfit') {

@@ -45,11 +45,12 @@
 }
 
 .product-card .featured-image {
-  background: lightgrey;;
   height: 15em;
   overflow: hidden;
-  background-size: 100%;
   border-radius: 4px 4px 0 0;
+  background: lightgrey;;
+  background-size: cover;
+  background-position: center;
 }
 
 .product-card .featured-image img {
@@ -107,6 +108,10 @@
   position: relative;
   margin-top: -100%;
   color: white;
+}
+
+.icon {
+  font-size: 1.5em;
 }
 
 .product-action-icon:hover {
