@@ -17,7 +17,7 @@ router.get('/initialQA', (req, res) => {
   })
     .then((response) => {
       res.json(response.data.results);
-      res.send();
+      res.end();
     })
     .catch((err) => {
       res.send(err);
@@ -46,7 +46,7 @@ router.put('/likeQuestion', (req, res) => {
     })
     .then((response) => {
       res.json(response.data.results);
-      res.send();
+      res.end();
     })
     .catch((err) => {
       console.log('ERROR LIKING ANSWER', err);
@@ -76,7 +76,7 @@ router.put('/likeAnswer', (req, res) => {
     })
     .then((response) => {
       res.json(response.data.results);
-      res.send();
+      res.end();
     })
     .catch((err) => {
       console.log('ERROR LIKING ANSWER', err);
@@ -106,7 +106,7 @@ router.put('/reportQuestion', (req, res) => {
     })
     .then((response) => {
       res.json(response.data.results);
-      res.send();
+      res.end();
     })
     .catch((err) => {
       console.log('ERROR REPORTING QUESTION', err);
@@ -136,7 +136,7 @@ router.put('/reportAnswer', (req, res) => {
     })
     .then((response) => {
       res.json(response.data.results);
-      res.send();
+      res.end();
     })
     .catch((err) => {
       console.log('ERROR REPORTING QUESTION', err);
@@ -167,7 +167,7 @@ router.post('/submitQuestion', (req, res) => {
     })
     .then((response) => {
       res.json(response.data.results);
-      res.send();
+      res.end();
     })
     .catch((err) => {
       console.log('ERROR REPORTING QUESTION', err);
@@ -204,7 +204,7 @@ router.post('/submitAnswer', (req, res) => {
     })
     .then((response) => {
       res.json(response.data.results);
-      res.send();
+      res.end();
     })
     .catch((err) => {
       console.log('ERROR REPORTING QUESTION', err);
