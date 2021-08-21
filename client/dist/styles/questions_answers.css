@@ -1,23 +1,12 @@
 /* OVERALL WIDGET ---------------------------------------------*/
 
 .QA {
-<<<<<<< HEAD
-  width: 75vw;
-  height: auto;
-  margin: auto;
-  /* font-family: Arial, Helvetica, sans-serif;
-  font-weight:50;
-  display: flex;
-  align-items: center;
-  flex-direction: column; */
-=======
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight:50;
+  /*font-family: Arial, Helvetica, sans-serif;*/
+  /*font-weight:50;*/
   width: 80vw;
   height: auto;
-  margin: 0 10%;
+  margin: auto;
   padding: 2em 0;
->>>>>>> main
 }
 
 .QA:hover {
