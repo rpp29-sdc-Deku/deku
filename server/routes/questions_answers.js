@@ -5,7 +5,6 @@ const apiToken = process.env.API_TOKEN;
 const apiURL = process.env.API;
 
 router.get('/initialQA', (req, res) => {
-  console.log('we are out here');
   axios.get(`${apiURL}qa/questions`, {
     method: 'GET',
     headers: {
