@@ -40,14 +40,14 @@ class QModal extends React.Component {
   }
 
   submitQuestion (e) {
-    e.preventDefault();
-    this.props.clickTracker('submitQuestion');
+    if (e) { e.preventDefault(); };
     const missingInputFields = this.validateQuestionForm(this.state);
     if (!this.validateEmail(this.state.email)) {
       this.setState({ badInput: true, missingFields: ['valid email address'] });
       return;
     }
     if (!missingInputFields.length) {
+      this.props.clickTracker('submitQuestion');
       this.props.submitQuestion(this.state);
     } else {
       this.setState({ badInput: true, missingFields: missingInputFields });
@@ -86,6 +86,7 @@ class QModal extends React.Component {
         </form>
 
       </div>
+      {this.props.breakingError && <div className='qaError'>uh oh... don't tell Leslie we broke it... {JSON.stringify(this.props.errorMessage)}</div>}
     </div>
     );
   };

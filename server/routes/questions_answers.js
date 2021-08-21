@@ -18,10 +18,10 @@ router.get('/initialQA', (req, res) => {
   })
     .then((response) => {
       res.json(response.data.results);
-      res.end();
+      res.send();
     })
     .catch((err) => {
-      console.log(err);
+      res.send(err);
     });
 });
 
@@ -47,10 +47,11 @@ router.put('/likeQuestion', (req, res) => {
     })
     .then((response) => {
       res.json(response.data.results);
-      res.end();
+      res.send();
     })
     .catch((err) => {
       console.log('ERROR LIKING ANSWER', err);
+      res.send(err);
     });
 });
 
@@ -76,10 +77,11 @@ router.put('/likeAnswer', (req, res) => {
     })
     .then((response) => {
       res.json(response.data.results);
-      res.end();
+      res.send();
     })
     .catch((err) => {
       console.log('ERROR LIKING ANSWER', err);
+      res.send(err);
     });
 });
 
@@ -105,10 +107,11 @@ router.put('/reportQuestion', (req, res) => {
     })
     .then((response) => {
       res.json(response.data.results);
-      res.end();
+      res.send();
     })
     .catch((err) => {
       console.log('ERROR REPORTING QUESTION', err);
+      res.send(err);
     });
 });
 
@@ -134,10 +137,11 @@ router.put('/reportAnswer', (req, res) => {
     })
     .then((response) => {
       res.json(response.data.results);
-      res.end();
+      res.send();
     })
     .catch((err) => {
       console.log('ERROR REPORTING QUESTION', err);
+      res.send(err);
     });
 });
 
@@ -164,10 +168,11 @@ router.post('/submitQuestion', (req, res) => {
     })
     .then((response) => {
       res.json(response.data.results);
-      res.end();
+      res.send();
     })
     .catch((err) => {
       console.log('ERROR REPORTING QUESTION', err);
+      res.send(err);
     });
 });
 
@@ -200,10 +205,11 @@ router.post('/submitAnswer', (req, res) => {
     })
     .then((response) => {
       res.json(response.data.results);
-      res.end();
+      res.send();
     })
     .catch((err) => {
       console.log('ERROR REPORTING QUESTION', err);
+      res.send(err);
     });
 });
 
@@ -220,7 +226,7 @@ router.post('/logInteraction', (req, res) => {
       res.send('QA interaction sent');
     })
     .catch((err) => {
-      res.send('err with interaction', err);
+      res.send(err);
     });
 });
 

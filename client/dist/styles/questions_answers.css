@@ -3,11 +3,10 @@
 .QA {
   font-family: Arial, Helvetica, sans-serif;
   font-weight:50;
-  width: 75vw;
+  width: 80vw;
   height: auto;
-  /* display: flex;
-  align-items: center;
-  flex-direction: column; */
+  margin: 0 10%;
+  padding: 2em 0;
 }
 
 .QA:hover {
@@ -88,6 +87,25 @@
   margin: 0.5em;
 }
 
+.qaPhoto:hover {
+  cursor: zoom-in;
+}
+
+.QAfullscreenPhoto {
+  margin: 15% auto;
+  background-color: white;
+  border-radius: 0.25rem;
+  width: auto;
+  height: auto;
+  padding: 2rem;
+  position: relative;
+  cursor:default;
+}
+
+.QAfullscreenPhoto:hover {
+  cursor: zoom-out;
+}
+
 
 /* BUTTONS ---------------------------------------------*/
 
@@ -139,7 +157,7 @@
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
   z-index: 999;
-  cursor: pointer;
+  cursor: default;
 }
 
 .modalContent {
@@ -152,17 +170,6 @@
   position: fixed;
   cursor: default;
 }
-
-.QAfullscreenPhoto {
-  margin: 15% auto;
-  background-color: white;
-  border-radius: 0.25rem;
-  width: 75%;
-  padding: 2rem;
-  position: relative;
-  cursor:default;
-}
-
 
 #aModalClose {
   float: right;
@@ -180,6 +187,7 @@
 .qaInput {
   width: 40vw;
   height: 5vh;
+  padding: 0.5%;
 }
 
 .qaTextarea {
