@@ -17,14 +17,28 @@ class App extends React.Component {
       id: 36300,
       value: '',
       starValue: 0,
-      reviewLength: 0
+      reviewLength: 0,
+      nightMode: false
     };
 
+    this.togglenightMode = this.togglenightMode.bind(this);
     this.selectProduct = this.selectProduct.bind(this);
   }
 
   onChange (e) {
     this.setState({ value: e.target.value });
+  }
+
+  togglenightMode (e) {
+    this.setState(({ nightMode }) => ({
+      nightMode: !nightMode
+    }));
+
+    if (this.state.nightMode) {
+      document.body.classList.remove('night-mode');
+    } else {
+      document.body.classList.add('night-mode');
+    }
   }
 
   selectProduct (e, productid) {
@@ -54,6 +68,9 @@ class App extends React.Component {
           </div>
           <div id="search">
             <input type="text" onChange={this.onChange.bind(this)}></input>
+          </div>
+          <div id='toggleNightMode' onClick={this.togglenightMode}>
+            {this.state.nightMode ? 'Disable Night Mode' : 'Enable Night Mode'}
           </div>
         </div>
         <Overview starValue={this.state.starValue} productId={this.state.id} reviewsNumber={this.state.reviewLength} />

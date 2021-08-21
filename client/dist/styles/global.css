@@ -49,6 +49,18 @@ body {
     -webkit-text-fill-color: transparent;
   }
 
+  #logo {
+    background: linear-gradient(299deg, #14235d, #e95153) !important;
+  }
+
+  #toggleNightMode {
+    font-size: .75em
+  }
+
+  #toggleNightMode:hover {
+      cursor: pointer;
+  }
+
   .night-mode {
     background: #020619;
     color: #c7c7c7;
