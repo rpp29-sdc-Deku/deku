@@ -15,6 +15,7 @@ class RelatedProduct extends React.Component {
       addToUserOutfits,
       selectProduct,
       masterProductDetails,
+      starValue,
       type
     } = this.props;
 
@@ -42,6 +43,7 @@ class RelatedProduct extends React.Component {
         productsToCompare={productsToCompare}
         addToUserOutfits={addToUserOutfits}
         selectProduct={selectProduct}
+        starValue={starValue}
         type={type}
         />;
     });
