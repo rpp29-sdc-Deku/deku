@@ -55,7 +55,7 @@ class Carousel extends React.Component {
         : <div className="carousel">
 
         <div className="carousel_container" style={{ backgroundImage: `url(${this.props.currentImage})` }} onClick={(e) => { e.stopPropagation(); this.props.expand(); }} >
-          <List className="thumbnails_container" style={{ maxHeight: 450, overflow: 'auto' }}>
+          <List className="thumbnails_container" style={{ maxHeight: 450, overflow: 'scroll' }}>
             {this.props.currentStyle.photos
               ? this.props.currentStyle.photos.map((photo, key) => {
                 return (<ListItem style={{ backgroundImage: `url(${photo.url})` }} className= {`${photo.url === this.props.currentImage ? 'selectedd' : ''} carousel_thumbnail_image`} key={key} onClick={ (e) => { e.stopPropagation(); this.props.thumbnailClick(photo.url); }}></ListItem>);

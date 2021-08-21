@@ -82,53 +82,58 @@ class ProductForm extends React.Component {
     return (
       <div>
 
-        {this.state.addToBagClicked && this.state.size === '' ? <p className="please_select_size">Please select size</p> : null}
+        <div className="size_amount">
 
-        {
-          this.props.currentStyle.skus
-            ? (Object.keys(this.props.currentStyle.skus)[0] !== 'null'
-                ? <FormControl className="form">
-                <Select className="select select_size" onChange={this.handleSizeChange.bind(this)} displayEmpty value={this.state.size} onOpen={this.handleOpen.bind(this)} onClose={this.handleClose.bind(this)} open={this.state.open}>
-                  <MenuItem value="" disabled>SELECT SIZE</MenuItem>
-                  {arrayOfSkus.map((element, key) => (<MenuItem key={key} value={`"${element.size}"`}>{element.size}</MenuItem>))}
+          {this.state.addToBagClicked && this.state.size === '' ? <p className="please_select_size">Please select size</p> : null}
+
+          {
+            this.props.currentStyle.skus
+              ? (Object.keys(this.props.currentStyle.skus)[0] !== 'null'
+                  ? <FormControl style={{ minWidth: 150 }}>
+                  <Select className="select select_size" onChange={this.handleSizeChange.bind(this)} displayEmpty value={this.state.size} onOpen={this.handleOpen.bind(this)} onClose={this.handleClose.bind(this)} open={this.state.open}>
+                    <MenuItem value="" disabled>SELECT SIZE</MenuItem>
+                    {arrayOfSkus.map((element, key) => (<MenuItem key={key} value={`"${element.size}"`}>{element.size}</MenuItem>))}
+                  </Select>
+                </FormControl >
+                  : <FormControl style={{ minWidth: 150 }}>
+                  <Select className="select select_size" onChange={this.handleSizeChange.bind(this)} displayEmpty value={this.state.size}>
+                    <MenuItem value="" disabled>OUT OF STOCK</MenuItem>
+                  </Select>
+                </FormControl>
+                )
+              : null
+          }
+
+          {
+            this.state.size === ''
+              ? <FormControl disabled style={{ minWidth: 70 }}>
+                <Select className="select select_amount" onChange={this.handleAmountChange.bind(this)} value={this.state.amount} displayEmpty renderValue={() => '-'}>
                 </Select>
               </FormControl>
-                : <FormControl className="form">
-                <Select className="select select_size" onChange={this.handleSizeChange.bind(this)} displayEmpty value={this.state.size}>
-                  <MenuItem value="" disabled>OUT OF STOCK</MenuItem>
+              : <FormControl style={{ minWidth: 70 }}>
+                <Select className="select select_amount" onChange={this.handleAmountChange.bind(this)} value={this.state.amount} displayEmpty renderValue={() => (this.state.amount === '' ? 1 : this.state.amount.substring(1, this.state.amount.length - 1))}>
+                  {findRangeAccordingToSelectedSize(this.state.size) ? findRangeAccordingToSelectedSize(this.state.size).map((quantity, key) => (<MenuItem key={key} value={`"${quantity}"`}>{quantity}</MenuItem>)) : null}
                 </Select>
               </FormControl>
-              )
-            : null
-        }
-
-        {
-          this.state.size === ''
-            ? <FormControl className="form" disabled>
-              <Select className="select select_amount" onChange={this.handleAmountChange.bind(this)} value={this.state.amount} displayEmpty renderValue={() => '-'}>
-              </Select>
-            </FormControl>
-            : <FormControl className="form">
-              <Select className="select select_amount" onChange={this.handleAmountChange.bind(this)} value={this.state.amount} displayEmpty renderValue={() => (this.state.amount === '' ? 1 : this.state.amount.substring(1, this.state.amount.length - 1))}>
-                {findRangeAccordingToSelectedSize(this.state.size) ? findRangeAccordingToSelectedSize(this.state.size).map((quantity, key) => (<MenuItem key={key} value={`"${quantity}"`}>{quantity}</MenuItem>)) : null}
-              </Select>
-            </FormControl>
-        }
-
-        {
-          this.props.currentStyle.skus
-            ? (Object.keys(this.props.currentStyle.skus)[0] !== 'null'
-                ? <div className="add_to_bag" onClick={() => { if (this.state.size === '') { this.setState({ open: true }); this.setState({ addToBagClicked: true }); } else { this.props.addToBag({ sku_id: findSkuIdAccordingToSelectedSize(this.state.size) }); } }}>
-              ADD TO BAG +
-            </div>
-                : null)
-            : null
-        }
-
-        <div className="star" onClick={this.handleStarClick.bind(this)}>
-          {this.state.starClicked ? <MdStar /> : <MdStarBorder />}
+          }
         </div>
 
+        <div className="bag_star">
+          {
+            this.props.currentStyle.skus
+              ? (Object.keys(this.props.currentStyle.skus)[0] !== 'null'
+                  ? <div className="add_to_bag" onClick={() => { if (this.state.size === '') { this.setState({ open: true }); this.setState({ addToBagClicked: true }); } else { this.props.addToBag({ sku_id: findSkuIdAccordingToSelectedSize(this.state.size) }); } }}>
+                ADD TO BAG&emsp;&emsp;&emsp;&emsp;+
+              </div>
+                  : null)
+              : null
+          }
+
+          <div className="star" onClick={this.handleStarClick.bind(this)}>
+            {this.state.starClicked ? <MdStar /> : <MdStarBorder />}
+          </div>
+
+        </div>
       </div>
     );
   }
