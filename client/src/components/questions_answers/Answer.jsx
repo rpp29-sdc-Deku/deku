@@ -93,7 +93,7 @@ class Answer extends React.Component {
         </div>
         <div className='subHeading'>
           by: {this.sellerCheck(this.props.answer.answerer_name)}, {this.generateDate(this.props.answer.date.slice(0, 10))}   |   Helpful? <button className='wordbtn' onClick={this.helpfulAnswer.bind(this)} key={this.props.id} >Yes</button>({this.props.answer.helpfulness})   |   <button className='wordbtn' onClick={this.reportAnswer.bind(this)} >Report</button>
-          </div><br></br>
+          </div>
 
         {this.state.photoDisplay === true && <div className='modalContainer'><img className='QAfullscreenPhoto' src={this.state.photoLink} onClick={this.displayFullScreenPhoto} loading='lazy' /></div> }
 

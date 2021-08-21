@@ -40,7 +40,7 @@
 }
 
 .selectedd {
-  color: rgb(19, 235, 91);
+  color: #EF5350;
 }
 
 .carousel_thumbnail_image {
@@ -73,13 +73,14 @@
   width: .45em;
   height: .45em;
   border-radius: 50px;
+  border-color: #EF5350;
 }
 
 .selected_icon {
   width: .6em;
   height: .6em;
   border-radius: 50px;
-  background: black;
+  background: #EF5350;;
 }
 
 .carousel_container {
@@ -112,10 +113,12 @@
   /* margin-left: 1em; */
   /* left: 0; */
   /* float: left; */
+  color: #EF5350;
   cursor: pointer;
 }
 
 .forward_arrow {
+  color: #EF5350;
   margin-left: 90%;
   /* right: 0; */
   /* position: sticky; */
@@ -149,6 +152,7 @@
 .expand {
   margin-top: .5em;
   cursor: pointer;
+  color:#EF5350;
 }
 
 .carousel_thumbnail {
@@ -207,6 +211,10 @@
   padding-left: 10%;
 }
 
+.check_mark {
+  color: #EF5350;
+}
+
 .product_category {
   font-size: 12px;
   text-transform: uppercase;
@@ -237,30 +245,30 @@
   background-position: center;
   background-size: cover;
   cursor: pointer;
+  color: #EF5350;
 }
 
 .product_styles_thumbnails {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  width: 50%;
+  width: 70%;
   gap: 1em;
 }
 
 .select {
-  border: solid .2px;
+  border: solid #EF5350 .2px;
 }
 
 .select_size {
-  border: solid .3px;
+  border: solid #EF5350 .3px;
   font-size: 5px;
-  color: gray;
 }
 
 .select_amount {
   display: flex;
   flex-direction: row;
-
+  color: #EF5350;
 }
 
 .size_amount {
@@ -284,11 +292,12 @@
   height: 2em;
   width: 11.95em;
   align-items: center;
+  border-color: #EF5350;
 }
 
 .star {
   cursor: pointer;
-  border: solid .2px;
+  border: solid #EF5350 .2px;
   padding: .35em;
   height: 2em;
 }
@@ -314,7 +323,7 @@
 }
 
 .vertical_line {
-  border-left: .07em solid #000;
+  border-left: .07em solid #EF5350;
   height: 7em;
 }
 

@@ -9,7 +9,6 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/productStyles', (req, res) => {
-  console.log('🌂', req.query);
   axios.get(`${apiURL}products/${req.query.productId}/styles`, {
     headers: {
       Authorization: apiToken

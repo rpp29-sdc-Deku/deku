@@ -36,6 +36,15 @@
 
 .Q {
   margin: 0.3em;
+  font-weight: bold;
+  box-sizing: content-box;
+}
+
+.A {
+  margin: 0;
+  margin-bottom: 1em;
+  height: auto;
+  font-weight: lighter;
 }
 
 .Qblock {
@@ -62,6 +71,7 @@
   border: none;
   height: 2.75em;
   outline: none;
+  margin: 0;
 }
 
 .searchContainer {
@@ -82,8 +92,8 @@
 }
 
 .qaPhoto {
-  height: 5em;
-  width: 5em;
+  height: 3em;
+  width: 3em;
   margin: 0.5em;
 }
 

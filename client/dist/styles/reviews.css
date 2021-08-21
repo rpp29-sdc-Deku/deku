@@ -70,7 +70,8 @@
 }
 
 .reviewRatings {
-  width: 25%;
+  width: 30%;
+  height: 80%;
 }
 
 .reviewRating {
@@ -268,4 +269,9 @@ meter::-webkit-meter-bar {
 
 .ReviewContain {
   max-height: 50vh;
+}
+
+.reviewContainerTitle {
+  display: flex;
+  align-items: center;
 }
