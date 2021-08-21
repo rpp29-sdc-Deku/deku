@@ -55,7 +55,7 @@ class YourOutfit extends React.Component {
               <h3>+ Add to Outfit</h3>
             </div>
           </div>
-          {outfitCards.length && outfitCards}
+          {outfitCards}
         </div>
       </div>
     );
