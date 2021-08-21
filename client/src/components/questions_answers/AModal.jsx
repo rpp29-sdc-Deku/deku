@@ -40,8 +40,7 @@ class AModal extends React.Component {
   }
 
   submitAnswer (e) {
-    e.preventDefault();
-    this.props.clickTracker('submitAnswer');
+    if (e) { e.preventDefault(); }
     const formOutput = {
       ...this.state,
       ...this.props
@@ -52,6 +51,7 @@ class AModal extends React.Component {
       return;
     }
     if (!missingInputFields.length) {
+      this.props.clickTracker('submitAnswer');
       this.props.submitAnswer(formOutput);
     } else {
       this.setState({ badInput: true, missingFields: missingInputFields });
@@ -95,6 +95,7 @@ class AModal extends React.Component {
           </form>
 
         </div>
+        {this.props.breakingError && <div className='qaError'>uh oh... don't tell Leslie we broke it... {JSON.stringify(this.props.errorMessage)}</div>}
     </div>
     );
   };
