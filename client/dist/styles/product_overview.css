@@ -58,7 +58,7 @@
 }
 
 .thumbnails_container {
-  width: 50px;
+  width: 8%;
 }
 
 .icons_container {
@@ -96,23 +96,29 @@
 
 .arrows_container {
   display: flex;
+  justify-content: space-between;
   height: 5%;
+  width: 100%;
 }
 
 .arrows {
-  width: 75%;
+  width: 92%;
   display: flex;
   align-items:center;
   align-content: space-between;
 }
 
 .back_arrow {
-  margin-left: 1em;
+  /* margin-left: 1em; */
+  /* left: 0; */
+  /* float: left; */
   cursor: pointer;
 }
 
 .forward_arrow {
-  margin-left: 30em;
+  margin-left: 90%;
+  /* right: 0; */
+  /* position: sticky; */
   cursor: pointer;
 }
 
@@ -136,7 +142,12 @@
   cursor: crosshair;
 }
 
+.expand_container {
+  margin-right: .5em;
+}
+
 .expand {
+  margin-top: .5em;
   cursor: pointer;
 }
 
@@ -157,7 +168,8 @@
   padding: 30px;
   display: flex;
   flex-direction: column;
-  align-items:flex-start;
+  align-items: flex-start;
+  align-content: center;
   padding-left: 2%;
 }
 
@@ -251,28 +263,34 @@
 
 }
 
-.form {
+.size_amount {
   display: flex;
   align-items: center;
   justify-content: stretch;
   flex-wrap: wrap;
   margin-bottom: 10px;
   gap: 10px;
-  justify-content: stretch;
+}
+
+.bag_star {
+  display: flex;
+  gap: 10px;
 }
 
 .add_to_bag {
   cursor: pointer;
   border: solid .3px;
-  padding: .5em;
-  height: 30px;
-  display: flex;
+  padding: .28em;
+  height: 2em;
+  width: 11.95em;
   align-items: center;
 }
 
 .star {
+  cursor: pointer;
   border: solid .2px;
-  padding: .5em;
+  padding: .35em;
+  height: 2em;
 }
 
 .selected_style_check {

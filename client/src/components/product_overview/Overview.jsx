@@ -58,8 +58,8 @@ class Overview extends React.Component {
     this.fetchProducts(this.props.productId);
   }
 
-  componentDidUpdate () {
-    if (this.props.productId !== this.state.product.id) {
+  componentDidUpdate (prevProps) {
+    if (prevProps.productId !== this.props.productId) {
       this.fetchProducts(this.props.productId);
       this.fetchProductStyles(this.props.productId);
     }
@@ -139,7 +139,7 @@ class Overview extends React.Component {
       <div className="overview">
 
         <div className="website_announcement">
-          <i>SITE-WIDE ANNOUCEMENT MESSAGE! </i> SALE / DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u>
+          <i>SITE-WIDE ANNOUNCEMENT MESSAGE! </i> SALE / DISCOUNT <b>OFFER</b> - <u>NEW PRODUCT HIGHLIGHT</u>
         </div>
 
         <div id="overview">
