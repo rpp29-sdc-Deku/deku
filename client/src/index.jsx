@@ -18,11 +18,16 @@ class App extends React.Component {
       value: '',
       starValue: 0,
       reviewLength: 0,
-      nightMode: false
+      nightMode: false,
+      name: ''
     };
 
     this.togglenightMode = this.togglenightMode.bind(this);
     this.selectProduct = this.selectProduct.bind(this);
+  }
+
+  getProductName (value) {
+    this.setState({ name: value });
   }
 
   onChange (e) {
@@ -60,6 +65,7 @@ class App extends React.Component {
   }
 
   render () {
+    console.log('👘', this.state.name);
     return (
       <div>
         <div id="logo">
@@ -73,7 +79,7 @@ class App extends React.Component {
             {this.state.nightMode ? 'Disable Night Mode' : 'Enable Night Mode'}
           </div>
         </div>
-        <Overview starValue={this.state.starValue} productId={this.state.id} reviewsNumber={this.state.reviewLength} />
+        <Overview starValue={this.state.starValue} productId={this.state.id} reviewsNumber={this.state.reviewLength} getProductName={this.getProductName.bind(this)} />
         <RelatedLists productId={this.state.id} starValue={this.state.starValue} selectProduct={this.selectProduct} />
         <QuestionsAnswersWithClickTracking id={this.state.id} />
         <section id='Reviews'>
