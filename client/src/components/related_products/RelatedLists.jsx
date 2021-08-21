@@ -10,21 +10,20 @@ class RelatedLists extends React.Component {
     super(props);
     const cachedOutfits = JSON.parse(window.localStorage.getItem('outfits'));
     this.state = {
-      currentProduct: null,
-      currentProductDetails: null,
+      masterProductId: null,
+      masterProductDetails: null,
       relatedProducts: [],
       userOutfits: cachedOutfits || [],
       hasError: null,
       errorMessage: null
     };
 
-    // console.log('THIS STATE RELATED LISTS ', this.state);
     this.addToUserOutfits = this.addToUserOutfits.bind(this);
     this.removeFromUserOutfits = this.removeFromUserOutfits.bind(this);
   }
 
   componentDidMount () {
-    if (this.state.currentProduct !== null) {
+    if (this.state.masterProductId !== null) {
       this.fetchRelatedProducts();
     // console.log('COMPONENT DID MOUNT ======= ', this.state);
     }
@@ -33,9 +32,9 @@ class RelatedLists extends React.Component {
   componentDidUpdate (prevState) {
     // console.log('COMPONENT DID UPDATE ======= ');
     const { productId } = this.props;
-    if (this.state.currentProduct !== productId) {
+    if (this.state.masterProductId !== productId) {
       this.setState(prevstate => ({
-        currentProduct: productId
+        masterProductId: productId
       }));
       // console.log('COMPONENT UPDATE INNER ===== ', this.state);
       this.fetchRelatedProducts();
@@ -51,11 +50,11 @@ class RelatedLists extends React.Component {
       }
     })
       .then((relatedProducts) => {
-        const currentProduct = relatedProducts.data.length - 1;
-        const currentProductDetails = relatedProducts.data.splice(currentProduct);
+        const masterProduct = relatedProducts.data.length - 1;
+        const masterProductDetails = relatedProducts.data.splice(masterProduct);
         this.setState({
           relatedProducts: relatedProducts.data,
-          currentProductDetails: currentProductDetails
+          masterProductDetails: masterProductDetails
         });
         console.log('🛍️   FETCH RELATED LISTS STATE =================  ', this.state);
       })
@@ -95,7 +94,7 @@ class RelatedLists extends React.Component {
   }
 
   render () {
-    const { relatedProducts, userOutfits, currentProductDetails, hasError, errorMessage } = this.state;
+    const { relatedProducts, userOutfits, masterProductDetails, hasError, errorMessage } = this.state;
     const { selectProduct } = this.props;
 
     if (hasError) {
@@ -112,7 +111,7 @@ class RelatedLists extends React.Component {
             <YourOutfit
             userOutfits={userOutfits}
             selectProduct={selectProduct}
-            currentProductDetails={currentProductDetails}
+            masterProductDetails={masterProductDetails}
             addToUserOutfits={this.addToUserOutfits}
             removeFromUserOutfits={this.removeFromUserOutfits}
             type={'userOutfit'}
@@ -126,6 +125,7 @@ class RelatedLists extends React.Component {
 
       <section className='suggested-products'>
         <RelatedProduct
+          masterProductDetails={masterProductDetails}
           relatedProducts={relatedProducts}
           addToUserOutfits={this.addToUserOutfits}
           selectProduct={selectProduct}
@@ -133,10 +133,10 @@ class RelatedLists extends React.Component {
           />
 
         <YourOutfit
+          masterProductDetails={masterProductDetails}
           userOutfits={userOutfits}
-          selectProduct={selectProduct}
-          currentProductDetails={currentProductDetails}
           addToUserOutfits={this.addToUserOutfits}
+          selectProduct={selectProduct}
           removeFromUserOutfits={this.removeFromUserOutfits}
           type={'userOutfit'}
           />

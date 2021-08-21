@@ -10,13 +10,26 @@ class RelatedProduct extends React.Component {
 
   render () {
     // console.log('RENDER RELATED PRODUCT PROPS ====== ', this.props.relatedProducts);
-    const { relatedProducts, addToUserOutfits, selectProduct, type } = this.props;
+    const {
+      relatedProducts,
+      addToUserOutfits,
+      selectProduct,
+      masterProductDetails,
+      type
+    } = this.props;
 
     const ProductCards = relatedProducts.map((product, i) => {
       let photo = product.photos[0].thumbnail_url;
       if (!photo) {
         photo = '';
       }
+
+      const thisProductDetails = product;
+
+      const productsToCompare = {
+        thisProductDetails,
+        masterProductDetails: masterProductDetails[0]
+      };
 
       return <ProductCard
         key={i}
@@ -26,6 +39,7 @@ class RelatedProduct extends React.Component {
         category={product.category}
         defaultPrice={product.default_price}
         photo={photo}
+        productsToCompare={productsToCompare}
         addToUserOutfits={addToUserOutfits}
         selectProduct={selectProduct}
         type={type}
@@ -34,7 +48,7 @@ class RelatedProduct extends React.Component {
 
     return (
     <div className='related-products-wrapper'>
-      <div className='section-title'>Related Products</div>
+      <div className='section-title'><h3>Related Products</h3></div>
       <div className='carousel-container'>
         {ProductCards}
       </div>

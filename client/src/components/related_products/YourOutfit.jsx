@@ -10,20 +10,27 @@ class YourOutfit extends React.Component {
 
   render () {
     const {
+      masterProductDetails,
       userOutfits,
       addToUserOutfits,
       removeFromUserOutfits,
       selectProduct,
-      currentProductDetails,
       type
     } = this.props;
-    // console.log('RENDER YOUR OUTFITS ========== ', userOutfits);
 
     const outfitCards = userOutfits.map((outfit, i) => {
       let photo = outfit.photos[0].thumbnail_url;
       if (!photo) {
         photo = '';
       }
+
+      const thisProductDetails = outfit;
+
+      const productsToCompare = {
+        thisProductDetails,
+        masterProductDetails: masterProductDetails ? masterProductDetails[0] : null
+      };
+
       return <ProductCard
       key={i}
       index={i}
@@ -34,20 +41,21 @@ class YourOutfit extends React.Component {
       photo={photo}
       removeFromUserOutfits={removeFromUserOutfits}
       selectProduct={selectProduct}
+      productsToCompare={productsToCompare}
       type={type}
       />;
     });
 
     return (
       <div className='your-outfits-wrapper'>
-        <div className='section-title'>Your Outfit</div>
+        <div className='section-title'><h3>Your Outfit</h3></div>
         <div className='carousel-container'>
-          <div className='product-card' onClick={(e => addToUserOutfits(e, 0, 'currentProductDetails'))}>
+          <div className='product-card' onClick={(e => addToUserOutfits(e, 0, 'masterProductDetails'))}>
             <div className='add-to-outfits'>
               <h3>+ Add to Outfit</h3>
             </div>
           </div>
-          {outfitCards.length ? outfitCards : null }
+          {outfitCards}
         </div>
       </div>
     );
