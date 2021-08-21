@@ -46,6 +46,7 @@ class Overview extends React.Component {
       data: { productId: id },
       success: (data) => {
         this.setState({ product: data });
+        this.props.getProductName(data.name);
       },
       error: (err) => {
         console.log('error in back to client product', err);
