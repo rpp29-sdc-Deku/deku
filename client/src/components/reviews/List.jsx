@@ -1,6 +1,9 @@
+/* eslint-disable node/handle-callback-err */
+/* eslint-disable camelcase */
 import React from 'react';
 import increaseHelp from '../../helpers/reviews/helpfulness.js';
 import StarsGlobal from './StarsGlobal.jsx';
+import axios from 'axios';
 /* eslint-disable react/prop-types */
 
 class List extends React.Component {
@@ -11,7 +14,8 @@ class List extends React.Component {
       imageClick: false,
       src: '',
       reviewBodyFull: this.props.review.body,
-      notClicked: true
+      notClicked: true,
+      wasReported: false
     };
   }
 
@@ -55,6 +59,14 @@ class List extends React.Component {
     });
   }
 
+  reportReview (review_id) {
+    if (!this.state.wasReported) {
+      axios.put('/atelier/reviews/report', { review_id: review_id }).then(() => this.setState({
+        wasReported: true
+      })).catch((err) => console.log('failed to report'));
+    }
+  }
+
   render () {
     console.log('this.props', this.props.review);
     return (
@@ -89,7 +101,7 @@ class List extends React.Component {
             {this.props.review.response === null ? '' : this.props.review.response.length > 0 ? (<p>Response: <br></br>{this.props.review.response}</p>) : ''}
           </div>
           <div className='reviewHelpful'>
-            <p>Helpful? <button onClick={this.increaseHelfpulness.bind(this)} className='reviewYes'>Yes</button>({this.props.review.helpfulness}) | <span>Report</span></p>
+            <p>Helpful? <button onClick={this.increaseHelfpulness.bind(this)} className='reviewYes'>Yes</button>({this.props.review.helpfulness}) | <button onClick={() => this.reportReview(this.props.review.review_id)} className='reviewReport'>{this.state.wasReported ? 'Reported' : 'Report'}</button></p>
           </div>
           <hr></hr>
           {this.state.imageClick && (<div onClick={this.closeImage.bind(this)}className='reviewImageContainer'>
