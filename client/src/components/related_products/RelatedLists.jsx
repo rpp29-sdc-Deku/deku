@@ -81,6 +81,8 @@ class RelatedLists extends React.Component {
         userOutfits: this.state.userOutfits
       }, () => window.localStorage.setItem('outfits', JSON.stringify(this.state.userOutfits))
       );
+    } else {
+      alert(`Ew, don't wear the same thing twice. Get something new. This item is already in your outfit`)
     }
   }
 

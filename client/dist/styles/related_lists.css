@@ -18,6 +18,7 @@
 .related-products-wrapper, .your-outfits-wrapper {
   overflow-x: auto;
   white-space: nowrap;
+  min-height: 27em;
 }
 
 .carousel-container {
