@@ -19,7 +19,7 @@ class StarRating extends React.Component {
           value: newValue
         });
       }} className='reviewStarContainer' name='fiveRating' defaultValue={0} />
-      <h3 >{this.state.value === 1
+      <h4 >{this.state.value === 1
         ? 'Poor'
         : this.state.value === 2
           ? 'Fair'
@@ -29,7 +29,7 @@ class StarRating extends React.Component {
               ? 'Good'
               : this.state.value === 5
                 ? 'Great'
-                : null}</h3>
+                : null}</h4>
     </div>
     );
   }

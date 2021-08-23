@@ -1,20 +1,21 @@
 
-.reviewResponse {
-  background-color: gray;
+.reviewResponse p{
+  background-color: rgb(224 223 223);
   margin-bottom: 5px;
+  padding: 2%;
 }
 
 .reviewTile {
   display: flex;
   flex-direction: column;
 }
-/* .reviewTitle h1{
-  font-family: 'Recursive', sans-serif;
+.reviewTitle h1{
+  font-family: 'Roboto', sans-serif;
   font-size: 1.3em;
   font-weight: 500;
   color: rgb(71, 66, 66);
   margin-bottom: 5px;
-} */
+}
 .reviewHelpful span {
   text-decoration: underline;
 }
@@ -22,7 +23,7 @@
   margin-bottom: 5px;
 }
 .reviewList {
-  width: 45vw;
+  /* width: 45vw; */
   max-height: 100%;
   overflow-y: scroll;
 }
@@ -53,8 +54,8 @@
 } */
 .reviewBody {
   font-size: 80%;
-  margin-top: 2%;
-  margin-bottom: 3%;
+  margin-top: 0.6%;
+  margin-bottom: 0.6%;
   font-family: 'Roboto', sans-serif;
   color: rgb(59, 56, 56);
 }
@@ -64,9 +65,10 @@
 }
 
 .Reviews {
-  width: 75vw;
+  width: 80vw;
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  flex-direction: column;
 }
 
 .reviewRatings {
@@ -242,12 +244,13 @@ input[type='radio'] {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 meter {
   width: 65%;
-  margin-left: 5%;
-  margin-right: 2%;
+  margin-left: auto;
+  margin-right: 5%;
 }
 
 meter::-webkit-meter-bar {
@@ -266,6 +269,7 @@ meter::-webkit-meter-bar {
 .RatingsBreakdowns {
   display: flex;
   justify-content: space-between;
+  font-size: 0.85em;
 }
 
 .reviewReport {
@@ -276,7 +280,9 @@ meter::-webkit-meter-bar {
 }
 
 .ReviewContain {
+  width: 70%;
   max-height: 50vh;
+  margin-left: 3%;
 }
 
 .reviewContainerTitle {
@@ -334,4 +340,9 @@ meter::-webkit-meter-bar {
   position: absolute;
   right: 0;
   cursor: pointer;
+}
+
+.reviewFlex {
+  display: flex;
+  justify-content: space-between;
 }
