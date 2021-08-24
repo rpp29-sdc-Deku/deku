@@ -62,7 +62,6 @@ class Carousel extends React.Component {
               })
               : null }
           </List>
-          {/* {this.props.currentStyle.photos ? (this.props.currentStyle.photos.length > 7 ? <MdArrowDropDown className="drop_down" onClick={() => this.props.handleDropDownClick()} /> : null) : null } */}
 
           <div className="arrows">
             <div className="arrows_container">

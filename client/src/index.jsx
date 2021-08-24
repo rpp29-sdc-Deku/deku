@@ -65,7 +65,6 @@ class App extends React.Component {
   }
 
   render () {
-    console.log('👘', this.state.name);
     return (
       <div>
         <div id="logo">
