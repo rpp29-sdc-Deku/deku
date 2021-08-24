@@ -1,6 +1,6 @@
 import React from 'react';
 import List from './List.jsx';
-
+import interactions from '../../helpers/reviews/interactions.js';
 /* eslint-disable react/prop-types */
 
 class ListView extends React.Component {
@@ -16,6 +16,7 @@ class ListView extends React.Component {
     this.setState({
       list: this.state.list + 2
     });
+    interactions('button');
   }
 
   reSortList () {

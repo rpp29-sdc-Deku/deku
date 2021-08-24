@@ -3,6 +3,7 @@ import ListView from './ListView.jsx';
 import Ratings from './Ratings.jsx';
 import AddReview from './AddReview.jsx';
 import debounce from 'lodash/debounce';
+import interactions from '../../helpers/reviews/interactions.js';
 /* eslint-disable react/prop-types */
 class Reviews extends React.Component {
   constructor (props) {
@@ -22,6 +23,7 @@ class Reviews extends React.Component {
   }
 
   sortList (event, sorting) {
+    interactions('select');
     let sorted;
     let sortBy = '';
     const sort = sorting || event.target.value;
@@ -67,6 +69,7 @@ class Reviews extends React.Component {
     this.setState({
       filterRatings: []
     });
+    interactions('a')
   }
 
   filterRatings (rating) {
@@ -86,12 +89,20 @@ class Reviews extends React.Component {
     this.setState({
       filterRatings: filterRatings
     }, () => console.log(this.state.filterRatings));
+    interactions('label');
   }
 
   addReview () {
     this.setState({
       addReview: !this.state.addReview
-    });
+    }, () => {
+      if(this.state.addReview === true) {
+      interactions('button')
+    }else {
+      interactions('span')
+    }
+  });
+
   }
 
   newReviewAdded () {
@@ -104,6 +115,7 @@ class Reviews extends React.Component {
     this.setState({
       filterdSearch: text.toLowerCase()
     })
+    interactions('input')
   }, 1000)
 
   componentDidMount () {

@@ -3,6 +3,7 @@ import React from 'react';
 import postReview from '../../helpers/reviews/postReview.js';
 import StarRating from './StarRating.jsx';
 import AddDescription from './AddDescription.jsx';
+import interactions from '../../helpers/reviews/interactions.js';
 class AddReview extends React.Component {
   constructor (props) {
     super(props);
@@ -32,6 +33,7 @@ class AddReview extends React.Component {
         }, () => console.log(this.state));
       }
     });
+    interactions('input');
   }
 
   summary (e) {
@@ -51,6 +53,7 @@ class AddReview extends React.Component {
     this.setState({
       recommend: e.target.value === 'Yes'
     });
+    interactions('input');
   }
 
   name (e) {
@@ -69,6 +72,7 @@ class AddReview extends React.Component {
     this.setState({
       rating: rating
     });
+    interactions('span');
   }
 
   sendData (e) {
@@ -80,6 +84,7 @@ class AddReview extends React.Component {
     postReview(this.state).then((results) => {
       this.props.getProductDetails();
     });
+    interactions('button');
   }
 
   upload (e) {
@@ -90,6 +95,7 @@ class AddReview extends React.Component {
     this.setState({
       file: image
     }, () => console.log(this.state.file));
+    interactions('input');
   }
 
   formValidate () {

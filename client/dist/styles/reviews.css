@@ -293,7 +293,7 @@ meter::-webkit-meter-bar {
 .reviewForm {
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow-y: scroll;
   padding: 5%;
   height: 100%;
   width: 100%;
