@@ -34,6 +34,7 @@ class Ratings extends React.Component {
   }
 
   getTotal () {
+    console.log('this.propsssssss', this.props);
     let result = 0;
     for (const keys in this.props.ratingsBreakdown) {
       result += parseInt(this.props.ratingsBreakdown[keys]);

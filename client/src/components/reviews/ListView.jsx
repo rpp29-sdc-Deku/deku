@@ -10,6 +10,7 @@ class ListView extends React.Component {
       list: 2,
       filterdSearch: ''
     };
+    console.log('thisss.props', this.props);
   }
 
   increaseList () {
