@@ -10,14 +10,18 @@ router.get('/reviews', (req, res) => {
 });
 
 router.put('/reviews/helpful', (req, res) => {
-  putHelp(req.body.review_Id).then((response) => {
-    res.end();
-  }).catch((err) => console.log(err));
+  putHelp(req.body.review_Id)
+    .then(response => {
+      res.end();
+    })
+    .catch(err => {
+      console.log(err)
+    });
 });
 
 router.get('/reviews/meta', (req, res) => {
   getMeta(req.query.product_id)
-    .then((results) => {
+    .then(results => {
       res.send(results);
     }).catch(err => {
       console.log(err.stack);
@@ -25,15 +29,27 @@ router.get('/reviews/meta', (req, res) => {
 });
 
 router.put('/reviews/report', (req, res) => {
-  putReport(req.body.review_id).then((results) => res.end());
+  putReport(req.body.review_id)
+    .then(results => res.end())
+    .catch(err => {
+      console.log(err.stack);
+    });
 });
 
 router.post('/reviews', (req, res) => {
-  postReview(req.body).then((response) => res.send('Success')).catch((err) => console.log(err));
+  postReview(req.body)
+    .then(response => res.send('Success'))
+    .catch(err => console.log(err.stack));
 });
 
 router.post('/reviews/interaction', (req, res) => {
-  postInteraction(req.body.element);
+  postInteraction(req.body.element)
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(err.stack);
+    });
 });
 
 module.exports = router;
