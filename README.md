@@ -3,7 +3,7 @@
 *Project Owners:
 - [Steven Harder](https://github.com/stevenharderjr) - [Engineering Journal](https://gist.github.com/stevenharderjr/244519a6cd85b1ed5154b6322a79a957)
 - Chris Monteilh
-- Isaak Kim
+- Isaac Kim
 - Callum Reid*
 
 
