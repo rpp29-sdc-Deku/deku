@@ -16,7 +16,7 @@ make better
 
 ## Description
 
-
+![Team Deku]("https://ibb.co/wsSxZ1H")
 
 ### Product Overview -----------------------------------------------------------------------------------------
 
