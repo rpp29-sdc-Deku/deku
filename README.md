@@ -16,7 +16,9 @@ make better
 
 ## Description
 
-![Team Deku]("https://ibb.co/wsSxZ1H")
+![Deku](https://i.ibb.co/sHKMprS/deku.jpg )
+
+
 
 ### Product Overview -----------------------------------------------------------------------------------------
 
