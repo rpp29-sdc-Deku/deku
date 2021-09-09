@@ -15,7 +15,8 @@
     "testrelated": "jest /client/src/tests/RelatedLists.test.js --coverage",
     "start": "webpack --mode development --watch",
     "server": "nodemon server/index.js",
-    "testreview": "jest /client/src/tests/Review.test.js --coverage"
+    "testreview": "jest /client/src/tests/Review.test.js --coverage",
+    "load": "loadtest -c 10 --rps 1000 -t 20  http://localhost:4000/"
   },
   "repository": {
     "type": "git",
@@ -62,10 +63,12 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jquery": "^3.6.0",
+    "loadtest": "^5.1.2",
     "lodash": "^4.17.21",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-icons": "^4.2.0",
-    "react-img-zoom": "^0.1.0"
+    "react-img-zoom": "^0.1.0",
+    "start": "^5.1.0"
   }
 }

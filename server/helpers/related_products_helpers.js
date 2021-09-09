@@ -9,7 +9,15 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 const getRelatedProducts = (currentProductId) => {
-  const relatedProductIds = axios.get(`${apiURL}products/${currentProductId}/related`, {
+
+  //delete this variable and use incoming variable from line 11 into the end at line 15
+  //hardcoded now while I want for other service to be up and running.
+
+  const currentProductIdtesting = -1;
+
+  //http://localhost:5000/api/related?_id=${currentProductIdtesting}
+
+  const relatedProductIds = axios.get(`http://18.212.20.132:5000/api/related?_id=-1`, {
     headers: {
       Authorization: apiToken
     }
@@ -17,7 +25,10 @@ const getRelatedProducts = (currentProductId) => {
 
   // need to retrievee for category, name, slogan, price
   const relatedProductDetails = relatedProductIds.then(currentProductIds => {
+    let servercount = 0
     currentProductIds.data.push(currentProductId);
+    servercount++
+    console.log(servercount)
     return Promise.all(currentProductIds.data.map(id => {
       return axios.get(`${apiURL}products/${id}`, {
         headers: {

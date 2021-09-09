@@ -4,7 +4,6 @@ import React from 'react';
 import axios from 'axios';
 import RelatedProduct from './RelatedProduct.jsx';
 import YourOutfit from './YourOutfit.jsx';
-import Test from './test.js'
 
 class RelatedLists extends React.Component {
   constructor (props) {
@@ -136,8 +135,6 @@ class RelatedLists extends React.Component {
           selectProduct={selectProduct}
           type={'relatedProduct'}
           />
-
-        <p> <Test /></p>
 
         <YourOutfit
           masterProductDetails={masterProductDetails}
