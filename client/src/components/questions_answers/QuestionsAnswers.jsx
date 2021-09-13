@@ -62,6 +62,7 @@ class QuestionsAnswers extends React.Component {
       }
     })
       .then((response) => {
+        console.log('❤️❤️', response.data);
         const ordered = this.sortQuestions(response.data);
         const orderedAnswers = this.sortAnswers(ordered);
         const receivedLength = response.data.length;

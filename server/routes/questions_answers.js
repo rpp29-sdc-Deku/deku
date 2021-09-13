@@ -25,12 +25,8 @@ router.get('/initialQA', (req, res) => {
 });
 
 router.put('/likeQuestion', (req, res) => {
-  axios.put(`${apiURL}qa/questions/${req.body.id}/helpful`, {
-    question_id: req.body.id
-  }, {
-    headers: {
-      Authorization: apiToken
-    }
+  axios.put('http://localhost:3030/likeQuestion', {
+    question_id: 1
   })
     .then((response) => {
       return axios.get(`${apiURL}qa/questions`, {
@@ -154,6 +150,7 @@ router.post('/submitQuestion', (req, res) => {
     data: req.body
   })
     .then((response) => {
+
       return axios.get(`${apiURL}qa/questions`, {
         method: 'GET',
         headers: {
@@ -180,8 +177,11 @@ router.post('/submitAnswer', (req, res) => {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
-    photos: req.body.photos
+    photos: req.body.photos,
+    question_id: req.body.qid,
+    product_id: req.body.product_id
   };
+
   axios({
     method: 'POST',
     url: `${apiURL}qa/questions/${req.body.qid}/answers`,
