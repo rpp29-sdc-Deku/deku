@@ -80,7 +80,7 @@ class App extends React.Component {
         </div>
         <Overview starValue={this.state.starValue} productId={this.state.id} reviewsNumber={this.state.reviewLength} getProductName={this.getProductName.bind(this)} />
         <RelatedLists productId={this.state.id} starValue={this.state.starValue} selectProduct={this.selectProduct} />
-        <QuestionsAnswersWithClickTracking id={this.state.id} />
+        <QuestionsAnswersWithClickTracking id={1} />
         <section id='Reviews'>
          <Reviews getReviewLength={this.getReviewLength.bind(this)} getReviews={getReviews} getMeta={getMeta} setStars={this.setStars.bind(this)} starsValue={this.state.starValue} product_id={this.state.id}/>
         </section>
