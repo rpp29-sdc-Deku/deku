@@ -32,8 +32,6 @@ router.put('/likeQuestion', (req, res) => {
     question_id: req.body.id
   })
     .then((response) => {
-      // console.log('response to likeQuestion 🥶');
-      // console.log(response);
       return axios.get('http://localhost:3030/qa/questions', {
         method: 'GET',
         headers: {
@@ -46,8 +44,6 @@ router.put('/likeQuestion', (req, res) => {
       });
     })
     .then((response) => {
-      // console.log('response to get req after like question 🧡');
-      // console.log(response);
       res.json(response.data.results);
       res.end();
     })
