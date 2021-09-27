@@ -12,7 +12,11 @@ const getRelatedProducts = (currentProductId) => {
   const hardcode = -1;
   //{ “_id” : “-1", “current_product_id” : -1, “related_product_id” : [ 47422, 47423, 47428, 47427 ] }
   //local host ${apiURL}products/${currentProductId}/related
+<<<<<<< HEAD
   const relatedProductIds = axios.get(`http://54.219.223.158:4000/api/related?_id=${hardcode}`, {
+=======
+  const relatedProductIds = axios.get(`http://54.151.28.108:5000/api/related?_id=${hardcode}`, {
+>>>>>>> 293de1f90582925736f7d6a3bc26640dd2f5d998
     headers: {
       Authorization: apiToken
     }

@@ -125,6 +125,8 @@ class RelatedLists extends React.Component {
 
     return (
 
+
+
       <section className='suggested-products'>
         <RelatedProduct
           masterProductDetails={masterProductDetails}
