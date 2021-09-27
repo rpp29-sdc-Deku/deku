@@ -10,14 +10,15 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 const getRelatedProducts = (currentProductId) => {
 
-  //delete this variable and use incoming variable from line 11 into the end at line 15
+    //delete this variable and use incoming variable from line 11 into the end at line 15
   //hardcoded now while I want for other service to be up and running.
 
-  const currentProductIdtesting = -1;
+  const hardcode = -1;
 
-  //http://localhost:5000/api/related?_id=${currentProductIdtesting}
+  //{ "_id" : "-1", "current_product_id" : -1, "related_product_id" : [ 47422, 47423, 47428, 47427 ] }
+  //local host ${apiURL}products/${currentProductId}/related
 
-  const relatedProductIds = axios.get(`http://18.212.20.132:5000/api/related?_id=-1`, {
+  const relatedProductIds = axios.get(`http://54.177.248.69:3000/api/related?_id=${hardcode}`, {
     headers: {
       Authorization: apiToken
     }
@@ -25,10 +26,7 @@ const getRelatedProducts = (currentProductId) => {
 
   // need to retrievee for category, name, slogan, price
   const relatedProductDetails = relatedProductIds.then(currentProductIds => {
-    let servercount = 0
     currentProductIds.data.push(currentProductId);
-    servercount++
-    console.log(servercount)
     return Promise.all(currentProductIds.data.map(id => {
       return axios.get(`${apiURL}products/${id}`, {
         headers: {
