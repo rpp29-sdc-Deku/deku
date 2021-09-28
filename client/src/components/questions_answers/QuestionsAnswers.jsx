@@ -73,7 +73,8 @@ class QuestionsAnswers extends React.Component {
         });
       })
       .catch((err) => {
-        this.setState({ errorMessage: err, breakingError: true });
+        console.log(err)
+        this.setState({ errorMessage: err, breakingError: false });
       });
   }
 
@@ -152,7 +153,7 @@ class QuestionsAnswers extends React.Component {
         this.setState({ questions: orderedAnswers, orgLength: receivedLength });
       })
       .catch((err) => {
-        this.setState({ errorMessage: err, breakingError: true });
+        this.setState({ errorMessage: err, breakingError: false });
       });
   }
 
@@ -169,7 +170,7 @@ class QuestionsAnswers extends React.Component {
         this.setState({ questions: orderedAnswers, orgLength: receivedLength });
       })
       .catch((err) => {
-        this.setState({ errorMessage: err, breakingError: true });
+        this.setState({ errorMessage: err, breakingError: false });
       });
   }
 
@@ -186,7 +187,7 @@ class QuestionsAnswers extends React.Component {
         this.setState({ questions: orderedAnswers, orgLength: receivedLength });
       })
       .catch((err) => {
-        this.setState({ errorMessage: err, breakingError: true });
+        this.setState({ errorMessage: err, breakingError: false });
       });
   }
 
@@ -203,7 +204,7 @@ class QuestionsAnswers extends React.Component {
         this.setState({ questions: orderedAnswers, orgLength: receivedLength });
       })
       .catch((err) => {
-        this.setState({ errorMessage: err, breakingError: true });
+        this.setState({ errorMessage: err, breakingError: false });
       });
   }
 
@@ -229,7 +230,7 @@ class QuestionsAnswers extends React.Component {
         this.setState({ qModalStatus: false, questions: orderedAnswers, orgLength: receivedLength });
       })
       .catch((err) => {
-        this.setState({ errorMessage: err, breakingError: true });
+        this.setState({ errorMessage: err, breakingError: false });
       });
   }
 
@@ -245,7 +246,7 @@ class QuestionsAnswers extends React.Component {
       })
       .catch((err) => {
         console.log('WE OUT HERE', err);
-        this.setState({ errorMessage: err, breakingError: true });
+        this.setState({ errorMessage: err, breakingError: false });
       });
   }
 

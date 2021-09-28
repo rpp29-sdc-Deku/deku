@@ -5,7 +5,7 @@ const apiToken = process.env.API_TOKEN;
 const apiURL = process.env.API;
 
 router.get('/initialQA', (req, res) => {
-  axios.get(`${apiURL}qa/questions`, {
+  axios.get('http://localhost:3030/qa/questions', {
     method: 'GET',
     headers: {
       Authorization: apiToken
@@ -16,7 +16,10 @@ router.get('/initialQA', (req, res) => {
     }
   })
     .then((response) => {
-      res.json(response.data.results);
+      response.data.forEach(obj => {
+        obj.question_date = '2021-02-11T00:00:00.000Z';
+      });
+      res.json(response.data);
       res.end();
     })
     .catch((err) => {
@@ -25,21 +28,17 @@ router.get('/initialQA', (req, res) => {
 });
 
 router.put('/likeQuestion', (req, res) => {
-  axios.put(`${apiURL}qa/questions/${req.body.id}/helpful`, {
+  axios.put('http://localhost:3030/likeQuestion', {
     question_id: req.body.id
-  }, {
-    headers: {
-      Authorization: apiToken
-    }
   })
     .then((response) => {
-      return axios.get(`${apiURL}qa/questions`, {
+      return axios.get('http://localhost:3030/qa/questions', {
         method: 'GET',
         headers: {
           Authorization: apiToken
         },
         params: {
-          product_id: req.body.product,
+          product_id: 1,
           count: 50
         }
       });
@@ -55,21 +54,17 @@ router.put('/likeQuestion', (req, res) => {
 });
 
 router.put('/likeAnswer', (req, res) => {
-  axios.put(`${apiURL}qa/answers/${req.body.id}/helpful`, {
+  axios.put('http://localhost:3030/likeAnswer', {
     answer_id: req.body.id
-  }, {
-    headers: {
-      Authorization: apiToken
-    }
   })
     .then((response) => {
-      return axios.get(`${apiURL}qa/questions`, {
+      return axios.get('http://localhost:3030/qa/questions', {
         method: 'GET',
         headers: {
           Authorization: apiToken
         },
         params: {
-          product_id: req.body.product,
+          product_id: 1,
           count: 50
         }
       });
@@ -85,7 +80,7 @@ router.put('/likeAnswer', (req, res) => {
 });
 
 router.put('/reportQuestion', (req, res) => {
-  axios.put(`${apiURL}qa/questions/${req.body.id}/report`, {
+  axios.put('http://localhost:3030/reportQuestion', {
     question_id: req.body.id
   }, {
     headers: {
@@ -93,13 +88,13 @@ router.put('/reportQuestion', (req, res) => {
     }
   })
     .then((response) => {
-      return axios.get(`${apiURL}qa/questions`, {
+      return axios.get('http://localhost:3030/qa/questions', {
         method: 'GET',
         headers: {
           Authorization: apiToken
         },
         params: {
-          product_id: req.body.product,
+          product_id: 1,
           count: 50
         }
       });
@@ -115,21 +110,21 @@ router.put('/reportQuestion', (req, res) => {
 });
 
 router.put('/reportAnswer', (req, res) => {
-  axios.put(`${apiURL}qa/answers/${req.body.id}/report`, {
-    question_id: req.body.id
+  axios.put('http://localhost:3030/reportAnswer', {
+    answer_id: req.body.id
   }, {
     headers: {
       Authorization: apiToken
     }
   })
     .then((response) => {
-      return axios.get(`${apiURL}qa/questions`, {
+      return axios.get('http://localhost:3030/qa/questions', {
         method: 'GET',
         headers: {
           Authorization: apiToken
         },
         params: {
-          product_id: req.body.product,
+          product_id: 1,
           count: 50
         }
       });
@@ -139,7 +134,7 @@ router.put('/reportAnswer', (req, res) => {
       res.end();
     })
     .catch((err) => {
-      console.log('ERROR REPORTING QUESTION', err);
+      console.log('ERROR REPORTING ANSWER', err);
       res.send(err);
     });
 });
@@ -147,20 +142,20 @@ router.put('/reportAnswer', (req, res) => {
 router.post('/submitQuestion', (req, res) => {
   axios({
     method: 'POST',
-    url: `${apiURL}qa/questions`,
+    url: 'http://localhost:3030/submitQuestion',
     headers: {
       Authorization: apiToken
     },
     data: req.body
   })
     .then((response) => {
-      return axios.get(`${apiURL}qa/questions`, {
+      return axios.get('http://localhost:3030/qa/questions', {
         method: 'GET',
         headers: {
           Authorization: apiToken
         },
         params: {
-          product_id: req.body.product_id,
+          product_id: 1,
           count: 50
         }
       });
@@ -180,24 +175,27 @@ router.post('/submitAnswer', (req, res) => {
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
-    photos: req.body.photos
+    photos: req.body.photos,
+    question_id: req.body.qid,
+    product_id: req.body.product_id
   };
+
   axios({
     method: 'POST',
-    url: `${apiURL}qa/questions/${req.body.qid}/answers`,
+    url: 'http://localhost:3030/submitAnswer',
     headers: {
       Authorization: apiToken
     },
     data: answerForm
   })
     .then((response) => {
-      return axios.get(`${apiURL}qa/questions`, {
+      return axios.get('http://localhost:3030/qa/questions', {
         method: 'GET',
         headers: {
           Authorization: apiToken
         },
         params: {
-          product_id: req.body.product_id,
+          product_id: 1,
           count: 50
         }
       });
