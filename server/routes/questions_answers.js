@@ -5,7 +5,7 @@ const apiToken = process.env.API_TOKEN;
 const apiURL = process.env.API;
 
 router.get('/initialQA', (req, res) => {
-  axios.get('http://localhost:3030/qa/questions', {
+  axios.get('http://18.117.70.219/qa/questions', {
     method: 'GET',
     headers: {
       Authorization: apiToken
@@ -28,11 +28,11 @@ router.get('/initialQA', (req, res) => {
 });
 
 router.put('/likeQuestion', (req, res) => {
-  axios.put('http://localhost:3030/likeQuestion', {
+  axios.put('http://18.117.70.219/likeQuestion', {
     question_id: req.body.id
   })
     .then((response) => {
-      return axios.get('http://localhost:3030/qa/questions', {
+      return axios.get('http://18.117.70.219/qa/questions', {
         method: 'GET',
         headers: {
           Authorization: apiToken
@@ -54,11 +54,11 @@ router.put('/likeQuestion', (req, res) => {
 });
 
 router.put('/likeAnswer', (req, res) => {
-  axios.put('http://localhost:3030/likeAnswer', {
+  axios.put('http://18.117.70.219/likeAnswer', {
     answer_id: req.body.id
   })
     .then((response) => {
-      return axios.get('http://localhost:3030/qa/questions', {
+      return axios.get('http://18.117.70.219/qa/questions', {
         method: 'GET',
         headers: {
           Authorization: apiToken
@@ -80,7 +80,7 @@ router.put('/likeAnswer', (req, res) => {
 });
 
 router.put('/reportQuestion', (req, res) => {
-  axios.put('http://localhost:3030/reportQuestion', {
+  axios.put('http://18.117.70.219/reportQuestion', {
     question_id: req.body.id
   }, {
     headers: {
@@ -88,7 +88,7 @@ router.put('/reportQuestion', (req, res) => {
     }
   })
     .then((response) => {
-      return axios.get('http://localhost:3030/qa/questions', {
+      return axios.get('http://18.117.70.219/qa/questions', {
         method: 'GET',
         headers: {
           Authorization: apiToken
@@ -110,7 +110,7 @@ router.put('/reportQuestion', (req, res) => {
 });
 
 router.put('/reportAnswer', (req, res) => {
-  axios.put('http://localhost:3030/reportAnswer', {
+  axios.put('http://18.117.70.219/reportAnswer', {
     answer_id: req.body.id
   }, {
     headers: {
@@ -118,7 +118,7 @@ router.put('/reportAnswer', (req, res) => {
     }
   })
     .then((response) => {
-      return axios.get('http://localhost:3030/qa/questions', {
+      return axios.get('http://18.117.70.219/qa/questions', {
         method: 'GET',
         headers: {
           Authorization: apiToken
@@ -142,14 +142,14 @@ router.put('/reportAnswer', (req, res) => {
 router.post('/submitQuestion', (req, res) => {
   axios({
     method: 'POST',
-    url: 'http://localhost:3030/submitQuestion',
+    url: 'http://18.117.70.219/submitQuestion',
     headers: {
       Authorization: apiToken
     },
     data: req.body
   })
     .then((response) => {
-      return axios.get('http://localhost:3030/qa/questions', {
+      return axios.get('http://18.117.70.219/qa/questions', {
         method: 'GET',
         headers: {
           Authorization: apiToken
@@ -182,14 +182,14 @@ router.post('/submitAnswer', (req, res) => {
 
   axios({
     method: 'POST',
-    url: 'http://localhost:3030/submitAnswer',
+    url: 'http://18.117.70.219/submitAnswer',
     headers: {
       Authorization: apiToken
     },
     data: answerForm
   })
     .then((response) => {
-      return axios.get('http://localhost:3030/qa/questions', {
+      return axios.get('http://18.117.70.219/qa/questions', {
         method: 'GET',
         headers: {
           Authorization: apiToken

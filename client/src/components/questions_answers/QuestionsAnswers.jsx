@@ -73,7 +73,7 @@ class QuestionsAnswers extends React.Component {
         });
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         this.setState({ errorMessage: err, breakingError: false });
       });
   }
