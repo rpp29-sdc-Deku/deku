@@ -3,7 +3,7 @@ import $ from 'jquery';
 const getMeta = (productId, cb) => {
   $.ajax({
     type: 'GET',
-    url: '/atelier/reviews/meta',
+    url: 'http://34.217.233.254:4000/atelier/reviews/meta',
     data: {
       product_id: productId
     },
