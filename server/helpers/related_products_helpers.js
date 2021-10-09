@@ -6,14 +6,9 @@ const apiToken = process.env.API_TOKEN;
 const apiURL = process.env.API;
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
-const getRelatedProducts = (currentProductId) => {
-    //delete this variable and use incoming variable from line 11 into the end at line 15
-  //hardcoded now while I want for other service to be up and running.
-  const hardcode = -1;
-  //{ “_id” : “-1", “current_product_id” : -1, “related_product_id” : [ 47422, 47423, 47428, 47427 ] }
-  //local host ${apiURL}products/${currentProductId}/related
 
-  const relatedProductIds = axios.get(`http://204.236.151.29/api/related?_id=${hardcode}`, {
+const getRelatedProducts = (currentProductId) => {
+  const relatedProductIds = axios.get(`http://54.241.61.111:5000/api/related?_id=${currentProductId}`, {
     headers: {
       Authorization: apiToken
     }
