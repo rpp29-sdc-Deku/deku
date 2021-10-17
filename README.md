@@ -1,7 +1,7 @@
 # SDC - Hack Reactor - RPP29 - Team Deku
 
 *Project Owners:
-- [Steven Harder](https://github.com/stevenharderjr) - [Engineering Journal](https://gist.github.com/stevenharderjr/244519a6cd85b1ed5154b6322a79a957)
+- [Steven Harder](https://github.com/stevenharderjr) - [Engineering Journal](https://github.com/stevenharderjr/SDC-Engineering-Journal)
 - Chris Monteilh
 - Isaac Kim
 - Callum Reid*
